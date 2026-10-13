@@ -1,0 +1,5762 @@
+[
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 192,
+        "prompt": "Is the 'door next to the telephone' close to the white box Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Close"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 193,
+        "prompt": "Is there a clock above the 'yellow door' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 194,
+        "prompt": "What color is the 'door next to the white box' Answer the question using a single word or phrase.",
+        "pred": "Door next to white box has brown color.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 129,
+        "prompt": "Is the 'cabinet closest to the monitor' right next to the small desk? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 130,
+        "prompt": "What's under the 'cabinet closest to the keyboard'? Answer the question using a single word or phrase.",
+        "pred": "Rectangular black keyboard.",
+        "ref_captions": [
+            "Floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 131,
+        "prompt": "Is there a telephone on top of the 'cabinet closest to the mouse'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 189,
+        "prompt": "What color is the 'TV below the calendar diagonally' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 190,
+        "prompt": "Is there a window opposite the 'black TV' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 191,
+        "prompt": "What is under the 'TV next to the TV box' Answer the question using a single word or phrase.",
+        "pred": "Tv stand.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 10,
+        "pred_id": 0,
+        "qid": 132,
+        "prompt": "Is the cabinet under the TV white? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 10,
+        "pred_id": 0,
+        "qid": 133,
+        "prompt": "Is the cabinet with the remote control right next to the white box? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 10,
+        "pred_id": 0,
+        "qid": 134,
+        "prompt": "What material is the cabinet under the tv box made of? Answer the question using a single word or phrase.",
+        "pred": "Wood.",
+        "ref_captions": [
+            "Wood"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 198,
+        "prompt": "Is the 'TV box next to the TV' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 199,
+        "prompt": "Is the 'light gray TV box' rectangular? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 200,
+        "prompt": "What is under the 'rectangular TV box'? Answer the question using a single word or phrase.",
+        "pred": "Tv.",
+        "ref_captions": [
+            "cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 141,
+        "prompt": "Is there anything inside the 'white box'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 142,
+        "prompt": "Is the 'box closest to the TV' pink? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 143,
+        "prompt": "Which is bigger, the 'box closest to the door' or the bag? Answer the question using a single word or phrase.",
+        "pred": "Box.",
+        "ref_captions": [
+            "box"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 126,
+        "prompt": "Is 'The nightstand closest to the tv' right next to the radiator shell Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 127,
+        "prompt": "Compared to the chair, which is taller, 'The nightstand closest to the tv box'? Answer the question using a single word or phrase.",
+        "pred": "Tv stand.",
+        "ref_captions": [
+            "Chair"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 128,
+        "prompt": "Is 'The nightstand right next to the radiator shell' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 123,
+        "prompt": "What color is the 'wall cabinet closest to the clock'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Orange"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 124,
+        "prompt": "What is the position of the 'wall cabinet closest to the calendar' in relation to the radiator shell? Answer the question using a single word or phrase.",
+        "pred": "To right of radiator.",
+        "ref_captions": [
+            "Above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 125,
+        "prompt": "Is there a curtain beside the 'wall cabinet above the radiator shell'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 120,
+        "prompt": "What color is the frame of the 'clock on the wall above the TV'? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Blue"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 121,
+        "prompt": "In what direction from the TV is the 'clock next to the calendar'? Answer the question using a single word or phrase.",
+        "pred": "Left.",
+        "ref_captions": [
+            "Above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 122,
+        "prompt": "Is there a bed opposite to the 'clock with a blue frame'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 207,
+        "prompt": "Does the 'Calendar right next to the clock' have a large tree pattern? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 208,
+        "prompt": "What shape is the 'Calendar hanging on the wall'? Answer the question using a single word or phrase.",
+        "pred": "Rectangular.",
+        "ref_captions": [
+            "Rectangular"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 209,
+        "prompt": "Is the 'Rectangular calendar' right next to the clock? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 204,
+        "prompt": "What color is the 'Bed with a bag'? Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Brown"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 205,
+        "prompt": "Is there a bag on the 'Bed with a quilt'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 206,
+        "prompt": "Is the 'Bed next to the monitor' right next to the wall cabinet? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 159,
+        "prompt": "Is there a bag next to the red and white striped pillow? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 160,
+        "prompt": "Is the pillow closest to the telephone blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 161,
+        "prompt": "What is the pillow closest to the door placed on? Answer the question using a single word or phrase.",
+        "pred": "Closet shelf.",
+        "ref_captions": [
+            "bed"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 180,
+        "prompt": "What's under 'The light blue quilt at the end of the bed' Answer the question using a single word or phrase.",
+        "pred": "Blanket.",
+        "ref_captions": [
+            "Quilt"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 181,
+        "prompt": "Is 'The light blue quilt closest to the speaker' placed on a chair Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 182,
+        "prompt": "Is there a bag next to 'The light blue quilt closest to the keyboard' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 177,
+        "prompt": "What's under 'The quilt farthest from the keyboard' Answer the question using a single word or phrase.",
+        "pred": "Pillow.",
+        "ref_captions": [
+            "bed"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 178,
+        "prompt": "Is there a bag next to 'The quilt farthest from the monitor' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 179,
+        "prompt": "Is 'The quilt closest to the bag' patterned Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 135,
+        "prompt": "Is 'The nightstand closest to the door' mahogany colored? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 136,
+        "prompt": "What is under 'The nightstand closest to the bed'? Answer the question using a single word or phrase.",
+        "pred": "Bed.",
+        "ref_captions": [
+            "floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 137,
+        "prompt": "Is there a green plant next to 'The nightstand closest to the bag'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 195,
+        "prompt": "What color is the 'Telephone on the nightstand'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 196,
+        "prompt": "Is there a small desk under the 'Telephone next to the door'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 197,
+        "prompt": "Is the 'Black telephone' close to the door? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 186,
+        "prompt": "What color is the screen of the 'monitor next to the mouse'? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 187,
+        "prompt": "Is the 'monitor next to the keyboard' close to the bed? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Close"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 188,
+        "prompt": "What is under the 'monitor next to the bed'? Answer the question using a single word or phrase.",
+        "pred": "Desk.",
+        "ref_captions": [
+            "desk"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 174,
+        "prompt": "What's under 'Light yellow speaker' Answer the question using a single word or phrase.",
+        "pred": "Small black speaker.",
+        "ref_captions": [
+            "Small desk"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 175,
+        "prompt": "Is there a mouse next to 'Speaker on the small desk' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 176,
+        "prompt": "Is 'Speaker next to the keyboard' black Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 210,
+        "prompt": "What color is the 'keyboard next to the mouse'? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 211,
+        "prompt": "Is there a telephone next to the 'black keyboard'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 212,
+        "prompt": "Is there a desk under the 'keyboard next to the monitor'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 27,
+        "pred_id": 0,
+        "qid": 183,
+        "prompt": "Is the 'Mouse next to the keyboard' next to the monitor Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 27,
+        "pred_id": 0,
+        "qid": 184,
+        "prompt": "Which is bigger, the 'Mouse next to the monitor' or the speaker Answer the question using a single word or phrase.",
+        "pred": "Monitor.",
+        "ref_captions": [
+            "Speaker"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 27,
+        "pred_id": 0,
+        "qid": 185,
+        "prompt": "Is the 'Mouse next to the speaker' red Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 171,
+        "prompt": "Is the 'Desk right next to the bed' blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 172,
+        "prompt": "What is the position of the 'Desk with a mouse on it' relative to the monitor? Answer the question using a single word or phrase.",
+        "pred": "In front of monitor.",
+        "ref_captions": [
+            "Below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 173,
+        "prompt": "Which is farther from the TV, the 'Desk with a monitor on it' or the TV box? Answer the question using a single word or phrase.",
+        "pred": "Tv box.",
+        "ref_captions": [
+            "Desk with a monitor on it"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 144,
+        "prompt": "Is the 'light brown box' right next to the radiator shell Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 145,
+        "prompt": "What color is the 'box under the small desk' Answer the question using a single word or phrase.",
+        "pred": "Brown.",
+        "ref_captions": [
+            "light brown"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 146,
+        "prompt": "What's under the 'box farthest from the TV' Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "under the small desk"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 156,
+        "prompt": "Is there a bag next to the 'white and blue striped pillow on the bed'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 157,
+        "prompt": "What's under the 'pillow with white and blue stripes next to the bag'? Answer the question using a single word or phrase.",
+        "pred": "Red backpack.",
+        "ref_captions": [
+            "Bed"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 158,
+        "prompt": "Is the 'pillow with white and blue stripes right next to the head of the bed' square? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 213,
+        "prompt": "Which is smaller when comparing the 'green bag' with the red and white striped pillow Answer the question using a single word or phrase.",
+        "pred": "Red and white striped pillow.",
+        "ref_captions": [
+            "bag"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 214,
+        "prompt": "What color is the 'bag on the bed' Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "green"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 215,
+        "prompt": "Is there a pillow right next to the 'bag next to the striped quilt' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 138,
+        "prompt": "What color is the 'rectangular radiator shell'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Orange-yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 139,
+        "prompt": "Is there a bed next to the 'radiator shell under the wall cabinet'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 140,
+        "prompt": "Who is taller, the 'orange-yellow radiator shell' or the nightstand right next to it? Answer the question using a single word or phrase.",
+        "pred": "Nightstand.",
+        "ref_captions": [
+            "Radiator shell"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 147,
+        "prompt": "What color is the 'Chair with a pillow'? Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Blue"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 148,
+        "prompt": "What item is on the 'Chair right next to the radiator shell'? Answer the question using a single word or phrase.",
+        "pred": "Backpack.",
+        "ref_captions": [
+            "Pillow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 149,
+        "prompt": "Is the 'Chair closest to the clock' right next to the TV? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 165,
+        "prompt": "Is the pillow closest to the radiator shell pink? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 166,
+        "prompt": "Is there a radiator shell near the pillow closest to the calendar? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 167,
+        "prompt": "What's under the pillow closest to the clock? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "chair"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 162,
+        "prompt": "Is there a quilt beside the pillow closest to the monitor Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 163,
+        "prompt": "What is the direction of the pillow closest to the mouse in relation to the TV Answer the question using a single word or phrase.",
+        "pred": "Closest to tv.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 164,
+        "prompt": "What is under the pillow closest to the keyboard Answer the question using a single word or phrase.",
+        "pred": "Pillow.",
+        "ref_captions": [
+            "bed"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 108,
+        "prompt": "Is the 'clothes on the chair closest to the monitor' near the bed? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 109,
+        "prompt": "Is the 'clothes on the chair closest to the mouse' black? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 110,
+        "prompt": "Is there a monitor next to the 'clothes on the chair closest to the bed'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 150,
+        "prompt": "What is placed on 'The chair right next to the bed' Answer the question using a single word or phrase.",
+        "pred": "Red and black backpack.",
+        "ref_captions": [
+            "Clothes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 151,
+        "prompt": "What color is 'The chair placed at the corner between the small desk and the end of the bed' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Blue"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 152,
+        "prompt": "Which is closer to 'The chair closest to the keyboard', door or TV Answer the question using a single word or phrase.",
+        "pred": "Tv.",
+        "ref_captions": [
+            "TV"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 153,
+        "prompt": "What is on the 'The chair between the door frames' Answer the question using a single word or phrase.",
+        "pred": "Chair.",
+        "ref_captions": [
+            "Clothes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 154,
+        "prompt": "Is 'The chair closest to the radiator shell with clothes on it' pink? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 155,
+        "prompt": "Is 'The chair right below the beam' close to the door frame? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 114,
+        "prompt": "Is the 'curtain next to the radiator shell' red Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 115,
+        "prompt": "Is there a radiator shell next to 'the curtain closer to calendar' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 116,
+        "prompt": "Between the 'curtain right next to the wall cabinet' and the door, which is taller Answer the question using a single word or phrase.",
+        "pred": "Door.",
+        "ref_captions": [
+            "curtain"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 117,
+        "prompt": "Is 'The curtain furthest from the radiator shell' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 118,
+        "prompt": "Which is taller, 'The curtain closest to the monitor' or the radiator shell? Answer the question using a single word or phrase.",
+        "pred": "Radiator.",
+        "ref_captions": [
+            "curtain"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 119,
+        "prompt": "Is 'The curtain next to the cabinet filled with clothes' far from the TV? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 111,
+        "prompt": "What color are the 'Clothes on the chair in the middle of the doorframe' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Dark grey"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 112,
+        "prompt": "Are the 'Clothes on the chair under the beam' very close to the door Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 113,
+        "prompt": "Are the 'Dark grey clothes' on the chair Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 46,
+        "pred_id": 0,
+        "qid": 168,
+        "prompt": "What color is 'the desk closest to the window'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 46,
+        "pred_id": 0,
+        "qid": 169,
+        "prompt": "Which is closer to the door frame, 'the desk on the balcony' or the window? Answer the question using a single word or phrase.",
+        "pred": "Desk.",
+        "ref_captions": [
+            "desk"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 46,
+        "pred_id": 0,
+        "qid": 170,
+        "prompt": "Is there a telephone on 'the desk closest to the black chair'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 48,
+        "pred_id": 0,
+        "qid": 201,
+        "prompt": "Is the frame of the 'window next to the black chair' pink? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 48,
+        "pred_id": 0,
+        "qid": 202,
+        "prompt": "Is the 'window above the orange-yellow wall' next to the black chair? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0000_00",
+        "gt_id": 48,
+        "pred_id": 0,
+        "qid": 203,
+        "prompt": "Is the 'glass window' opened or closed? Answer the question using a single word or phrase.",
+        "pred": "Closed.",
+        "ref_captions": [
+            "Closed"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 0,
+        "pred_id": 0,
+        "qid": 300,
+        "prompt": "Is there a suitcase on the cabinet next to the mirror Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 0,
+        "pred_id": 0,
+        "qid": 301,
+        "prompt": "Is the cabinet closest to the colorful box black? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 0,
+        "pred_id": 0,
+        "qid": 302,
+        "prompt": "What direction is the cabinet next to the orange chair in relation to the bed Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 2,
+        "pred_id": 0,
+        "qid": 360,
+        "prompt": "Does the 'mirror closest to the monitor' have a frame? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 2,
+        "pred_id": 0,
+        "qid": 361,
+        "prompt": "What is the position of the 'mirror closest to the computer' relative to the basket Answer the question using a single word or phrase.",
+        "pred": "In front of it.",
+        "ref_captions": [
+            "opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 2,
+        "pred_id": 0,
+        "qid": 362,
+        "prompt": "Is there a telephone next to the 'mirror closest to the monitor'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 375,
+        "prompt": "Is the 'telephone closest to the mirror' yellow? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 376,
+        "prompt": "What direction from the mirror is the 'telephone farthest from the door'? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 377,
+        "prompt": "Is there a window beside the 'telephone farthest from the personal computer'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 4,
+        "pred_id": 0,
+        "qid": 354,
+        "prompt": "Is the table closest to the curtain box black? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 4,
+        "pred_id": 0,
+        "qid": 355,
+        "prompt": "What direction is the table closest to the window from the bed? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 4,
+        "pred_id": 0,
+        "qid": 356,
+        "prompt": "Is there a curtain on the table furthest from the pen? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 396,
+        "prompt": "What color is the 'PC closest to the cellphone' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 397,
+        "prompt": "What's under the 'PC closest to the monitor' Answer the question using a single word or phrase.",
+        "pred": "Desk.",
+        "ref_captions": [
+            "Floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 398,
+        "prompt": "Is there a curtain next to the 'PC closest to the mirror' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 369,
+        "prompt": "The position of the 'white paper' related to the pen? Answer the question using a single word or phrase.",
+        "pred": "On top of it.",
+        "ref_captions": [
+            "under"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 370,
+        "prompt": "What color is the 'paper under the pen'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "white"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 371,
+        "prompt": "Is there a bed next to the 'paper closest to the monitor'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 387,
+        "prompt": "Is there a cabinet under the 'Black monitor'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 388,
+        "prompt": "What color is the 'Monitor next to paper'? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 389,
+        "prompt": "Is the 'Monitor on the desk' right next to the bed? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 327,
+        "prompt": "Is the chair closest to the windowsill black? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 328,
+        "prompt": "What position is the chair closest to the window in relation to the woodcarving? Answer the question using a single word or phrase.",
+        "pred": "In front of it.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 329,
+        "prompt": "Is there a door next to the chair closest to the curtain? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 363,
+        "prompt": "Is the 'bed with pillows on it' right next to the curtain? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 364,
+        "prompt": "Is the 'bed with a white headboard' close to the mirror? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 365,
+        "prompt": "What color is the headboard of the 'bed below the curtain'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 381,
+        "prompt": "Is there paper next to the window by the windowsill? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 382,
+        "prompt": "What is under the window opposite the door? Answer the question using a single word or phrase.",
+        "pred": "Radiator.",
+        "ref_captions": [
+            "windowsill"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 383,
+        "prompt": "What direction from the door is the window next to the curtain? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 390,
+        "prompt": "Is 'The curtain closest to the windowsill' yellow? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 391,
+        "prompt": "What direction is 'The curtain closest to the window' from the windowsill? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Besides"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 392,
+        "prompt": "Is there a clock beside 'The curtain farthest from the door'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 303,
+        "prompt": "What color is the cabinet with a basket? Answer the question using a single word or phrase.",
+        "pred": "Brown.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 304,
+        "prompt": "What is under the yellow cabinet right next to a blue chair? Answer the question using a single word or phrase.",
+        "pred": "Trash can.",
+        "ref_captions": [
+            "Floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 305,
+        "prompt": "Is there a basket on the yellow cabinet closest to the bed? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 324,
+        "prompt": "What color is the rectangular basket? Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 325,
+        "prompt": "What shape is the yellow basket? Answer the question using a single word or phrase.",
+        "pred": "Oval.",
+        "ref_captions": [
+            "Rectangular"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 326,
+        "prompt": "What is under the 'Basket near the bed'? Answer the question using a single word or phrase.",
+        "pred": "Trash can.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 312,
+        "prompt": "Is the 'Yellow short commode' right next to the door Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 313,
+        "prompt": "Is there another commode next to 'The yellow short commode farthest from the window' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 314,
+        "prompt": "Which is taller, 'The yellow short commode farthest from the woodcarving' or the bed Answer the question using a single word or phrase.",
+        "pred": "Taller.",
+        "ref_captions": [
+            "Yellow short commode"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 384,
+        "prompt": "What is the position of the 'yellow door' relative to the window Answer the question using a single word or phrase.",
+        "pred": "In front of window.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 385,
+        "prompt": "What is the color of 'the door closest to the clock' Answer the question using a single word or phrase.",
+        "pred": "White door.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 386,
+        "prompt": "Is there a telephone next to 'the door closest to the basket' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 372,
+        "prompt": "Is there a bed next to the 'White clock' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 373,
+        "prompt": "What color is 'the clock hanging on the largest cabinet' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 374,
+        "prompt": "In what direction of the window is 'the clock closest to the door' Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 306,
+        "prompt": "Is the cabinet with a clock blue? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 307,
+        "prompt": "What direction is the cabinet that is farthest from the curtain relative to the curtain box? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 308,
+        "prompt": "What is under the cabinet that is farthest from the window? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "Floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 345,
+        "prompt": "What color is the suitcase closest to the mirror? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Red"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 346,
+        "prompt": "What is underneath the suitcase closest to the clock? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 347,
+        "prompt": "Is there a basket next to the red suitcase farthest from the window? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 342,
+        "prompt": "Is there a red heart pattern on the 'Black suitcase directly below the colorful box'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 343,
+        "prompt": "What is the direction of the 'Black suitcase closest to the mirror' relative to the colorful box? Answer the question using a single word or phrase.",
+        "pred": "Closest to colorful box.",
+        "ref_captions": [
+            "Below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 344,
+        "prompt": "Is there a cabinet under the 'Black suitcase closest to the personal computer'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 336,
+        "prompt": "What color is the 'suitcase closest to the window'? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 337,
+        "prompt": "What direction from the bed is the 'suitcase closest to the curtain box' located? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 338,
+        "prompt": "Is there a telephone on top of the 'suitcase farthest from the door'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 348,
+        "prompt": "What is under the 'colorful boxes' Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "suitcase"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 349,
+        "prompt": "In which direction of the wall is the 'colorful boxes' on top of the black suitcase Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 350,
+        "prompt": "Is there a pillow on top of the 'colorful boxes' beside the wall Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 351,
+        "prompt": "What is the position of the 'White box' relative to the red suitcase Answer the question using a single word or phrase.",
+        "pred": "Right side of red suitcase.",
+        "ref_captions": [
+            "On top"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 352,
+        "prompt": "Is there a pc next to the 'White box' closest to the mirror Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 353,
+        "prompt": "Is the 'White box' closest to the curtain box next to the door Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 318,
+        "prompt": "Is the pillow closest to the mirror blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 319,
+        "prompt": "What's under the pillow closest to the monitor? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "chair"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 320,
+        "prompt": "Is there a chair under the pillow closest to the paper? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 333,
+        "prompt": "What is on the chair closest to the pc Answer the question using a single word or phrase.",
+        "pred": "Red and black jacket.",
+        "ref_captions": [
+            "pillow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 334,
+        "prompt": "Is the chair closest to the paper right next to the desk Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 335,
+        "prompt": "Is the chair right next to the desk purely black Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 378,
+        "prompt": "Where is the 'White cellphone' in relation to the monitor Answer the question using a single word or phrase.",
+        "pred": "In front of monitor.",
+        "ref_captions": [
+            "Next to"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 379,
+        "prompt": "What color is the 'cellphone next to the monitor' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 380,
+        "prompt": "Is there a bed next to the 'cellphone closest to the mirror' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 357,
+        "prompt": "What's the direction of the pen relative to 'the desk with a monitor'? Answer the question using a single word or phrase.",
+        "pred": "In front of monitor.",
+        "ref_captions": [
+            "Below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 358,
+        "prompt": "Is there a pillow on 'the desk with paper'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 359,
+        "prompt": "What's under 'the desk farthest from the window'? Answer the question using a single word or phrase.",
+        "pred": "Trash can.",
+        "ref_captions": [
+            "Floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 339,
+        "prompt": "Is 'The box closest to the bed' black? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 340,
+        "prompt": "What's under 'The box closest to the door'? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 341,
+        "prompt": "Is there a table next to 'The box closest to the monitor'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 315,
+        "prompt": "Does the 'pillow closest to the basket' have a pattern Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 316,
+        "prompt": "Is there a box next to the 'pillow on the chair opposite the door' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 317,
+        "prompt": "Which is bigger, the 'pillow on the chair with pink and yellow patterns' or the clock Answer the question using a single word or phrase.",
+        "pred": "Clock.",
+        "ref_captions": [
+            "Pillow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 330,
+        "prompt": "What's on 'The chair closest to the bed' Answer the question using a single word or phrase.",
+        "pred": "Closest to bed.",
+        "ref_captions": [
+            "pillow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 331,
+        "prompt": "What color is 'The chair closest to the basket' Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Blue"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 332,
+        "prompt": "In what direction of the bed is 'The blue chair farthest from the paper' Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 321,
+        "prompt": "In which direction is the 'pillow with a blue dot pattern on a white background' from the curtain Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 322,
+        "prompt": "Is the 'pillow on the bed' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 323,
+        "prompt": "What is below the 'pillow closest to the curtain'? Answer the question using a single word or phrase.",
+        "pred": "Pillow.",
+        "ref_captions": [
+            "bed"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 309,
+        "prompt": "What's the color of the drawers of the 'cabinet closest to the curtain' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 310,
+        "prompt": "Is the 'cabinet with white drawers' right next to the bed Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 311,
+        "prompt": "Is there a door next to the 'cabinet with white drawers closest to the window' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 393,
+        "prompt": "Is there a telephone on the woodcarving under the windowsill Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 394,
+        "prompt": "What direction of the windowsill is the woodcarving closest to the window Answer the question using a single word or phrase.",
+        "pred": "Closest to window.",
+        "ref_captions": [
+            "below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 395,
+        "prompt": "Is the woodcarving closest to the curtain blue Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 366,
+        "prompt": "What is the direction of 'the windowsill beside the window' from the door Answer the question using a single word or phrase.",
+        "pred": "To right of window.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 367,
+        "prompt": "What is under 'the windowsill closest to the curtain' Answer the question using a single word or phrase.",
+        "pred": "Radiator.",
+        "ref_captions": [
+            "woodcarving"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0001_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 368,
+        "prompt": "Is 'the windowsill above the woodcarving' pink Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 249,
+        "prompt": "The natural colored wood fence and the windowsill, which is closer to the speaker? Answer the question using a single word or phrase.",
+        "pred": "Fence.",
+        "ref_captions": [
+            "The natural colored wood fence"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 250,
+        "prompt": "Is there a window next to 'the wood fence next to the pillar'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 3,
+        "pred_id": 0,
+        "qid": 251,
+        "prompt": "What color is 'the wood fence behind the sofa'? Answer the question using a single word or phrase.",
+        "pred": "Brown.",
+        "ref_captions": [
+            "Natural colored"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 294,
+        "prompt": "Is the tv cabinet with a TV mounted on it golden in color? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 295,
+        "prompt": "Between the tv cabinet right next to the largest wall and the blue painting, which is taller? Answer the question using a single word or phrase.",
+        "pred": "Tv cabinet.",
+        "ref_captions": [
+            "The tv cabinet right next to the largest wall"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 5,
+        "pred_id": 0,
+        "qid": 296,
+        "prompt": "Is the golden tv cabinet right next to the wood fence? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 285,
+        "prompt": "Is there a TV next to the painting closest to the chair with two pillows Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 286,
+        "prompt": "Which is bigger, the painting closest to the table with a speaker or the green suitcase Answer the question using a single word or phrase.",
+        "pred": "Painting.",
+        "ref_captions": [
+            "Painting"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 287,
+        "prompt": "What color is the frame of the painting closest to the speaker Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 282,
+        "prompt": "What color is the frame of the 'blue painting' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 283,
+        "prompt": "Is 'the blue painting farthest from the window' very close to the speaker Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 284,
+        "prompt": "Is there another painting next to 'the blue painting closest to the green suitcase' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 246,
+        "prompt": "Does the 'black TV' have an image pattern? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 247,
+        "prompt": "What color is the 'TV hanging on the TV stand'? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 248,
+        "prompt": "Is the 'TV opposite the silver suitcase' hanging above the TV stand? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 219,
+        "prompt": "Is there a couch next to the chair furthest from the speaker with no pillow on it Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 220,
+        "prompt": "What color is the chair with no pillow Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Grey"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 11,
+        "pred_id": 0,
+        "qid": 221,
+        "prompt": "Is the chair closest to the small window right next to the TV Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 216,
+        "prompt": "What color is the \"Chair with four pillows\"? Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Grey"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 217,
+        "prompt": "Is the \"Chair next to an empty chair\" right next to the windowsill? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 218,
+        "prompt": "Is there a suitcase next to the \"Chair with a yellow pillow\"? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 222,
+        "prompt": "What color is 'the chair closest to the green suitcase' Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Gray"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 223,
+        "prompt": "Which is bigger, 'the chair closest to the wood fence' or the green suitcase Answer the question using a single word or phrase.",
+        "pred": "Suitcase.",
+        "ref_captions": [
+            "Chair"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 224,
+        "prompt": "Is there a TV next to 'the chair closest to the blue painting' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 276,
+        "prompt": "Is there a speaker next to the 'sofa without a backpack'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 277,
+        "prompt": "What color is the 'sofa with two pillows'? Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Gray"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 278,
+        "prompt": "Is the 'sofa closest to the window' near the wood fence? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 273,
+        "prompt": "What color is the sofa with a backpack Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Light brown"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 274,
+        "prompt": "Is there a backpack on the sofa closest to the speaker Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 275,
+        "prompt": "Is the sofa closest to the green suitcase under the windowsill Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 255,
+        "prompt": "What color is the 'table closest to the wood fence'? Answer the question using a single word or phrase.",
+        "pred": "Brown.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 256,
+        "prompt": "Is the 'table with the suitcase on it' right next to the wall? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 257,
+        "prompt": "What item is on the 'table closest to the windowsill'? Answer the question using a single word or phrase.",
+        "pred": "Lamp.",
+        "ref_captions": [
+            "suitcase"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 252,
+        "prompt": "What color is 'the table with the speaker'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 253,
+        "prompt": "Is there a suitcase on 'the table farthest from the windowsill'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 254,
+        "prompt": "What is on 'the table farthest from the window'? Answer the question using a single word or phrase.",
+        "pred": "Small red trash can.",
+        "ref_captions": [
+            "speaker"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 225,
+        "prompt": "What color is the 'Speaker on the table' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 226,
+        "prompt": "What shape is the 'black speaker' Answer the question using a single word or phrase.",
+        "pred": "Round.",
+        "ref_captions": [
+            "Round"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 227,
+        "prompt": "Is the 'round speaker' right next to the wood fence Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 234,
+        "prompt": "Is the 'suitcase on the table' blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 235,
+        "prompt": "What is under 'the flat suitcase'? Answer the question using a single word or phrase.",
+        "pred": "Another suitcase.",
+        "ref_captions": [
+            "Table"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 236,
+        "prompt": "Which is closer to the TV, the 'black suitcase farthest from the speaker' or the wood fence? Answer the question using a single word or phrase.",
+        "pred": "Suitcase.",
+        "ref_captions": [
+            "Suitcase"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 237,
+        "prompt": "Is there any other suitcase next to the 'silver-white suitcase'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 238,
+        "prompt": "Is the 'silver-white suitcase' opposite the TV right next to a green suitcase? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 239,
+        "prompt": "Which is a bit farther from the TV stand, the 'silver-white suitcase' closest to the pillar or the speaker? Answer the question using a single word or phrase.",
+        "pred": "Pillar.",
+        "ref_captions": [
+            "Silver-white suitcase"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 231,
+        "prompt": "Is there another suitcase next to the 'Black suitcase right next to the pillar' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 232,
+        "prompt": "Is the 'Black suitcase farthest from the windowsill' close to the tv Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 233,
+        "prompt": "Which is smaller, the 'Black suitcase closest to the speaker' or the silver-white suitcase next to it Answer the question using a single word or phrase.",
+        "pred": "Black suitcase.",
+        "ref_captions": [
+            "Black suitcase"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 228,
+        "prompt": "Is the 'green suitcase' upright? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 229,
+        "prompt": "Is there a TV next to the 'green suitcase next to the couch'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 230,
+        "prompt": "Which is closer to the speaker, the 'green suitcase furthest from the window' or the blue painting? Answer the question using a single word or phrase.",
+        "pred": "Blue painting.",
+        "ref_captions": [
+            "green suitcase"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 291,
+        "prompt": "Is the backpack closest to the silver suitcase blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 292,
+        "prompt": "Is the biggest backpack on the couch right next to the gray and white striped cushion? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 293,
+        "prompt": "What is below the backpack closest to the windowsill? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "Couch"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 288,
+        "prompt": "What color is 'the smallest backpack' Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 289,
+        "prompt": "What is the position of 'the smallest backpack on the couch' relative to the speaker Answer the question using a single word or phrase.",
+        "pred": "Behind couch.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 290,
+        "prompt": "What is under 'the backpack farthest from the pillar' Answer the question using a single word or phrase.",
+        "pred": "Small red trash can.",
+        "ref_captions": [
+            "couch"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 258,
+        "prompt": "Is the 'yellow pillow on the sofa closest to the windowsill' close to the wood fence Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 259,
+        "prompt": "Is there a painting next to the 'yellow pillow on the sofa farthest from the speaker' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 260,
+        "prompt": "Is the 'yellow pillow on the sofa closest to the windowsill' rectangular? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 243,
+        "prompt": "Is there a suitcase next to the 'sofa cushion closest to the windowsill' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 244,
+        "prompt": "What color is the 'sofa cushion closest to the large window' Answer the question using a single word or phrase.",
+        "pred": "Green.",
+        "ref_captions": [
+            "Gray"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 245,
+        "prompt": "Is the 'sofa cushion farthest from the speaker' right next to a pillow Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 264,
+        "prompt": "What's under 'The pure black pillow closest to the pillar' Answer the question using a single word or phrase.",
+        "pred": "Pillow.",
+        "ref_captions": [
+            "Couch"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 265,
+        "prompt": "Is there a suitcase near 'The pure black pillow closest to the wood fence'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 266,
+        "prompt": "Is 'The pure black pillow on the couch' close to the TV? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 240,
+        "prompt": "Is there a silver-white suitcase next to the sofa cushion that is furthest from the window? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 241,
+        "prompt": "What color is the sofa cushion closest to the blue painting? Answer the question using a single word or phrase.",
+        "pred": "Green.",
+        "ref_captions": [
+            "Grey"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 242,
+        "prompt": "Is the sofa cushion furthest from the windowsill close to the wood fence? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 261,
+        "prompt": "What is the direction of 'the first yellow pillow on the chair closest to the window' relative to the windowsill Answer the question using a single word or phrase.",
+        "pred": "Facing window.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 262,
+        "prompt": "Is 'the first yellow pillow on the chair farthest from the speaker' square? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 263,
+        "prompt": "Is there a TV next to 'the first yellow pillow on the chair farthest from the speaker'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 267,
+        "prompt": "Is the 'The second pillow from the top on the chair furthest from the big backpack' blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 268,
+        "prompt": "Which is smaller, the 'The second pillow from the top on the chair furthest from the speaker' or the green suitcase? Answer the question using a single word or phrase.",
+        "pred": "Suitcase.",
+        "ref_captions": [
+            "Pillow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 269,
+        "prompt": "Is there another chair next to 'The second pillow from the top on the chair closest to the windowsill'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 297,
+        "prompt": "Which is further from the TV, 'The largest window' or the speaker? Answer the question using a single word or phrase.",
+        "pred": "Largest window.",
+        "ref_captions": [
+            "The largest window"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 298,
+        "prompt": "Is there a chair next to 'the window closest to the striped painting'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 299,
+        "prompt": "Does 'the window closest to the chair with a yellow pillow' have a flower pattern on it? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 43,
+        "pred_id": 0,
+        "qid": 279,
+        "prompt": "Is 'The painting closest to the windowsill' very close to the sofa with the yellow cushions Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 43,
+        "pred_id": 0,
+        "qid": 280,
+        "prompt": "What color is the frame of 'The painting closest to the window' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 43,
+        "pred_id": 0,
+        "qid": 281,
+        "prompt": "Is there a TV next to 'The painting furthest from the speaker' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 45,
+        "pred_id": 0,
+        "qid": 270,
+        "prompt": "Is there a bird pattern on 'The outermost pillow on the chair closest to the green suitcase' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 45,
+        "pred_id": 0,
+        "qid": 271,
+        "prompt": "What shape is 'The outermost pillow on the chair closest to the small backpack' Answer the question using a single word or phrase.",
+        "pred": "Square.",
+        "ref_captions": [
+            "Rectangular"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0002_00",
+        "gt_id": 45,
+        "pred_id": 0,
+        "qid": 272,
+        "prompt": "Is there a green suitcase next to 'The outermost pillow on the chair closest to the blue painting' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 75,
+        "prompt": "Is there a window next to the 'White door' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 76,
+        "prompt": "What color is the 'Door closest to the refrigerator' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 77,
+        "prompt": "In what direction of the stove is the 'Open door' Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 69,
+        "prompt": "Is the 'window next to the door' blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 70,
+        "prompt": "What direction from the door is 'the window closest to the mop'? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 71,
+        "prompt": "Is there a microwave next to 'the window farthest from the rice cooker'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 87,
+        "prompt": "Is the 'mop closest to the trash bin' blue Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 88,
+        "prompt": "Is there a door next to the 'mop next to the refrigerator' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 89,
+        "prompt": "What is the position of 'the mop closest to the sink' relative to the stove Answer the question using a single word or phrase.",
+        "pred": "Closest to stove.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 72,
+        "prompt": "Is the window closest to the sink red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 73,
+        "prompt": "Is there a microwave next to the window closest to the steel ball? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 74,
+        "prompt": "Is the window closest to the yellow towel opposite the door? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 0,
+        "prompt": "What's under the bottle closest to the refrigerator? Answer the question using a single word or phrase.",
+        "pred": "Cylindrical white trash can.",
+        "ref_captions": [
+            "Windowsill"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 0,
+        "prompt": "What's under the bottle closest to the refrigerator? Answer the question using a single word or phrase.",
+        "pred": "Cylindrical white trash can.",
+        "ref_captions": [
+            "Windowsill"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 1,
+        "prompt": "What direction is the bottle closest to the mop from the gray towel? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 1,
+        "prompt": "What direction is the bottle closest to the mop from the gray towel? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 2,
+        "prompt": "Is there a window next to the bottle closest to the gray towel? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 2,
+        "prompt": "Is there a window next to the bottle closest to the gray towel? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 15,
+        "prompt": "Are there other bottles around 'The yellow bottle closest to the refrigerator'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 16,
+        "prompt": "Where is 'The yellow bottle closest to the mop' located? Answer the question using a single word or phrase.",
+        "pred": "Closest to wall.",
+        "ref_captions": [
+            "On the windowsill above the sink"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 17,
+        "prompt": "Is 'The yellow bottle farthest from the cutting board' on top of the refrigerator? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 6,
+        "prompt": "What is under the 'dark blue bottle'? Answer the question using a single word or phrase.",
+        "pred": "Coffee table.",
+        "ref_captions": [
+            "windowsill"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 7,
+        "prompt": "In which direction of the window is the 'dark blue bottle on the windowsill'? Answer the question using a single word or phrase.",
+        "pred": "To left of window.",
+        "ref_captions": [
+            "beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 8,
+        "prompt": "Is there a plastic bag next to the 'dark blue bottle' closest to the window? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 3,
+        "prompt": "Is there a kettle next to 'the yellow bottle farthest from the refrigerator' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 4,
+        "prompt": "Which is bigger, 'the yellow bottle closest to the rice cooker' or the steel ball Answer the question using a single word or phrase.",
+        "pred": "Yellow bottle.",
+        "ref_captions": [
+            "Yellow bottle"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 5,
+        "prompt": "Is 'the yellow bottle closest to the cutting board' very close to the refrigerator Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 12,
+        "prompt": "What's below 'The bottle in the middle of the three closely adjacent bottles' Answer the question using a single word or phrase.",
+        "pred": "2 other bottles.",
+        "ref_captions": [
+            "Windowsill"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 13,
+        "prompt": "Is there a refrigerator next to 'The blue and white striped bottle next to the deep blue bottle' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 14,
+        "prompt": "Is 'The blue and white striped bottle closest to the cutting board' far from the rice cooker Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 45,
+        "prompt": "Is 'The water faucet next to the steel ball' colorful? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 46,
+        "prompt": "Where is 'The water faucet next to the sink' relative to the steel ball Answer the question using a single word or phrase.",
+        "pred": "To right of steel ball.",
+        "ref_captions": [
+            "Next to"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 47,
+        "prompt": "Is the floor below 'The water faucet closest to the window'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 36,
+        "prompt": "What color is the 'wall cabinet closest to the yellow towel' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 37,
+        "prompt": "Is there a trash bin under the 'wall cabinet closest to the yellow towel' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 24,
+        "pred_id": 0,
+        "qid": 38,
+        "prompt": "What is the direction of the 'wall cabinet closest to the microwave' from the cutting board Answer the question using a single word or phrase.",
+        "pred": "Closest to microwave.",
+        "ref_captions": [
+            "Above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 51,
+        "prompt": "Does the microwave above the stove have a star pattern? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 52,
+        "prompt": "In what direction of the stove is the microwave closest to the kettle? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Directly above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 25,
+        "pred_id": 0,
+        "qid": 53,
+        "prompt": "Is there a mop next to the microwave closest to the rice cooker? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 42,
+        "prompt": "What direction is the 'cabinet under the sink' from the steel ball Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 43,
+        "prompt": "Is the 'cabinet under the steel ball' blue Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 26,
+        "pred_id": 0,
+        "qid": 44,
+        "prompt": "Is there a steel ball on the 'cabinet closest to the water faucet' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 27,
+        "pred_id": 0,
+        "qid": 33,
+        "prompt": "What color is the 'cabinet with a kettle'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 27,
+        "pred_id": 0,
+        "qid": 34,
+        "prompt": "Is there a sink on the 'cabinet closest to the trash bin'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 27,
+        "pred_id": 0,
+        "qid": 35,
+        "prompt": "Is the 'cabinet closest to the trash bin lid' next to the door? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 93,
+        "prompt": "Is the 'range under the microwave' pink? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 94,
+        "prompt": "In what direction of the microwave is 'the range on the floor'? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 95,
+        "prompt": "Is there a box above 'the range closest to the kettle'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 39,
+        "prompt": "What color is the 'wall cabinet closest to the refrigerator' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 40,
+        "prompt": "What is the position of the 'wall cabinet closest to the door' relative to the refrigerator Answer the question using a single word or phrase.",
+        "pred": "To right of refrigerator.",
+        "ref_captions": [
+            "Above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 41,
+        "prompt": "Is there a stove next to the 'wall cabinet closest to the mop' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 102,
+        "prompt": "Is there a stove opposite the 'mop next to the refrigerator' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 103,
+        "prompt": "Is the 'refrigerator next to the windowsill' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 104,
+        "prompt": "What is under the 'refrigerator next to the window'\n Answer the question using a single word or phrase.",
+        "pred": "Radiator.",
+        "ref_captions": [
+            "floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 90,
+        "prompt": "What is 'the sink closest to the steel ball' in front of? Answer the question using a single word or phrase.",
+        "pred": "Closest to steel ball.",
+        "ref_captions": [
+            "Window"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 91,
+        "prompt": "Is there a rice cooker next to 'The sink closest to the water faucet' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 92,
+        "prompt": "What color is the object in 'the sink in front of window'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Green"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 66,
+        "prompt": "Is the 'steel ball next to the water faucet' black? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 67,
+        "prompt": "What is the direction of the 'steel ball above the sink' relative to the water faucet? Answer the question using a single word or phrase.",
+        "pred": "Opposite.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 68,
+        "prompt": "What is under 'the steel ball closest to the refrigerator'? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "Sink"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 105,
+        "prompt": "Is 'the rice maker closest to the stove' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 106,
+        "prompt": "What is under 'the rice maker in the corner of the room'? Answer the question using a single word or phrase.",
+        "pred": "Mini fridge.",
+        "ref_captions": [
+            "cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 107,
+        "prompt": "Is there a refrigerator next to 'the rice maker closest to the cutting board'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 48,
+        "prompt": "Is the 'black kettle' under the microwave? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 49,
+        "prompt": "What color is the 'kettle closest to the stove'? Answer the question using a single word or phrase.",
+        "pred": "Silver.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 50,
+        "prompt": "What is under the 'kettle opposite the trash can'? Answer the question using a single word or phrase.",
+        "pred": "Trash can.",
+        "ref_captions": [
+            "cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 10,
+        "prompt": "Is 'the water bottle on the cabinet' close to window? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 11,
+        "prompt": "Where is 'the water bottle far from window'? Answer the question using a single word or phrase.",
+        "pred": "To right of window.",
+        "ref_captions": [
+            "On the cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 9,
+        "prompt": "What color is 'the water bottle near the kettle'? Answer the question using a single word or phrase.",
+        "pred": "Blue.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 96,
+        "prompt": "What color is the large trash bin? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 97,
+        "prompt": "Is the white trash bin a small one or a large one? Answer the question using a single word or phrase.",
+        "pred": "Large one.",
+        "ref_captions": [
+            "Large"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 98,
+        "prompt": "Is the white trash bin close to cutting board? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 18,
+        "prompt": "Is there a kettle next to the 'Black plastic bag' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 19,
+        "prompt": "What direction on the floor is the 'Black plastic bag' from the trash bin Answer the question using a single word or phrase.",
+        "pred": "On floor in front of trash can.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 38,
+        "pred_id": 0,
+        "qid": 20,
+        "prompt": "What is under the 'Black plastic bag' closest to the trash bin Answer the question using a single word or phrase.",
+        "pred": "Trash can.",
+        "ref_captions": [
+            "Floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 84,
+        "prompt": "What is under 'the box next to the black plastic bag' Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "Floor"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 85,
+        "prompt": "What direction is 'the box closest to the trash bin lid' from the black trash bag Answer the question using a single word or phrase.",
+        "pred": "Closest to black trash bag.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 39,
+        "pred_id": 0,
+        "qid": 86,
+        "prompt": "Is there a kettle on 'the box closest to the door' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 21,
+        "prompt": "What is the position of the 'brown big paper bag' on the floor Answer the question using a single word or phrase.",
+        "pred": "Against wall.",
+        "ref_captions": [
+            "on top"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 22,
+        "prompt": "Is there a trash bin next to the 'brown paper bag on the floor'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 40,
+        "pred_id": 0,
+        "qid": 23,
+        "prompt": "What color is the 'paper bag next to the plastic bag'? Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "brown"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 81,
+        "prompt": "Is the 'box closest to the kettle' blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 82,
+        "prompt": "What is under the 'box farthest from the mop'? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 41,
+        "pred_id": 0,
+        "qid": 83,
+        "prompt": "Is there a steel ball on top of the 'box closest to the stove'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 42,
+        "pred_id": 0,
+        "qid": 24,
+        "prompt": "Is 'the paper bag closest to the kettle' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 42,
+        "pred_id": 0,
+        "qid": 25,
+        "prompt": "Is 'the paper bag closest to the stove' on the floor? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 42,
+        "pred_id": 0,
+        "qid": 26,
+        "prompt": "Is there a mop next to 'the paper bag closest to the stove'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 43,
+        "pred_id": 0,
+        "qid": 78,
+        "prompt": "Is the box closest to the sink blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 43,
+        "pred_id": 0,
+        "qid": 79,
+        "prompt": "What is under the box closest to the steel ball? Answer the question using a single word or phrase.",
+        "pred": "Small black trash can.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 43,
+        "pred_id": 0,
+        "qid": 80,
+        "prompt": "Where is the box closest to the faucet in relation to the sink? Answer the question using a single word or phrase.",
+        "pred": "To right of faucet.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 44,
+        "pred_id": 0,
+        "qid": 60,
+        "prompt": "Is the 'white towel' on the floor Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 44,
+        "pred_id": 0,
+        "qid": 61,
+        "prompt": "What color is the 'towel closest to the mop' Answer the question using a single word or phrase.",
+        "pred": "Green.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 44,
+        "pred_id": 0,
+        "qid": 62,
+        "prompt": "Is there a door next to the 'towel closest to the fridge'  Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 45,
+        "pred_id": 0,
+        "qid": 100,
+        "prompt": "Where is the white light located? Answer the question using a single word or phrase.",
+        "pred": "On wall.",
+        "ref_captions": [
+            "On the ceiling"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 45,
+        "pred_id": 0,
+        "qid": 101,
+        "prompt": "Is there a steel ball next to 'The light above the large trash bin'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 45,
+        "pred_id": 0,
+        "qid": 99,
+        "prompt": "Is 'The light on the ceiling' white? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 46,
+        "pred_id": 0,
+        "qid": 63,
+        "prompt": "Is the 'yellow towel' on the floor Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 46,
+        "pred_id": 0,
+        "qid": 64,
+        "prompt": "What color is the towel closest to the stove Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 46,
+        "pred_id": 0,
+        "qid": 65,
+        "prompt": "Where is the towel closest to the microwave relative to the cutting board Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 47,
+        "pred_id": 0,
+        "qid": 57,
+        "prompt": "Is the cutting board closest to the sink green? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 47,
+        "pred_id": 0,
+        "qid": 58,
+        "prompt": "What is under the cutting board farthest from the rice cooker? Answer the question using a single word or phrase.",
+        "pred": "Kitchen counter.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 47,
+        "pred_id": 0,
+        "qid": 59,
+        "prompt": "Is there a cover on the cutting board closest to the steel ball? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 48,
+        "pred_id": 0,
+        "qid": 54,
+        "prompt": "What's under the 'cutting board closest to the rice maker' Answer the question using a single word or phrase.",
+        "pred": "Small stainless steel appliance.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 48,
+        "pred_id": 0,
+        "qid": 55,
+        "prompt": "What's beside the 'cutting board closest to the microwave' on the direction of the yellow towel Answer the question using a single word or phrase.",
+        "pred": "Dresser.",
+        "ref_captions": [
+            "beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 48,
+        "pred_id": 0,
+        "qid": 56,
+        "prompt": "Is there a rice maker beside the 'cutting board farthest from the refrigerator' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 49,
+        "pred_id": 0,
+        "qid": 27,
+        "prompt": "What color is the 'pot cover on the commode' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "Silver"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 49,
+        "pred_id": 0,
+        "qid": 28,
+        "prompt": "What's under the 'pot cover opposite the sink' Answer the question using a single word or phrase.",
+        "pred": "Trash can.",
+        "ref_captions": [
+            "Commode"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 49,
+        "pred_id": 0,
+        "qid": 29,
+        "prompt": "Is there a refrigerator next to the 'pot cover farthest from the mop' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 50,
+        "pred_id": 0,
+        "qid": 30,
+        "prompt": "What color is 'the trash bin lid next to the trash bin'? Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 50,
+        "pred_id": 0,
+        "qid": 31,
+        "prompt": "Where is 'the trash bin lid closest to the refrigerator' relative to the trash bin Answer the question using a single word or phrase.",
+        "pred": "Closest to refrigerator.",
+        "ref_captions": [
+            "next to"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0003_00",
+        "gt_id": 50,
+        "pred_id": 0,
+        "qid": 32,
+        "prompt": "Is there a door next to 'the trash bin lid closest to the mop' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 4,
+        "pred_id": 0,
+        "qid": 453,
+        "prompt": "In which direction of the floor is the 'white bifold door'? Answer the question using a single word or phrase.",
+        "pred": "In center of floor.",
+        "ref_captions": [
+            "Above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 4,
+        "pred_id": 0,
+        "qid": 454,
+        "prompt": "What color is 'the bifold door on the floor'? Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 4,
+        "pred_id": 0,
+        "qid": 455,
+        "prompt": "Is there a sponge on 'the bifold door next to the white object'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 471,
+        "prompt": "Is there a door opposite the table next to the black suitcase? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 472,
+        "prompt": "What is the position of the table closest to the refrigerator relative to the chair? Answer the question using a single word or phrase.",
+        "pred": "In front of chair.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 7,
+        "pred_id": 0,
+        "qid": 473,
+        "prompt": "Is the table next to the chair blue? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 444,
+        "prompt": "Where is the yellow polka dot suitcase in relation to the table? Answer the question using a single word or phrase.",
+        "pred": "Right side of table.",
+        "ref_captions": [
+            "underneath"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 445,
+        "prompt": "Does 'The suitcase under the table' have a bird pattern on it Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 8,
+        "pred_id": 0,
+        "qid": 446,
+        "prompt": "What is on top of 'the suitcase furthest from the rice cooker' Answer the question using a single word or phrase.",
+        "pred": "Black rectangular suitcase.",
+        "ref_captions": [
+            "table"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 441,
+        "prompt": "Is 'the box closest to the refrigerator' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 442,
+        "prompt": "Is there a pot next to 'the box under the table'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 9,
+        "pred_id": 0,
+        "qid": 443,
+        "prompt": "What is the position of 'the box next to the black suitcase' in relation to the table? Answer the question using a single word or phrase.",
+        "pred": "Left side of table.",
+        "ref_captions": [
+            "Under"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 429,
+        "prompt": "What color is 'The wall cabinet with the range hood hanging' Answer the question using a single word or phrase.",
+        "pred": "Silver.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 430,
+        "prompt": "What direction is 'The wall cabinet containing toilet paper' relative to the stove Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Directly above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 12,
+        "pred_id": 0,
+        "qid": 431,
+        "prompt": "Is there a refrigerator next to 'The wall cabinet closest to the cutting board' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 465,
+        "prompt": "Where is the 'White range hood' relative to the stove? Answer the question using a single word or phrase.",
+        "pred": "Above stove.",
+        "ref_captions": [
+            "Above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 466,
+        "prompt": "What color is the 'range hood above the stove'? Answer the question using a single word or phrase.",
+        "pred": "Silver.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 13,
+        "pred_id": 0,
+        "qid": 467,
+        "prompt": "Is there a sink next to the 'range hood closest to the cutting board'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 420,
+        "prompt": "Is 'The wall cabinet right above the sink' red? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 421,
+        "prompt": "In what direction from the sink is 'The wall cabinet closest to the books'? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Directly above"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 14,
+        "pred_id": 0,
+        "qid": 422,
+        "prompt": "Is there toilet paper inside 'The wall cabinet above the kettle'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 456,
+        "prompt": "Is there a kettle next to the 'Books on top of the refrigerator' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 457,
+        "prompt": "What is under the 'Books closest to the ceiling' Answer the question using a single word or phrase.",
+        "pred": "Bookshelf.",
+        "ref_captions": [
+            "refrigerator"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 15,
+        "pred_id": 0,
+        "qid": 458,
+        "prompt": "Consider the books on top of the refrigerator, are they the same color as the suitcase below? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 462,
+        "prompt": "Where is the 'white refrigerator' in relation to the book Answer the question using a single word or phrase.",
+        "pred": "To right.",
+        "ref_captions": [
+            "Underneath"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 463,
+        "prompt": "What color is the 'refrigerator under the book' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 16,
+        "pred_id": 0,
+        "qid": 464,
+        "prompt": "Is there a door next to the 'refrigerator next to the black suitcase' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 423,
+        "prompt": "What color is the 'cabinet with the cutting board'? Answer the question using a single word or phrase.",
+        "pred": "Brown.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 424,
+        "prompt": "Which side of the trash bin is the 'cabinet closest to the bifold door' located? Answer the question using a single word or phrase.",
+        "pred": "Right side of trash bin.",
+        "ref_captions": [
+            "beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 17,
+        "pred_id": 0,
+        "qid": 425,
+        "prompt": "Is there a refrigerator next to the 'cabinet closest to the trash bin'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 426,
+        "prompt": "What color is the 'cabinet under the rice maker'? Answer the question using a single word or phrase.",
+        "pred": "Brown.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 427,
+        "prompt": "In which direction of the bifold door is 'the cabinet with a sponge'? Answer the question using a single word or phrase.",
+        "pred": "Right.",
+        "ref_captions": [
+            "Opposite"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 18,
+        "pred_id": 0,
+        "qid": 428,
+        "prompt": "Is there a chair next to 'the cabinet with a sink'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 399,
+        "prompt": "What is the position of the 'White toilet paper' in the wall cabinet Answer the question using a single word or phrase.",
+        "pred": "To right of toilet.",
+        "ref_captions": [
+            "inside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 400,
+        "prompt": "What color is the toilet paper placed inside the wall cabinet Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 19,
+        "pred_id": 0,
+        "qid": 401,
+        "prompt": "Is there a door opposite the 'toilet paper closest to the stove' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 474,
+        "prompt": "Where is the 'white rice cooker' located in relation to the kettle Answer the question using a single word or phrase.",
+        "pred": "To right of kettle.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 475,
+        "prompt": "Is the 'rice cooker next to the kettle' white? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 20,
+        "pred_id": 0,
+        "qid": 476,
+        "prompt": "What is under the 'rice cooker closest to the sponge'? Answer the question using a single word or phrase.",
+        "pred": "Small white stove.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 432,
+        "prompt": "Consider the kettle in white and black, is it closer to rice maker or sink? Answer the question using a single word or phrase.",
+        "pred": "Sink.",
+        "ref_captions": [
+            "Sink"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 433,
+        "prompt": "What color is 'the kettle next to the sink'? Answer the question using a single word or phrase.",
+        "pred": "Silver.",
+        "ref_captions": [
+            "White and black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 21,
+        "pred_id": 0,
+        "qid": 434,
+        "prompt": "What is above 'the kettle in front of rice maker'? Answer the question using a single word or phrase.",
+        "pred": "Microwave.",
+        "ref_captions": [
+            "Wall cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 405,
+        "prompt": "Is 'the large pot on the stove' in red color? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 406,
+        "prompt": "What's under 'the large pot nearest to the trash bin'? Answer the question using a single word or phrase.",
+        "pred": "Trash can.",
+        "ref_captions": [
+            "Stove"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 22,
+        "pred_id": 0,
+        "qid": 407,
+        "prompt": "Is there a door next to 'the large pot nearest to the cutting board'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 408,
+        "prompt": "What's under the 'Black pot' Answer the question using a single word or phrase.",
+        "pred": "Cylindrical black trash can.",
+        "ref_captions": [
+            "Stove"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 409,
+        "prompt": "What color is 'The pot closest to the trash bin' Answer the question using a single word or phrase.",
+        "pred": "Red.",
+        "ref_captions": [
+            "Black"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 23,
+        "pred_id": 0,
+        "qid": 410,
+        "prompt": "Is there a sink next to 'The small pot above the stove' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 468,
+        "prompt": "Is the 'sink under the water faucet' red Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 469,
+        "prompt": "What is the position of the 'sink next to the kettle' in relation to the water faucet Answer the question using a single word or phrase.",
+        "pred": "Next to kettle.",
+        "ref_captions": [
+            "below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 28,
+        "pred_id": 0,
+        "qid": 470,
+        "prompt": "Is there a stove next to the 'sink closest to the refrigerator'\n Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 402,
+        "prompt": "Is 'the pot in the sink' close to the sponge Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 403,
+        "prompt": "Where is 'the pot next to the sponge'? Answer the question using a single word or phrase.",
+        "pred": "Next to wall.",
+        "ref_captions": [
+            "In the sink"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 29,
+        "pred_id": 0,
+        "qid": 404,
+        "prompt": "Is there a range hood above 'the pot closest to the books' Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 414,
+        "prompt": "Is there a door next to the 'White bottle'? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 415,
+        "prompt": "What color is 'The bottle closest to the refrigerator'? Answer the question using a single word or phrase.",
+        "pred": "Green.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 30,
+        "pred_id": 0,
+        "qid": 416,
+        "prompt": "What is under 'The bottle closest to the book'? Answer the question using a single word or phrase.",
+        "pred": "Cylindrical white trash can.",
+        "ref_captions": [
+            "cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 438,
+        "prompt": "What is under the 'Light wood color cutting board' Answer the question using a single word or phrase.",
+        "pred": "Long rectangular brown table.",
+        "ref_captions": [
+            "Cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 439,
+        "prompt": "What color is the 'cutting board closest to the bifold door' Answer the question using a single word or phrase.",
+        "pred": "Brown.",
+        "ref_captions": [
+            "Light wood color"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 31,
+        "pred_id": 0,
+        "qid": 440,
+        "prompt": "In what direction from the toilet paper is the 'cutting board closest to the toilet paper' Answer the question using a single word or phrase.",
+        "pred": "Toilet paper.",
+        "ref_captions": [
+            "Below"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 417,
+        "prompt": "What color is the 'sponge next to the sink' Answer the question using a single word or phrase.",
+        "pred": "Green.",
+        "ref_captions": [
+            "Yellow"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 418,
+        "prompt": "Where is the yellow sponge in relation to the sink? Answer the question using a single word or phrase.",
+        "pred": "Right side of sink.",
+        "ref_captions": [
+            "Next to"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 32,
+        "pred_id": 0,
+        "qid": 419,
+        "prompt": "Is there a pot near the yellow sponge? Answer the question using a single word or phrase.",
+        "pred": "Yes.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 459,
+        "prompt": "Where is 'The water faucet above the sink' relative to the sponge Answer the question using a single word or phrase.",
+        "pred": "To right of sink.",
+        "ref_captions": [
+            "next to"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 460,
+        "prompt": "Is 'The water faucet next to the sponge' in the same color with the sponge? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 33,
+        "pred_id": 0,
+        "qid": 461,
+        "prompt": "Is 'the water faucet near kettle' taller or shorter than the kettle? Answer the question using a single word or phrase.",
+        "pred": "Taller.",
+        "ref_captions": [
+            "Shorter"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 411,
+        "prompt": "What color is the cap of 'the bottle closest to the toilet paper'? Answer the question using a single word or phrase.",
+        "pred": "Green.",
+        "ref_captions": [
+            "Orange"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 412,
+        "prompt": "What's under 'the bottle with the orange cap'? Answer the question using a single word or phrase.",
+        "pred": "Red fire extinguisher.",
+        "ref_captions": [
+            "cabinet"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 34,
+        "pred_id": 0,
+        "qid": 413,
+        "prompt": "Is there a cutting board next to 'the bottle closest to the trash can'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes."
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 447,
+        "prompt": "Where is the 'black suitcase' in relation to the refrigerator? Answer the question using a single word or phrase.",
+        "pred": "Right side of refrigerator.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 448,
+        "prompt": "Is 'the suitcase closest to the sink' pink? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 35,
+        "pred_id": 0,
+        "qid": 449,
+        "prompt": "Is there a book on 'the suitcase closest to the sink'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 450,
+        "prompt": "Is there a pot on the 'White stove' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 451,
+        "prompt": "What color is the 'stove next to the trash can' Answer the question using a single word or phrase.",
+        "pred": "White.",
+        "ref_captions": [
+            "White"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 36,
+        "pred_id": 0,
+        "qid": 452,
+        "prompt": "Is there a trash can near 'the stove closest to the cutting board'? Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "Yes"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 435,
+        "prompt": "What color is the 'trash bin under the cutting board' Answer the question using a single word or phrase.",
+        "pred": "Black.",
+        "ref_captions": [
+            "Gray"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 436,
+        "prompt": "Is there a table next to the 'trash bin closest to the stove' Answer the question using a single word or phrase.",
+        "pred": "No.",
+        "ref_captions": [
+            "No"
+        ],
+        "type_info": 0
+    },
+    {
+        "scene_id": "mscan0004_00",
+        "gt_id": 37,
+        "pred_id": 0,
+        "qid": 437,
+        "prompt": "Where is the 'gray trash bin' in relation to the stove Answer the question using a single word or phrase.",
+        "pred": "In front of stove.",
+        "ref_captions": [
+            "Beside"
+        ],
+        "type_info": 0
+    }
+]

@@ -1,194 +1,171 @@
-# Chat-Scene
+# Chat-Scene Benchmark Evaluation
 
-We build a multi-modal large language model for 3D scene understanding, excelling in tasks such as 3D grounding, captioning, and question answering.
+This is a fork of [Chat-Scene](https://github.com/ZzZZCHS/Chat-Scene) (NeurIPS 2024)
+whose purpose is to **evaluate the released Chat-Scene checkpoint on a range of
+benchmarks** under one reproducible setup, so its scores can be compared with other
+models on equal footing. The first benchmark wired in is
+[Beacon3D](https://github.com/beacon-3d/Beacon3D) (CVPR 2025), an object-centric
+grounding + QA benchmark over ScanNet, 3RScan and MultiScan. The upstream model,
+training and data code are untouched; everything this fork adds lives under
+[`beacon3d/`](beacon3d/), and the run that produced the numbers below is committed in
+full (`outputs/`, `beacon3d/results/`).
 
-<details>
-<summary> 🔥 Ranked 1st on the ScanRefer Benchmark (Sept. 2024) </summary>
+Upstream Chat-Scene's own README is in the git history (`git show 475e106:README.md`).
 
-![alt text](assets/scanrefer_benchmark_results.png)
-[leaderboard link](https://kaldir.vc.in.tum.de/scanrefer_benchmark/benchmark_localization)
-</details>
+## Results: Beacon3D
 
-<details>
-<summary> 🔥 Ranked 1st on the Scan2Cap Benchmark (Sept. 2024) </summary>
+Beacon3D, GT-mask setting (one object token per GT instance, the protocol the Beacon3D
+leaderboard uses). *Case* = per-question accuracy; *Obj* = all questions about an object
+answered correctly.
 
-![alt text](assets/scan2cap_benchmark_results.png)
-[leaderboard link](https://kaldir.vc.in.tum.de/scanrefer_benchmark/benchmark_captioning)
-</details>
+| Setting | 3D feature | 2D token | Grounding Case / Obj | QA Case / Obj |
+| --- | --- | --- | --- | --- |
+| ScanNet (official features) | official Uni3D | official DINOv2 | 62.03 / 41.56 | 50.09 / 9.87 |
+| ScanNet, our Uni3D extraction | ours | official DINOv2 | 62.16 / 41.30 | 52.47 / 10.91 |
+| ScanNet, **no 2D token** | official Uni3D | zeros | 17.36 / 6.75 | 40.93 / 6.75 |
+| 3RScan | ours | zeros | 12.18 / 5.15 | 47.55 / 5.51 |
+| MultiScan | ours | zeros | 11.42 / 3.14 | 41.98 / 5.66 |
 
+The ScanNet row reproduces the Beacon3D leaderboard entry for Chat-Scene (61.6 / 42.3,
+49.8 / 10.9). Per-item outputs, the official evaluators' full reports (per knowledge
+type, grounding→QA chain analysis) and the chain figures are in
+[`beacon3d/results/<setting>/`](beacon3d/results/).
 
-## News
+### Read this before quoting the 3RScan / MultiScan numbers
 
-**[2026.03]** 🔥 Chat-Scene++ has been accepted by TPAMI 2026! [[paper](https://arxiv.org/abs/2603.27507)] [[data](https://huggingface.co/datasets/ZzZZCHS/Chat-Scene_plusplus/tree/main/annotations)]
+Chat-Scene gives every object a 3D token (Uni3D) **and** a 2D token (DINOv2 features
+projected from multi-view RGB). The 2D token needs RGB frames + camera poses, which are
+not part of the SceneVerse point-cloud release used here, so on 3RScan and MultiScan the
+2D token is all zeros. The *ScanNet, no 2D token* control shows that this alone drops
+grounding from 62 to 17. The 3RScan / MultiScan grounding scores therefore measure the
+missing-2D condition, not domain transfer; compare them with other models only on
+ScanNet, or only under the same no-2D condition. QA is less affected because many
+questions are answerable from the object label and language prior alone, which is
+exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 45% on 3RScan).
 
-**[2024.09]** 🔥 Chat-Scene has been accepted by NeurIPS 2024! [[paper](https://arxiv.org/abs/2312.08168)]
+## Repository layout
 
-**[2024.08]** We release Chat-Scene, capable of processing both 3D point clouds and 2D multi-view images for improved 3D scene understanding, leading to significant advancements in grounding and captioning performance.
+| Path | What |
+| --- | --- |
+| `beacon3d/Beacon3D/` | Vendored copy of the Beacon3D repo at `bda1203` (Apache-2.0): its two evaluators, `utils.py`, and `data/` with the grounding/QA annotations, metadata and GPT system prompt for all three domains. Unmodified; see `VENDORED.md`. |
+| `beacon3d/features/` | Our Uni3D-g features over GT masks for the Beacon3D scenes of all three domains (`<domain>_gt_uni3d_feats.pt`), their box attributes, and the scene-id map (below). 5.7 MB. |
+| `beacon3d/results/` | Beacon3D infer files, evaluator reports and chain figures for the run in the table. |
+| `outputs/beacon3d_20260929_230515/` | The raw Chat-Scene predictions, config and log of that run. |
+| `beacon3d/build_env.sbatch` | Builds the Chat-Scene runtime as a uv venv (py3.9, torch 2.2.1+cu121, transformers 4.39.3, peft 0.9.0, flash-attn 2.5.6 wheel) plus `open3d` and `openai`. |
+| `beacon3d/extract_uni3d_gt.py`, `extract_uni3d.sbatch` | Rebuilds `beacon3d/features/`. Vendors the Uni3D point encoder with a pure-torch farthest-point sampling so `pointnet2_ops` is not needed. |
+| `beacon3d/compare_uni3d_official.py` | Cosine between our ScanNet extraction and Chat-Scene's official file (sanity check of the extractor). |
+| `beacon3d/build_annos.py` | Beacon3D JSON → Chat-Scene val annotations (`annotations/beacon3d_<setting>_<task>.json`) + `scripts/beacon3d_config.py`. Also builds the two ScanNet controls. Regenerated on every run. |
+| `beacon3d/run_beacon3d.sbatch` | Evaluate-only inference with the official checkpoint (torchrun ×8, ~8 min for all ten val sets). |
+| `beacon3d/to_beacon3d.py`, `score.sbatch`, `beacon_grounding_shim.py` | Predictions → Beacon3D infer files → official evaluators. The shim only skips knowledge tags with zero cases (3RScan / MultiScan have no *functionality* questions, which makes upstream `evaluate_grounding.py` divide by zero). |
 
-**[2024.04]** We release a refined implementation (v2.1), which achieves better performance on grounding, captioning, and QA tasks. The code is available in branch [v2.1](https://github.com/ZzZZCHS/Chat-Scene/tree/v2.1).
+## Setup
 
-**[2023.12]** We release Chat-3D v2 [[paper](https://arxiv.org/abs/2312.08168v2)], introducing object identifiers for enhanced object referencing and grounding in 3D scenes. The original code is available in branch [v2.0](https://github.com/ZzZZCHS/Chat-Scene/tree/v2.0).
+### External dependencies (not in this repo)
 
-**[2023.08]** We release Chat-3D [[paper](https://arxiv.org/abs/2308.08769)] [[code](https://github.com/Chat-3D/Chat-3D)], an LLM-based dialogue system for 3D scenes.
+| Needed for | What | Where | Env var (default) |
+| --- | --- | --- | --- |
+| inference | Chat-Scene checkpoint `ckpt_01_3446.pth` (1.3 GB) | [HF `ZzZZCHS/Chat-Scene`](https://huggingface.co/datasets/ZzZZCHS/Chat-Scene) | `CKPT` (`pretrained/ckpt_01_3446.pth`) |
+| inference | Chat-Scene's ScanNet GT-mask files: `scannet_gt_uni3d_feats.pt` (205 MB), `scannet_gt_videofeats.pt` (203 MB), `scannet_val_attributes.pt` | same HF release, `annotations/` | `OFFICIAL_DIR` (`annotations`) |
+| inference | Vicuna-7B v1.5 | [HF `lmsys/vicuna-7b-v1.5`](https://huggingface.co/lmsys/vicuna-7b-v1.5) | `LLAMA` (`lmsys/vicuna-7b-v1.5`) |
+| QA scoring | an OpenAI API key (GPT-4o judge, `gpt-4o-2024-11-20`) | | `OPENAI_API_KEY` |
+| rebuilding features | Uni3D-g weights `model.pt` | [HF `BAAI/Uni3D`](https://huggingface.co/BAAI/Uni3D/blob/main/modelzoo/uni3d-g/model.pt) | `UNI3D_CKPT` |
+| rebuilding features | 3RScan and MultiScan scene point clouds with GT instance ids, in the [SceneVerse](https://scene-verse.github.io/) `scan_data/` layout (`pcd_with_global_alignment/<scene>.pth`, `instance_id_to_label/<scene>.pth`) | SceneVerse release | `RSCAN_SCAN_DATA`, `MULTISCAN_SCAN_DATA` |
+| validating the extractor (optional) | raw ScanNet scans (`<scene>_vh_clean_2.ply`, `<scene>.aggregation.json`) with one `<objectId>.npy` GT mask per object | ScanNet | `SCANNET_SCANS` |
 
-## 🔥 Chat-Scene vs Chat-3D v2
+Only the first three rows are needed to reproduce the table: the Beacon3D data and
+evaluators, and our 3RScan / MultiScan features, are committed. Chat-Scene ships
+ScanNet features only, which is why the other two domains needed an extractor.
 
-- Performance Comparison
+### Environment
 
-  |      	| [ScanRefer](https://github.com/daveredrum/ScanRefer) 	|         	| [Multi3dRefer](https://github.com/3dlg-hcvc/M3DRef-CLIP) 	|        	|  [Scan2Cap](https://github.com/daveredrum/Scan2Cap) 	|            	| [ScanQA](https://github.com/ATR-DBI/ScanQA) 	|        	| [SQA3D](https://github.com/SilongYong/SQA3D) 	|
-  | :----:	|:---------:	|:-------:	|:------:	|:------:	|:---------:	|:----------:	|:------------:	|:------:	|:-----:	|
-  |      	|  Acc@0.25 	| Acc@0.5 	|    F1@0.25   	| F1@0.5 	| CIDEr@0.5 	|   B-4@0.5 	|  CIDEr 	| B-4 	|   EM  	|
-  | v2.0 	|    35.9   	|   30.4  	|       -      	|    -   	|    28.1   	|    15.5    	|  77.1  	|   7.3  	|   -   	|
-  | v2.1 	|   42.5    	|  38.4   	|     45.1     	|  41.6  	|   63.9    	|    31.8    	|  87.6  	|  14.0  	| **54.7**  	|
-  | **Chat-Scene** | **55.5** | **50.2** | **57.1** | **52.4** | **77.1** | **36.3** | **87.7** | **14.3** | 54.6 |
+```shell
+sbatch -A <account> -p <partition> beacon3d/build_env.sbatch     # -> .venv (or CHATSCENE_ENV=...)
+```
 
-  <small>\*The v2.1 and Chat-Scene results are based on single models **without task-specific finetuning**.</small>
+Every launcher takes its SLURM account/partition from the command line and all paths
+from environment variables with defaults relative to the repo root; the header of each
+`.sbatch` lists them. Nothing runs on the login node; the env build needs a node with
+internet access. If `$HOME` is full, set `UV_CACHE_DIR` and `TMPDIR` first.
 
-- Main Changes
-  <details>
-  <summary> New features in Chat-Scene </summary>
+## Running
 
-  - Introduce a 2D token for each object, with 2D representations extracted from multi-view images using [DINOv2](https://github.com/facebookresearch/dinov2).
+```shell
+# 1. inference, all ten val sets (five settings x grounding/qa); VAL_TAG="a#b" for a subset
+sbatch -A <account> -p <partition> beacon3d/run_beacon3d.sbatch
 
-  - Enable processing of 2D video using a tracking-based detector when 3D input is unavailable.
+# 2. convert + score; grounding is deterministic, QA calls GPT-4o (~1 h for five sets)
+PREDS_DIR=outputs/beacon3d_<ts> OPENAI_API_KEY=... sbatch -A <account> -p <partition> beacon3d/score.sbatch
+#    -> beacon3d/results/<setting>/{infer_*.json,score_*.txt}; set RESULT_DIR to keep the committed ones
 
-  </details>
+# 3. (only to rebuild beacon3d/features/) Uni3D over GT masks, ~1.5 h on one GPU
+UNI3D_CKPT=... RSCAN_SCAN_DATA=... MULTISCAN_SCAN_DATA=... sbatch -A <account> -p <partition> beacon3d/extract_uni3d.sbatch
+```
 
-  <details>
-  <summary> New features in v2.1 (Chat-Scene is built upon v2.1) </summary>
+Step 1 regenerates `annotations/beacon3d_*.json` and `scripts/beacon3d_config.py` from
+the committed Beacon3D data before launching, so neither is tracked. The run and the
+checkpoint are deterministic; re-scoring QA moves the numbers by well under a point
+because of the GPT judge.
 
-  - LLM backbone: Vicuna v0 -> [Vicuna v1.5](https://github.com/lm-sys/FastChat/blob/main/docs/vicuna_weights_version.md) + LoRA.
+## How the evaluation is wired, and what to be careful about
 
-  - Training scheme: three-stage training -> one-stage joint training.
+- **Settings.** `scannet` = Chat-Scene's official 3D + 2D features (the leaderboard
+  condition). `scannet_myfeat` = our Uni3D extraction + official 2D, isolating the
+  extractor. `scannet_no2d` = official Uni3D with the 2D token zeroed, the input condition
+  3RScan / MultiScan run under. `3rscan`, `multiscan` = our Uni3D, no 2D.
+- **No 2D token means a zero vector, not a missing one.** `val_file_dict`'s second entry
+  is the video-feature file; it is `None` for the no-2D settings and Chat-Scene's
+  `base_dataset.py` then feeds `torch.zeros(1024)`. The model never saw that at training
+  time, which is the whole story behind the caveat above.
+- **Scene ids are aliased.** Chat-Scene recovers the scene id of a feature key with
+  `'_'.join(key.split('_')[:2])`, so 3RScan scenes are stored as `rscanNNNN_00` and
+  MultiScan as `mscanNNNN_00` (N = index in the sorted scene list); object columns are GT
+  ids in ascending order. `beacon3d/features/<domain>_scene_map.json` is the map back,
+  and `to_beacon3d.py` uses it to turn a predicted `<OBJxxx>` into a GT id. The alias
+  depends on the Beacon3D JSONs, so if those change, re-extract; do not only rerun
+  `build_annos.py`.
+- **Our Uni3D features are not bit-identical to the official ones.** Mean cosine 0.82
+  against Chat-Scene's ScanNet file (same preprocessing: centre, scale by max radius,
+  colour /255, pad to 64 points, 512 FPS groups × 64 kNN; pure-torch FPS instead of
+  `pointnet2_ops`). The `scannet_myfeat` row shows this does not move the scores, but the
+  cause of the residual difference was not tracked down.
+- **ScanNet axis alignment.** The extractor expects `<scene>.txt` next to the scan; when
+  it is absent it recovers the alignment from the official attribute boxes with a Kabsch
+  fit (residual 1–4 cm). This only affects the optional ScanNet validation extraction.
+- **Prompts.** Grounding: `What's the ID of the object that corresponds to the
+  description "..."?`, target `<OBJxxx>.`, every valid target listed. QA: Chat-Scene's
+  ScanQA suffix `Answer the question using a single word or phrase.`. Predictions carry
+  Beacon3D's item index as `qid` so they are put back in Beacon3D order; a count mismatch
+  is an error, never silently skipped.
+- **Order of scoring.** The QA evaluator reads `infer_grounding_processed.json` for the
+  chain analysis, so grounding is always scored first (`score.sbatch` does this).
 
-  - Detector: [PointGroup](https://github.com/dvlab-research/PointGroup) -> [Mask3D](https://github.com/JonasSchult/Mask3D).
-  
-  - Code Optimization:
-    - batch size: 1 -> 32.
-    - Simplified training and evaluation processes.
-  </details>
+## Citation
 
-## 🔨 Preparation
+This fork evaluates the model of
 
-- Prepare the environment:
-  
-  ```shell
-  conda create -n chat-scene python=3.9.17
-  conda activate chat-scene
-  conda install pytorch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 pytorch-cuda=11.8 -c pytorch -c nvidia
-  pip install -r requirements.txt
-  ```
-  
-- Download LLM backbone:
-  -  We use Vicuna-7B v1.5 in our experiments, which can be downloaded from [Hugging Face](https://huggingface.co/lmsys/vicuna-7b-v1.5).
-
-  - Change the `llama_model_path` in [run.sh](./scripts/run.sh) to the path of `vicuna-7b-v1.5`.
-  
-
-- Annotations and extracted features:
-  
-  Please follow the instructions in [preprocess](preprocess/).
-
-
-## 🤖 Training and Inference
-
-- Training
-  - Modify [run.sh](scripts/run.sh):
-    ```python
-    train_tag="scanrefer#scan2cap#scanqa#sqa3d#multi3dref#nr3d_caption#obj_align"
-    val_tag="scanrefer#scan2cap#scanqa#sqa3d#multi3dref"
-    evaluate=False
-    ```
-
-    <details>
-    <summary> Explanation of "train_tag" and "val_tag" </summary>
-
-    - Use `#` to seperate different datasets
-
-    - Datasets:
-      - `scanrefer`: [ScanRefer](https://github.com/daveredrum/ScanRefer) Dataset
-      - `scan2cap`: [Scan2Cap](https://github.com/daveredrum/Scan2Cap) Dataset
-      - `scanqa`: [ScanQA](https://github.com/ATR-DBI/ScanQA) Dataset
-      - `sqa3d`: [SQA3D](https://github.com/SilongYong/SQA3D) Dataset
-      - `multi3dref`: [Multi3dRefer](https://github.com/3dlg-hcvc/M3DRef-CLIP) Dataset
-      - `nr3d_caption`: A captioning dataset originated from [Nr3D](https://github.com/referit3d/referit3d).
-      - `obj_align`: A dataset originated from ScanRefer to align the object identifiers with object tokens.
-
-    </details>
-  - Run: `bash scripts/run.sh`
-
-
-- Inference
-  
-  - Modify [run.sh](scripts/run.sh): (We provide the pretrained checkpoint in [Hugging Face](https://huggingface.co/datasets/ZzZZCHS/Chat-Scene/tree/main/pretrained))
-  
-    ```python
-    val_tag="scanrefer#scan2cap#scanqa#sqa3d#multi3dref"
-    evaluate=True
-    pretrained_path="/path/to/pretrained_model.pth"
-    ```
-  
-  - Run: `bash scripts/run.sh`
-  
-
-## 📄 Citation
-
-If you find this project useful in your research, please consider cite:
 ```BibTeX
-@article{huang2026chat,
-  title={Chat-Scene++: Exploiting Context-Rich Object Identification for 3D LLM},
-  author={Huang, Haifeng and Chen, Yilun and Wang, Zehan and Pang, Jiangmiao and Zhao, Zhou},
-  journal={arXiv preprint arXiv:2603.27507},
-  year={2026}
-}
 @article{huang2024chat,
   title={Chat-scene: Bridging 3d scene and large language models with object identifiers},
   author={Huang, Haifeng and Chen, Yilun and Wang, Zehan and Huang, Rongjie and Xu, Runsen and Wang, Tai and Liu, Luping and Cheng, Xize and Zhao, Yang and Pang, Jiangmiao and others},
   journal={Proceedings of the Advances in Neural Information Processing Systems, Vancouver, BC, Canada},
   year={2024}
 }
-@article{wang2023chat,
-  title={Chat-3d: Data-efficiently tuning large language model for universal dialogue of 3d scenes},
-  author={Wang, Zehan and Huang, Haifeng and Zhao, Yang and Zhang, Ziang and Zhao, Zhou},
-  journal={arXiv preprint arXiv:2308.08769},
-  year={2023}
+```
+
+using the data and evaluators of
+
+```BibTeX
+@inproceedings{huang2025unveiling,
+  title={Unveiling the Mist over 3D Vision-Language Understanding: Object-centric Evaluation with Chain-of-Analysis},
+  author={Huang, Jiangyong and Jia, Baoxiong and Wang, Yan and Zhu, Ziyu and Linghu, Xiongkun and Li, Qing and Zhu, Song-Chun and Huang, Siyuan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2025}
 }
 ```
 
-Stay tuned for our project. 🔥
+## License
 
-If you have any questions or suggestions, feel free to open an issue or drop us an email (`huanghaifeng317@gmail.com`).
-
-## 😊 Acknowledgement
-
-Thanks to the open source of the following projects:
-
-(Multi-modal) LLMs:
-[LLaMA](https://github.com/facebookresearch/llama), 
-[Vicuna](https://github.com/lm-sys/FastChat),
-[VideoChat](https://github.com/OpenGVLab/Ask-Anything/tree/main/video_chat), 
-[LEO](https://github.com/embodied-generalist/embodied-generalist)
-
-3D Datasets:
-[ScanNet](https://github.com/ScanNet/ScanNet), 
-[ScanRefer](https://github.com/daveredrum/ScanRefer), 
-[ReferIt3D](https://github.com/referit3d/referit3d), 
-[Scan2Cap](https://github.com/daveredrum/Scan2Cap), 
-[ScanQA](https://github.com/ATR-DBI/ScanQA), 
-[SQA3D](https://github.com/SilongYong/SQA3D), 
-[Multi3dRefer](https://github.com/3dlg-hcvc/M3DRef-CLIP)
-
-Detectors:
-[PointGroup](https://github.com/dvlab-research/PointGroup), 
-[Mask3D](https://github.com/JonasSchult/Mask3D),
-[DEVA](https://github.com/hkchengrex/Tracking-Anything-with-DEVA)
-
-Representations:
-[ULIP](https://github.com/salesforce/ULIP), 
-[Uni3D](https://github.com/baaivision/Uni3D),
-[DINOv2](https://github.com/facebookresearch/dinov2)
-
-3D Models:
-[vil3dref](https://github.com/cshizhe/vil3dref),
-[OpenScene](https://github.com/pengsongyou/openscene)
-
+Chat-Scene's code is MIT (see `LICENSE`). The vendored Beacon3D evaluators and data under
+`beacon3d/Beacon3D/` are Apache-2.0 (`beacon3d/Beacon3D/LICENSE`). The 3D features in
+`beacon3d/features/` are derived from the 3RScan, MultiScan (via SceneVerse) and ScanNet
+datasets and are subject to their terms.
