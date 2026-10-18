@@ -2,22 +2,15 @@
 # Chat-Scene runtime env (python 3.9, torch 2.2.1+cu121, transformers 4.39.3, peft 0.9.0,
 # flash-attn 2.5.6 prebuilt wheel) as a uv venv, plus the extras the Beacon3D scripts need
 # (open3d for the ScanNet extractor, openai for the QA evaluator).
-#   sbatch -A <account> -p <partition> beacon3d/build_env.sbatch
-# Needs a node with internet access. Overridable:
+#   bash beacon3d/build_env.sh
+# Run on a GPU node with internet access. Paths come from env.sh (see env.sh.example):
 #   CHATSCENE_ENV   where the venv goes            (default .venv, under the repo root)
 #   UV              the uv binary                  (default: uv on PATH)
 #   UV_CACHE_DIR / TMPDIR   point these at a disk with room if $HOME is full
-#SBATCH --job-name=chatscene-env
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --gpus-per-node=1
-#SBATCH --cpus-per-task=8
-#SBATCH --time=1:00:00
-#SBATCH --output=log/build_env_%j.out
-#SBATCH --error=log/build_env_%j.err
 set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+[ -f env.sh ] && source env.sh
 unset CONDA_PREFIX CONDA_DEFAULT_ENV
-cd "${SLURM_SUBMIT_DIR:-.}"
 UV="${UV:-uv}"
 ENV="${CHATSCENE_ENV:-.venv}"
 $UV python install 3.9

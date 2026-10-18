@@ -1,8 +1,8 @@
 #!/bin/bash
 # Uni3D GT-object features for the Beacon3D scenes. Only needed to REBUILD
 # beacon3d/features/ (the committed files are what the reported run used).
-#   RSCAN_SCAN_DATA=... MULTISCAN_SCAN_DATA=... UNI3D_CKPT=... \
-#     sbatch -A <account> -p <partition> beacon3d/extract_uni3d.sbatch
+#   bash beacon3d/extract_uni3d.sh          # one GPU, ~1.5 h
+# Paths come from env.sh (see env.sh.example).
 # Required:
 #   UNI3D_CKPT           uni3d-g model.pt (https://huggingface.co/BAAI/Uni3D)
 #   RSCAN_SCAN_DATA      SceneVerse 3RScan scan_data/ (pcd_with_global_alignment, instance_id_to_label)
@@ -15,17 +15,10 @@
 #   FEATS_DIR       output dir (default beacon3d/features)
 #   BEACON_ROOT     Beacon3D data dir (default beacon3d/Beacon3D)
 #   EVAL_PY         python with torch + timm (+ open3d for ScanNet) (default $CHATSCENE_ENV/bin/python)
-#SBATCH --job-name=uni3d-gt
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --gpus-per-node=1
-#SBATCH --cpus-per-task=8
-#SBATCH --time=1:30:00
-#SBATCH --output=log/uni3d_gt_%j.out
-#SBATCH --error=log/uni3d_gt_%j.err
 set -uo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+[ -f env.sh ] && source env.sh
 unset CONDA_PREFIX CONDA_DEFAULT_ENV
-cd "${SLURM_SUBMIT_DIR:-.}"
 PY="${EVAL_PY:-${CHATSCENE_ENV:-.venv}/bin/python}"
 OUT="${FEATS_DIR:-beacon3d/features}"
 CK="${UNI3D_CKPT:?set UNI3D_CKPT to the uni3d-g model.pt}"

@@ -7,3 +7,7 @@ pretrained/
 scripts/beacon3d_config.py
 # local python env
 .venv/
+# local cluster launchers, local paths/secrets and run logs (see env.sh.example)
+*.sbatch
+env.sh
+*.log

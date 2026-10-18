@@ -50,13 +50,13 @@ exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 45% on 3RS
 | `beacon3d/Beacon3D/` | Vendored copy of the Beacon3D repo at `bda1203` (Apache-2.0): its two evaluators, `utils.py`, and `data/` with the grounding/QA annotations, metadata and GPT system prompt for all three domains. Unmodified; see `VENDORED.md`. |
 | `beacon3d/features/` | Our Uni3D-g features over GT masks for the Beacon3D scenes of all three domains (`<domain>_gt_uni3d_feats.pt`), their box attributes, and the scene-id map (below). 5.7 MB. |
 | `beacon3d/results/` | Beacon3D infer files, evaluator reports and chain figures for the run in the table. |
-| `outputs/beacon3d_20260929_230515/` | The raw Chat-Scene predictions, config and log of that run. |
-| `beacon3d/build_env.sbatch` | Builds the Chat-Scene runtime as a uv venv (py3.9, torch 2.2.1+cu121, transformers 4.39.3, peft 0.9.0, flash-attn 2.5.6 wheel) plus `open3d` and `openai`. |
-| `beacon3d/extract_uni3d_gt.py`, `extract_uni3d.sbatch` | Rebuilds `beacon3d/features/`. Vendors the Uni3D point encoder with a pure-torch farthest-point sampling so `pointnet2_ops` is not needed. |
+| `outputs/beacon3d_20260929_230515/` | The raw Chat-Scene predictions and config of that run. |
+| `beacon3d/build_env.sh` | Builds the Chat-Scene runtime as a uv venv (py3.9, torch 2.2.1+cu121, transformers 4.39.3, peft 0.9.0, flash-attn 2.5.6 wheel) plus `open3d` and `openai`. |
+| `beacon3d/extract_uni3d_gt.py`, `extract_uni3d.sh` | Rebuilds `beacon3d/features/`. Vendors the Uni3D point encoder with a pure-torch farthest-point sampling so `pointnet2_ops` is not needed. |
 | `beacon3d/compare_uni3d_official.py` | Cosine between our ScanNet extraction and Chat-Scene's official file (sanity check of the extractor). |
 | `beacon3d/build_annos.py` | Beacon3D JSON → Chat-Scene val annotations (`annotations/beacon3d_<setting>_<task>.json`) + `scripts/beacon3d_config.py`. Also builds the two ScanNet controls. Regenerated on every run. |
-| `beacon3d/run_beacon3d.sbatch` | Evaluate-only inference with the official checkpoint (torchrun ×8, ~8 min for all ten val sets). |
-| `beacon3d/to_beacon3d.py`, `score.sbatch`, `beacon_grounding_shim.py` | Predictions → Beacon3D infer files → official evaluators. The shim only skips knowledge tags with zero cases (3RScan / MultiScan have no *functionality* questions, which makes upstream `evaluate_grounding.py` divide by zero). |
+| `beacon3d/run_beacon3d.sh` | Evaluate-only inference with the official checkpoint (torchrun over all visible GPUs; ~8 min for all ten val sets on 8 GPUs). |
+| `beacon3d/to_beacon3d.py`, `score.sh`, `beacon_grounding_shim.py` | Predictions → Beacon3D infer files → official evaluators. The shim only skips knowledge tags with zero cases (3RScan / MultiScan have no *functionality* questions, which makes upstream `evaluate_grounding.py` divide by zero). |
 
 ## Setup
 
@@ -79,26 +79,29 @@ ScanNet features only, which is why the other two domains needed an extractor.
 ### Environment
 
 ```shell
-sbatch -A <account> -p <partition> beacon3d/build_env.sbatch     # -> .venv (or CHATSCENE_ENV=...)
+cp env.sh.example env.sh      # fill in your paths / API key; env.sh is gitignored
+bash beacon3d/build_env.sh    # -> $CHATSCENE_ENV (default .venv)
 ```
 
-Every launcher takes its SLURM account/partition from the command line and all paths
-from environment variables with defaults relative to the repo root; the header of each
-`.sbatch` lists them. Nothing runs on the login node; the env build needs a node with
-internet access. If `$HOME` is full, set `UV_CACHE_DIR` and `TMPDIR` first.
+Every script in `beacon3d/*.sh` sources `env.sh` from the repo root and reads all paths
+from environment variables, with defaults relative to the repo root; the header of each
+script lists them. A value given on the command line overrides `env.sh`. The scripts are
+plain bash, so on a cluster wrap them in your own job script (e.g. an sbatch file that just
+calls `bash beacon3d/run_beacon3d.sh`). The env build needs a GPU node with internet
+access. If `$HOME` is full, set `UV_CACHE_DIR` and `TMPDIR`.
 
 ## Running
 
 ```shell
 # 1. inference, all ten val sets (five settings x grounding/qa); VAL_TAG="a#b" for a subset
-sbatch -A <account> -p <partition> beacon3d/run_beacon3d.sbatch
+bash beacon3d/run_beacon3d.sh                    # NGPU=... to limit GPUs
 
 # 2. convert + score; grounding is deterministic, QA calls GPT-4o (~1 h for five sets)
-PREDS_DIR=outputs/beacon3d_<ts> OPENAI_API_KEY=... sbatch -A <account> -p <partition> beacon3d/score.sbatch
+PREDS_DIR=outputs/beacon3d_<ts> bash beacon3d/score.sh
 #    -> beacon3d/results/<setting>/{infer_*.json,score_*.txt}; set RESULT_DIR to keep the committed ones
 
 # 3. (only to rebuild beacon3d/features/) Uni3D over GT masks, ~1.5 h on one GPU
-UNI3D_CKPT=... RSCAN_SCAN_DATA=... MULTISCAN_SCAN_DATA=... sbatch -A <account> -p <partition> beacon3d/extract_uni3d.sbatch
+bash beacon3d/extract_uni3d.sh                   # needs UNI3D_CKPT, RSCAN_SCAN_DATA, MULTISCAN_SCAN_DATA
 ```
 
 Step 1 regenerates `annotations/beacon3d_*.json` and `scripts/beacon3d_config.py` from
@@ -137,7 +140,7 @@ because of the GPT judge.
   Beacon3D's item index as `qid` so they are put back in Beacon3D order; a count mismatch
   is an error, never silently skipped.
 - **Order of scoring.** The QA evaluator reads `infer_grounding_processed.json` for the
-  chain analysis, so grounding is always scored first (`score.sbatch` does this).
+  chain analysis, so grounding is always scored first (`score.sh` does this).
 
 ## Citation
 
