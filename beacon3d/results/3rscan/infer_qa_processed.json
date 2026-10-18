@@ -74,7 +74,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 0,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-19",
@@ -404,7 +404,7 @@
     "answer_pred": "plant",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-28",
@@ -470,7 +470,7 @@
     "answer_pred": "largest plant",
     "em": 0,
     "em_r": 1,
-    "score": 3
+    "score": 5
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-11",
@@ -690,7 +690,7 @@
     "answer_pred": "shelf",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 3
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-14",
@@ -822,7 +822,7 @@
     "answer_pred": "white",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-54",
@@ -1141,7 +1141,7 @@
     "answer_pred": "next to bag",
     "em": 0,
     "em_r": 0,
-    "score": 2
+    "score": 1
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-88",
@@ -1174,7 +1174,7 @@
     "answer_pred": "square",
     "em": 0,
     "em_r": 0,
-    "score": 2
+    "score": 1
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-6",
@@ -1207,7 +1207,7 @@
     "answer_pred": "red",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "a0905fd9-66f7-2272-9dfb-0483fdcc54c7-87",
@@ -1427,7 +1427,7 @@
     "answer_pred": "white",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 2
   },
   {
     "obj_id": "bcb0fe0a-4f39-2c70-9d5f-a7263a0180ca-12",
@@ -2065,7 +2065,7 @@
     "answer_pred": "facing sofa",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "8eabc45f-5af7-2f32-8528-640861d2a135-70",
@@ -2153,7 +2153,7 @@
     "answer_pred": "book",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 5
   },
   {
     "obj_id": "8eabc45f-5af7-2f32-8528-640861d2a135-62",
@@ -2395,7 +2395,7 @@
     "answer_pred": "brown bench",
     "em": 0,
     "em_r": 0,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "8eabc45f-5af7-2f32-8528-640861d2a135-20",
@@ -2560,7 +2560,7 @@
     "answer_pred": "rectangular",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "8eabc45f-5af7-2f32-8528-640861d2a135-10",
@@ -3770,7 +3770,7 @@
     "answer_pred": "beneath desk",
     "em": 0,
     "em_r": 0,
-    "score": 4
+    "score": 5
   },
   {
     "obj_id": "ba6fdaaa-a4c1-2dca-8163-a52b18bf6b64-39",
@@ -3913,7 +3913,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "ddc73797-765b-241a-9e2c-097c5989baf6-25",
@@ -4155,7 +4155,7 @@
     "answer_pred": "right side of table",
     "em": 0,
     "em_r": 0,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "ddc73797-765b-241a-9e2c-097c5989baf6-12",
@@ -4408,7 +4408,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "ddc73797-765b-241a-9e2c-097c5989baf6-24",
@@ -4804,7 +4804,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 2
   },
   {
     "obj_id": "ddc73797-765b-241a-9e2c-097c5989baf6-15",
@@ -4914,7 +4914,7 @@
     "answer_pred": "tie up",
     "em": 0,
     "em_r": 0,
-    "score": 4
+    "score": 5
   },
   {
     "obj_id": "ddc73797-765b-241a-9e2c-097c5989baf6-43",
@@ -5497,7 +5497,7 @@
     "answer_pred": "hanging bag",
     "em": 0,
     "em_r": 1,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "7747a514-9431-24e8-8505-5979f3f20906-21",
@@ -6146,7 +6146,7 @@
     "answer_pred": "chair closest to door",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 1
   },
   {
     "obj_id": "7747a514-9431-24e8-8505-5979f3f20906-18",
@@ -6333,7 +6333,7 @@
     "answer_pred": "TV",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "e61b0e04-bada-2f31-82d6-72831a602ba7-22",
@@ -6531,7 +6531,7 @@
     "answer_pred": "closet",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "e61b0e04-bada-2f31-82d6-72831a602ba7-40",
@@ -6685,7 +6685,7 @@
     "answer_pred": "black rectangular cabinet",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 2
   },
   {
     "obj_id": "e61b0e04-bada-2f31-82d6-72831a602ba7-42",
@@ -6740,7 +6740,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "e61b0e04-bada-2f31-82d6-72831a602ba7-24",
@@ -7213,7 +7213,7 @@
     "answer_pred": "cream-white curtains",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 2
   },
   {
     "obj_id": "e61b0e04-bada-2f31-82d6-72831a602ba7-2",
@@ -7532,7 +7532,7 @@
     "answer_pred": "couch cushion",
     "em": 0,
     "em_r": 1,
-    "score": 3
+    "score": 4
   },
   {
     "obj_id": "634b2183-f5d0-2fb7-87ef-c536720918dc-14",
@@ -7598,7 +7598,7 @@
     "answer_pred": "couch cushion",
     "em": 0,
     "em_r": 1,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "634b2183-f5d0-2fb7-87ef-c536720918dc-13",
@@ -7631,7 +7631,7 @@
     "answer_pred": "white",
     "em": 0,
     "em_r": 1,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "634b2183-f5d0-2fb7-87ef-c536720918dc-19",
@@ -7840,7 +7840,7 @@
     "answer_pred": "backpack",
     "em": 0,
     "em_r": 0,
-    "score": 2
+    "score": 1
   },
   {
     "obj_id": "634b2183-f5d0-2fb7-87ef-c536720918dc-8",
@@ -8126,7 +8126,7 @@
     "answer_pred": "white",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "634b2183-f5d0-2fb7-87ef-c536720918dc-27",
@@ -8258,7 +8258,7 @@
     "answer_pred": "radiator",
     "em": 0,
     "em_r": 0,
-    "score": 2
+    "score": 1
   },
   {
     "obj_id": "4fbad320-465b-2a5d-85d7-dc83aa09a9fa-19",
@@ -8555,7 +8555,7 @@
     "answer_pred": "white",
     "em": 0,
     "em_r": 1,
-    "score": 2
+    "score": 1
   },
   {
     "obj_id": "4fbad320-465b-2a5d-85d7-dc83aa09a9fa-36",

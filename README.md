@@ -16,18 +16,23 @@ Upstream Chat-Scene's own README is in the git history (`git show 475e106:README
 
 Beacon3D, GT-mask setting (one object token per GT instance, the protocol the Beacon3D
 leaderboard uses). *Case* = per-question accuracy; *Obj* = all questions about an object
-answered correctly.
+answered correctly. QA is judged by **GPT-4o-mini** (`gpt-4o-mini-2024-07-18`), the judge
+used for every baseline in this project; the upstream evaluator defaults to
+`gpt-4o-2024-11-20`.
 
 | Setting | 3D feature | 2D token | Grounding Case / Obj | QA Case / Obj |
 | --- | --- | --- | --- | --- |
-| ScanNet (official features) | official Uni3D | official DINOv2 | 62.03 / 41.56 | 50.09 / 9.87 |
-| ScanNet, our Uni3D extraction | ours | official DINOv2 | 62.16 / 41.30 | 52.47 / 10.91 |
-| ScanNet, **no 2D token** | official Uni3D | zeros | 17.36 / 6.75 | 40.93 / 6.75 |
-| 3RScan | ours | zeros | 12.18 / 5.15 | 47.55 / 5.51 |
-| MultiScan | ours | zeros | 11.42 / 3.14 | 41.98 / 5.66 |
+| ScanNet (official features) | official Uni3D | official DINOv2 | 62.03 / 41.56 | 49.89 / 9.09 |
+| ScanNet, our Uni3D extraction | ours | official DINOv2 | 62.16 / 41.30 | 52.32 / 10.39 |
+| ScanNet, **no 2D token** | official Uni3D | zeros | 17.36 / 6.75 | 40.93 / 6.49 |
+| 3RScan | ours | zeros | 12.18 / 5.15 | 46.97 / 5.88 |
+| MultiScan | ours | zeros | 11.42 / 3.14 | 42.35 / 5.66 |
 
-The ScanNet row reproduces the Beacon3D leaderboard entry for Chat-Scene (61.6 / 42.3,
-49.8 / 10.9). Per-item outputs, the official evaluators' full reports (per knowledge
+Judged by GPT-4o (`gpt-4o-2024-11-20`) the same predictions score QA 50.09 / 9.87,
+52.47 / 10.91, 40.93 / 6.75, 47.55 / 5.51 and 41.98 / 5.66 (reports kept as
+`score_qa_gpt-4o-2024-11-20.txt` / `infer_qa_processed_gpt-4o-2024-11-20.json`), and the
+ScanNet row then reproduces the Beacon3D leaderboard entry for Chat-Scene (61.6 / 42.3,
+49.8 / 10.9); compare with the leaderboard only under that judge. Per-item outputs, the official evaluators' full reports (per knowledge
 type, grounding→QA chain analysis) and the chain figures are in
 [`beacon3d/results/<setting>/`](beacon3d/results/).
 
@@ -41,7 +46,7 @@ grounding from 62 to 17. The 3RScan / MultiScan grounding scores therefore measu
 missing-2D condition, not domain transfer; compare them with other models only on
 ScanNet, or only under the same no-2D condition. QA is less affected because many
 questions are answerable from the object label and language prior alone, which is
-exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 45% on 3RScan).
+exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 44% on 3RScan).
 
 ## Repository layout
 
@@ -57,6 +62,7 @@ exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 45% on 3RS
 | `beacon3d/build_annos.py` | Beacon3D JSON → Chat-Scene val annotations (`annotations/beacon3d_<setting>_<task>.json`) + `scripts/beacon3d_config.py`. Also builds the two ScanNet controls. Regenerated on every run. |
 | `beacon3d/run_beacon3d.sh` | Evaluate-only inference with the official checkpoint (torchrun over all visible GPUs; ~8 min for all ten val sets on 8 GPUs). |
 | `beacon3d/to_beacon3d.py`, `score.sh`, `beacon_grounding_shim.py` | Predictions → Beacon3D infer files → official evaluators. The shim only skips knowledge tags with zero cases (3RScan / MultiScan have no *functionality* questions, which makes upstream `evaluate_grounding.py` divide by zero). |
+| `beacon3d/plot_gqa_chain.py` | Grounding→QA chain shares (as in Beacon3D's `eval_chain`) and the Sankey figures in `beacon3d/results/figures/`, from the evaluators' processed files. |
 
 ## Setup
 
@@ -67,7 +73,7 @@ exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 45% on 3RS
 | inference | Chat-Scene checkpoint `ckpt_01_3446.pth` (1.3 GB) | [HF `ZzZZCHS/Chat-Scene`](https://huggingface.co/datasets/ZzZZCHS/Chat-Scene) | `CKPT` (`pretrained/ckpt_01_3446.pth`) |
 | inference | Chat-Scene's ScanNet GT-mask files: `scannet_gt_uni3d_feats.pt` (205 MB), `scannet_gt_videofeats.pt` (203 MB), `scannet_val_attributes.pt` | same HF release, `annotations/` | `OFFICIAL_DIR` (`annotations`) |
 | inference | Vicuna-7B v1.5 | [HF `lmsys/vicuna-7b-v1.5`](https://huggingface.co/lmsys/vicuna-7b-v1.5) | `LLAMA` (`lmsys/vicuna-7b-v1.5`) |
-| QA scoring | an OpenAI API key (GPT-4o judge, `gpt-4o-2024-11-20`) | | `OPENAI_API_KEY` |
+| QA scoring | an OpenAI API key (judge `gpt-4o-mini-2024-07-18`; `QA_MODEL` to change) | | `OPENAI_API_KEY` |
 | rebuilding features | Uni3D-g weights `model.pt` | [HF `BAAI/Uni3D`](https://huggingface.co/BAAI/Uni3D/blob/main/modelzoo/uni3d-g/model.pt) | `UNI3D_CKPT` |
 | rebuilding features | 3RScan and MultiScan scene point clouds with GT instance ids, in the [SceneVerse](https://scene-verse.github.io/) `scan_data/` layout (`pcd_with_global_alignment/<scene>.pth`, `instance_id_to_label/<scene>.pth`) | SceneVerse release | `RSCAN_SCAN_DATA`, `MULTISCAN_SCAN_DATA` |
 | validating the extractor (optional) | raw ScanNet scans (`<scene>_vh_clean_2.ply`, `<scene>.aggregation.json`) with one `<objectId>.npy` GT mask per object | ScanNet | `SCANNET_SCANS` |
@@ -96,7 +102,7 @@ access. If `$HOME` is full, set `UV_CACHE_DIR` and `TMPDIR`.
 # 1. inference, all ten val sets (five settings x grounding/qa); VAL_TAG="a#b" for a subset
 bash beacon3d/run_beacon3d.sh                    # NGPU=... to limit GPUs
 
-# 2. convert + score; grounding is deterministic, QA calls GPT-4o (~1 h for five sets)
+# 2. convert + score; grounding is deterministic, QA calls the GPT judge (QA_MODEL, default gpt-4o-mini-2024-07-18)
 PREDS_DIR=outputs/beacon3d_<ts> bash beacon3d/score.sh
 #    -> beacon3d/results/<setting>/{infer_*.json,score_*.txt}; set RESULT_DIR to keep the committed ones
 
@@ -141,6 +147,11 @@ because of the GPT judge.
   is an error, never silently skipped.
 - **Order of scoring.** The QA evaluator reads `infer_grounding_processed.json` for the
   chain analysis, so grounding is always scored first (`score.sh` does this).
+- **`evaluate_qa.py` caches.** It silently reuses an existing `infer_qa_processed.json`
+  instead of calling the judge again, so `to_beacon3d.py` deletes that file before every
+  QA scoring run; without this a re-score with another judge returns the old numbers.
+- **Figures.** After re-scoring, `python beacon3d/plot_gqa_chain.py` rebuilds the chain
+  JSONs and figures.
 
 ## Citation
 

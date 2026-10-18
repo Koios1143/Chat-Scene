@@ -30,7 +30,8 @@ def main():
     ap.add_argument("--shim", default="beacon3d/beacon_grounding_shim.py",
                     help="wrapper around Beacon3D's evaluate_grounding.py")
     ap.add_argument("--score", action="store_true")
-    ap.add_argument("--qa_model", default="gpt-4o-2024-11-20")
+    ap.add_argument("--qa_model", default="gpt-4o-mini-2024-07-18",
+                    help="Beacon3D QA judge (upstream default gpt-4o-2024-11-20)")
     args = ap.parse_args()
 
     for domain in [d for d in args.domains.split(",") if d]:
@@ -87,6 +88,10 @@ def main():
                 if not os.environ.get("OPENAI_API_KEY"):
                     print(f"[{domain}] qa: OPENAI_API_KEY unset, skipping")
                     continue
+                # evaluate_qa.py silently reuses an existing processed file instead of re-judging
+                processed = os.path.splitext(infer_path)[0] + "_processed.json"
+                if os.path.exists(processed):
+                    os.remove(processed)
                 cmd = [sys.executable, "evaluate_qa.py", "--infer", infer_path, "--domain", src_domain,
                        "--model", args.qa_model, "--grounding",
                        os.path.join(out_dir, "infer_grounding_processed.json")]

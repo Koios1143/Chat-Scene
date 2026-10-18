@@ -921,7 +921,7 @@
     "answer_pred": "pillow",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "scene0025_00-28",
@@ -1372,7 +1372,7 @@
     "answer_pred": "right of toilet",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0046_00-33",
@@ -1988,7 +1988,7 @@
     "answer_pred": "black backpack",
     "em": 0,
     "em_r": 0,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "scene0050_00-11",
@@ -2230,7 +2230,7 @@
     "answer_pred": "medium",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0050_00-6",
@@ -2472,7 +2472,7 @@
     "answer_pred": "same size",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0050_00-4",
@@ -2868,7 +2868,7 @@
     "answer_pred": "to right of door",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0144_00-3",
@@ -3286,7 +3286,7 @@
     "answer_pred": "desk",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0144_00-9",
@@ -3869,7 +3869,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "scene0164_00-11",
@@ -4067,7 +4067,7 @@
     "answer_pred": "silver",
     "em": 0,
     "em_r": 0,
-    "score": 4
+    "score": 2
   },
   {
     "obj_id": "scene0164_00-49",
@@ -4111,7 +4111,7 @@
     "answer_pred": "silver",
     "em": 0,
     "em_r": 0,
-    "score": 4
+    "score": 1
   },
   {
     "obj_id": "scene0164_00-37",
@@ -4353,7 +4353,7 @@
     "answer_pred": "on oven door handle",
     "em": 0,
     "em_r": 0,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "scene0164_00-16",
@@ -5200,7 +5200,7 @@
     "answer_pred": "larger",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "scene0378_00-21",
@@ -5849,7 +5849,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 0,
-    "score": 3
+    "score": 1
   },
   {
     "obj_id": "scene0426_00-12",
@@ -5937,7 +5937,7 @@
     "answer_pred": "medium",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0426_00-22",
@@ -6003,7 +6003,7 @@
     "answer_pred": "on top of dresser",
     "em": 0,
     "em_r": 0,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "scene0426_00-37",
@@ -6476,7 +6476,7 @@
     "answer_pred": "on shelf above toilet",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "scene0458_01-10",
@@ -7103,7 +7103,7 @@
     "answer_pred": "beige",
     "em": 0,
     "em_r": 0,
-    "score": 2
+    "score": 1
   },
   {
     "obj_id": "scene0458_01-2",
@@ -7939,7 +7939,7 @@
     "answer_pred": "medium",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0568_02-17",
@@ -8819,7 +8819,7 @@
     "answer_pred": "white shelf",
     "em": 0,
     "em_r": 0,
-    "score": 3
+    "score": 4
   },
   {
     "obj_id": "scene0591_02-0",
@@ -9182,7 +9182,7 @@
     "answer_pred": "pillow",
     "em": 0,
     "em_r": 1,
-    "score": 4
+    "score": 3
   },
   {
     "obj_id": "scene0591_02-7",
@@ -9303,7 +9303,7 @@
     "answer_pred": "small trash can",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 1
   },
   {
     "obj_id": "scene0593_00-16",
@@ -9424,7 +9424,7 @@
     "answer_pred": "on top of couch",
     "em": 0,
     "em_r": 0,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "scene0593_00-26",
@@ -9523,7 +9523,7 @@
     "answer_pred": "taller",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 3
   },
   {
     "obj_id": "scene0593_00-25",
@@ -10304,7 +10304,7 @@
     "answer_pred": "medium",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0616_00-9",
@@ -10491,7 +10491,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 1,
-    "score": 5
+    "score": 4
   },
   {
     "obj_id": "scene0697_01-15",
@@ -11426,7 +11426,7 @@
     "answer_pred": "on desk",
     "em": 0,
     "em_r": 0,
-    "score": 2
+    "score": 4
   },
   {
     "obj_id": "scene0699_00-30",
@@ -11580,7 +11580,7 @@
     "answer_pred": "same size",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0699_00-36",
@@ -12537,7 +12537,7 @@
     "answer_pred": "same size",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene0700_00-18",

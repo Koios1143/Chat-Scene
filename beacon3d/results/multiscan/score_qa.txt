@@ -1,14 +1,14 @@
 Scores saved to beacon3d/results/multiscan/infer_qa_processed.json
-Finish processing inference results: EM = 40.04 | EM-R = 41.09 | GPT-Score = 41.98
+Finish processing inference results: EM = 40.04 | EM-R = 41.09 | GPT-Score = 42.35
 
 Scores:
-case: 41.98
+case: 42.35
 object: 5.66
 
-class: 6.85
-appearance: 51.09
+class: 7.26
+appearance: 50.73
 geometry: 45.83
-spatial: 28.68
+spatial: 30.15
 existence: 64.41
 
 Chain analysis:

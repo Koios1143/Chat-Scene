@@ -349,7 +349,7 @@
     "answer_pred": "closest to refrigerator",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00114_00-51",
@@ -514,7 +514,7 @@
     "answer_pred": "to right of steel ball",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00114_00-24",
@@ -723,7 +723,7 @@
     "answer_pred": "right",
     "em": 0,
     "em_r": 0,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "scene_00114_00-34",
@@ -778,7 +778,7 @@
     "answer_pred": "right",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00114_00-14",
@@ -888,7 +888,7 @@
     "answer_pred": "to right of faucet",
     "em": 0,
     "em_r": 0,
-    "score": 2
+    "score": 4
   },
   {
     "obj_id": "scene_00114_00-42",
@@ -1229,7 +1229,7 @@
     "answer_pred": "black",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00105_06-42",
@@ -1900,7 +1900,7 @@
     "answer_pred": "in front of monitor",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00105_06-29",
@@ -1988,7 +1988,7 @@
     "answer_pred": "blanket",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00105_06-20",
@@ -2769,7 +2769,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 0,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "scene_00109_00-19",
@@ -3935,7 +3935,7 @@
     "answer_pred": "in front of monitor",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00106_05-35",
@@ -4166,7 +4166,7 @@
     "answer_pred": "in front of monitor",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00106_05-34",
@@ -4672,7 +4672,7 @@
     "answer_pred": "right side of trash bin",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00116_03-18",
@@ -4815,7 +4815,7 @@
     "answer_pred": "in front of stove",
     "em": 0,
     "em_r": 0,
-    "score": 1
+    "score": 2
   },
   {
     "obj_id": "scene_00116_03-32",
@@ -4837,7 +4837,7 @@
     "answer_pred": "brown",
     "em": 0,
     "em_r": 0,
-    "score": 4
+    "score": 2
   },
   {
     "obj_id": "scene_00116_03-32",
@@ -5222,7 +5222,7 @@
     "answer_pred": "to right of kettle",
     "em": 0,
     "em_r": 0,
-    "score": 3
+    "score": 2
   },
   {
     "obj_id": "scene_00116_03-21",

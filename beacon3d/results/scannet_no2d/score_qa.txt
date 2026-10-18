@@ -3,17 +3,17 @@ Finish processing inference results: EM = 37.66 | EM-R = 40.00 | GPT-Score = 40.
 
 Scores:
 case: 40.93
-object: 6.75
+object: 6.49
 
-class: 10.81
-appearance: 38.36
-geometry: 43.51
-spatial: 45.66
+class: 9.46
+appearance: 38.06
+geometry: 44.62
+spatial: 45.90
 existence: 51.02
 functionality: 0.00
 
 Chain analysis:
-[w/o extra] four types: 2.48, 3.73, 30.75, 63.04
-[overall] four types: 3.03, 3.72, 37.92, 55.32
-R1 (higher better): 5.58
-R2 (lower better): 92.60
+[w/o extra] four types: 2.48, 3.73, 30.28, 63.51
+[overall] four types: 3.03, 3.72, 37.40, 55.84
+R1 (higher better): 5.54
+R2 (lower better): 92.51
