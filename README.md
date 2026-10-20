@@ -3,14 +3,40 @@
 This is a fork of [Chat-Scene](https://github.com/ZzZZCHS/Chat-Scene) (NeurIPS 2024)
 whose purpose is to **evaluate the released Chat-Scene checkpoint on a range of
 benchmarks** under one reproducible setup, so its scores can be compared with other
-models on equal footing. The first benchmark wired in is
-[Beacon3D](https://github.com/beacon-3d/Beacon3D) (CVPR 2025), an object-centric
-grounding + QA benchmark over ScanNet, 3RScan and MultiScan. The upstream model,
-training and data code are untouched; everything this fork adds lives under
-[`beacon3d/`](beacon3d/), and the run that produced the numbers below is committed in
-full (`outputs/`, `beacon3d/results/`).
+models on equal footing:
+
+- [Beacon3D](https://github.com/beacon-3d/Beacon3D) (CVPR 2025), an object-centric
+  grounding + QA benchmark over ScanNet, 3RScan and MultiScan, in [`beacon3d/`](beacon3d/);
+- Chat-Scene's own five benchmarks (ScanRefer, Multi3DRefer, Scan2Cap, ScanQA, SQA3D),
+  re-run as a check that the setup reproduces the paper, plus
+  [Real-3DQA](https://github.com/xianzhengma/Real-3DQA), in [`extra_eval/`](extra_eval/).
+
+The upstream model, training and data code are untouched; the runs that produced the
+numbers below are committed in full (`outputs/`, `beacon3d/results/`, `extra_eval/results/`).
 
 Upstream Chat-Scene's own README is in the git history (`git show 475e106:README.md`).
+
+## Results: Chat-Scene's benchmarks and Real-3DQA
+
+Released checkpoint `ckpt_01_3446.pth`, Mask3D proposals, run of 2026-10-21
+(`outputs/extra_eval_20261021_025847/`, scores in `extra_eval/results/`). The *paper*
+column is the upstream README (Chat-Scene) and, for Real-3DQA, Table 2/3 of
+[Ma et al. 2026](https://arxiv.org/abs/2603.23523), which also evaluated the released weights.
+
+| Benchmark (split) | Metric | Ours | Paper |
+| --- | --- | --- | --- |
+| ScanRefer (val) | Acc@0.25 / Acc@0.5 | 56.02 / 50.45 | 55.5 / 50.2 |
+| Multi3DRefer (val) | F1@0.25 / F1@0.5 | 57.92 / 53.23 | 57.1 / 52.4 |
+| Scan2Cap (val) | CIDEr@0.5 / B-4@0.5 | 79.59 / 36.04 | 77.1 / 36.3 |
+| ScanQA (val) | CIDEr / B-4 | 87.26 / 14.03 | 87.7 / 14.3 |
+| ScanQA (val) | EM / EM-R | 21.35 / 37.13 | – |
+| SQA3D (test) | EM / EM-R | 54.28 / 56.98 | 54.6 / – |
+| Real-3DQA (debiased test) | EM / EM-R | 17.31 / 22.69 | 17.0 / 22.1 |
+| Real-3DQA (rotation) | One / Two / Three / Four / VRS | 44.3 / 6.8 / 1.7 / 0.0 / 13.2 | 43.3 / 7.1 / 1.2 / 0.1 / 12.9 |
+
+Every number is within about one point of the published one (Scan2Cap CIDEr@0.5 +2.5).
+Per-type breakdowns (ScanRefer unique/multiple, Multi3DRefer per eval type, SQA3D per
+question type, Real-3DQA per rotation) are in `extra_eval/results/<bench>/scores.json`.
 
 ## Results: Beacon3D
 
@@ -62,6 +88,10 @@ exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 44% on 3RS
 | `beacon3d/build_annos.py` | Beacon3D JSON → Chat-Scene val annotations (`annotations/beacon3d_<setting>_<task>.json`) + `scripts/beacon3d_config.py`. Also builds the two ScanNet controls. Regenerated on every run. |
 | `beacon3d/run_beacon3d.sh` | Evaluate-only inference with the official checkpoint (torchrun over all visible GPUs; ~8 min for all ten val sets on 8 GPUs). |
 | `beacon3d/to_beacon3d.py`, `score.sh`, `beacon_grounding_shim.py` | Predictions → Beacon3D infer files → official evaluators. The shim only skips knowledge tags with zero cases (3RScan / MultiScan have no *functionality* questions, which makes upstream `evaluate_grounding.py` divide by zero). |
+| `extra_eval/build_annos.py` | Links Chat-Scene's HF `annotations/` into `annotations/`, converts Real-3DQA to Chat-Scene's SQA3D format (`annotations/real3dqa_<split>.json`), writes `scripts/extra_eval_config.py`. Regenerated on every run. |
+| `extra_eval/run_extra_eval.sh` | Evaluate-only inference on ScanRefer, Multi3DRefer, Scan2Cap, ScanQA, SQA3D test and the five Real-3DQA splits (~1.7 h on 2 RTX PRO 6000). |
+| `extra_eval/score.py`, `score.sh` | Scores the predictions with Chat-Scene's own `utils/eval.py` scorers and the official Real-3DQA scripts (vendored, unmodified, in `extra_eval/real3dqa/`). CPU only. |
+| `extra_eval/build_env_cu128.sh` | The runtime for Blackwell GPUs: py3.10, torch 2.7.1+cu128, flash-attn 2.8.3 wheel, upstream `requirements.txt` otherwise. |
 | `beacon3d/plot_gqa_chain.py` | Grounding→QA chain shares (as in Beacon3D's `eval_chain`) and the Sankey figures in `beacon3d/results/figures/`, from the evaluators' processed files. |
 
 ## Setup
@@ -72,6 +102,8 @@ exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 44% on 3RS
 | --- | --- | --- | --- |
 | inference | Chat-Scene checkpoint `ckpt_01_3446.pth` (1.3 GB) | [HF `ZzZZCHS/Chat-Scene`](https://huggingface.co/datasets/ZzZZCHS/Chat-Scene) | `CKPT` (`pretrained/ckpt_01_3446.pth`) |
 | inference | Chat-Scene's ScanNet GT-mask files: `scannet_gt_uni3d_feats.pt` (205 MB), `scannet_gt_videofeats.pt` (203 MB), `scannet_val_attributes.pt` | same HF release, `annotations/` | `OFFICIAL_DIR` (`annotations`) |
+| Real-3DQA | `debiased_test.jsonl`, `rotation_{0,90,180,270}.jsonl` | [HF `Oliver-Ma/Real-3DQA`](https://huggingface.co/datasets/Oliver-Ma/Real-3DQA) | `REAL3DQA_DIR` |
+| Scan2Cap / ScanQA / SQA3D scoring | Java 8+ on `PATH` (pycocoevalcap's tokenizer and METEOR) | e.g. a Temurin JRE | `JAVA_HOME` |
 | inference | Vicuna-7B v1.5 | [HF `lmsys/vicuna-7b-v1.5`](https://huggingface.co/lmsys/vicuna-7b-v1.5) | `LLAMA` (`lmsys/vicuna-7b-v1.5`) |
 | QA scoring | an OpenAI API key (judge `gpt-4o-mini-2024-07-18`; `QA_MODEL` to change) | | `OPENAI_API_KEY` |
 | rebuilding features | Uni3D-g weights `model.pt` | [HF `BAAI/Uni3D`](https://huggingface.co/BAAI/Uni3D/blob/main/modelzoo/uni3d-g/model.pt) | `UNI3D_CKPT` |
@@ -87,7 +119,13 @@ ScanNet features only, which is why the other two domains needed an extractor.
 ```shell
 cp env.sh.example env.sh      # fill in your paths / API key; env.sh is gitignored
 bash beacon3d/build_env.sh    # -> $CHATSCENE_ENV (default .venv)
+# or, on Blackwell GPUs (sm_100/sm_120), which torch 2.2.1 / flash-attn 2.5.6 predate:
+bash extra_eval/build_env_cu128.sh
 ```
+
+The `extra_eval/` numbers above were produced with the cu128 env. torch >= 2.6 loads
+checkpoints with `weights_only=True` by default, which rejects the official checkpoint
+(it pickles an EasyDict config), so the run scripts set `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`.
 
 Every script in `beacon3d/*.sh` sources `env.sh` from the repo root and reads all paths
 from environment variables, with defaults relative to the repo root; the header of each
@@ -110,7 +148,29 @@ PREDS_DIR=outputs/beacon3d_<ts> bash beacon3d/score.sh
 bash beacon3d/extract_uni3d.sh                   # needs UNI3D_CKPT, RSCAN_SCAN_DATA, MULTISCAN_SCAN_DATA
 ```
 
-Step 1 regenerates `annotations/beacon3d_*.json` and `scripts/beacon3d_config.py` from
+Chat-Scene's benchmarks and Real-3DQA:
+
+```shell
+bash extra_eval/run_extra_eval.sh                          # VAL_TAG="scanqa#sqa3d_test" for a subset
+PREDS_DIR=outputs/extra_eval_<ts> bash extra_eval/score.sh  # -> extra_eval/results/
+```
+
+Notes on `extra_eval/`:
+
+- **Real-3DQA prompt** = Chat-Scene's SQA3D format, `<situation> <question> Answer the
+  question using a single word or phrase.`. The rotation splits only rewrite the
+  situation text (the viewpoint), so the scene input is the same as for SQA3D. The same
+  Mask3D feature files as Chat-Scene's `sqa3d_test` are used.
+- **SQA3D is scored on test** (the paper's split). `train.py` saves `sqa3d_test`
+  predictions but does not score them, so `score.py` calls `calc_sqa3d_score` on them.
+- **Sampler padding.** With N GPUs, `DistributedSampler` repeats up to N-1 items so the
+  ranks get equal shares, and `train.py`'s merged prediction file keeps those repeats
+  (its in-run scores include them). `score.py` drops rows beyond each item's count in
+  the annotation file, and it is an error if any annotation item has no prediction.
+- **Empty generations** are replaced by `<empty>` before Real-3DQA scoring; otherwise
+  the refined match counts them as correct (none occurred in this run).
+
+Step 1 of the Beacon3D run regenerates `annotations/beacon3d_*.json` and `scripts/beacon3d_config.py` from
 the committed Beacon3D data before launching, so neither is tracked. The run and the
 checkpoint are deterministic; re-scoring QA moves the numbers by well under a point
 because of the GPT judge.

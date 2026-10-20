@@ -1,0 +1,26 @@
+
+[Chat-Scene] Loading and evaluating predictions...
+
+=======================================================
+ Chat-Scene — Accuracy Scores (1485 questions)
+=======================================================
+      Exact Match (EM)      Refined EM (Relaxed)
+                 17.31%                    22.69%
+=======================================================
+
+
+
+[Chat-Scene] Loading predictions...
+  extra_eval/results/real3dqa/pred_rotation_0.json: 750 questions
+  extra_eval/results/real3dqa/pred_rotation_90.json: 750 questions
+  extra_eval/results/real3dqa/pred_rotation_180.json: 750 questions
+  extra_eval/results/real3dqa/pred_rotation_270.json: 750 questions
+  [Auto-Detect] Rotation suffixes detected (e.g., '01', '02', '03'). Stripping automatically...
+
+============================================================
+ Chat-Scene — Rotation Consistency Score (750 valid questions)
+============================================================
+       One      Two    Three     Four      VRS
+      44.3      6.8      1.7      0.0     13.2
+============================================================
+

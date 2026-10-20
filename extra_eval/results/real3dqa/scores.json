@@ -1,0 +1,43 @@
+{
+ "pred_dir": "outputs/extra_eval_20261021_025847",
+ "empty_preds": {
+  "debiased_test": 0,
+  "rotation_0": 0,
+  "rotation_90": 0,
+  "rotation_180": 0,
+  "rotation_270": 0
+ },
+ "debiased_test": {
+  "total": 1485,
+  "em": 17.306397306397304,
+  "em_refined": 22.693602693602692
+ },
+ "rotation_0": {
+  "total": 750,
+  "em": 10.266666666666667,
+  "em_refined": 13.333333333333334
+ },
+ "rotation_90": {
+  "total": 750,
+  "em": 9.866666666666667,
+  "em_refined": 12.533333333333333
+ },
+ "rotation_180": {
+  "total": 750,
+  "em": 8.533333333333333,
+  "em_refined": 13.200000000000001
+ },
+ "rotation_270": {
+  "total": 750,
+  "em": 10.933333333333334,
+  "em_refined": 13.733333333333334
+ },
+ "rotation": {
+  "total_questions": 750,
+  "one": 44.266666666666666,
+  "two": 6.800000000000001,
+  "three": 1.7333333333333332,
+  "four": 0.0,
+  "VRS": 13.2
+ }
+}

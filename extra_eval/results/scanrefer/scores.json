@@ -1,0 +1,9 @@
+{
+ "pred_dir": "outputs/extra_eval_20261021_025847",
+ "[scanrefer] Acc@0.25": 56.01598653765251,
+ "[scanrefer] Acc@0.50": 50.452250736222126,
+ "[scanrefer] Unique Acc@0.25": 89.3689596361569,
+ "[scanrefer] Unique Acc@0.50": 82.4900511654349,
+ "[scanrefer] Multiple Acc@0.25": 48.44496064008259,
+ "[scanrefer] Multiple Acc@0.50": 43.17976513098464
+}

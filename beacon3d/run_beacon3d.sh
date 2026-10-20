@@ -18,6 +18,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 unset CONDA_PREFIX CONDA_DEFAULT_ENV
 ENV="${CHATSCENE_ENV:-.venv}"
 export PYTHONPATH=.:${PYTHONPATH:-}
+# torch>=2.6 (the cu128 env) defaults torch.load to weights_only=True, which rejects the
+# official checkpoint (it pickles its EasyDict config); restore the old default
+export TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1
 export MASTER_PORT=$((54000 + RANDOM % 10000)) MASTER_ADDR=localhost
 NGPU="${NGPU:-$(nvidia-smi -L | wc -l)}"
 LLAMA="${LLAMA:-lmsys/vicuna-7b-v1.5}"

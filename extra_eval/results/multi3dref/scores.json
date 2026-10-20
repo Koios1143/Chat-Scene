@@ -1,0 +1,15 @@
+{
+ "pred_dir": "outputs/extra_eval_20261021_025847",
+ "[multi3dref] all F1@0.25": 57.924966273487165,
+ "[multi3dref] all F1@0.50": 53.233494373271796,
+ "[multi3dref] st_w_d F1@0.25": 50.12577246899755,
+ "[multi3dref] st_w_d F1@0.50": 45.466073576375926,
+ "[multi3dref] zt_w_d F1@0.25": 67.46031746031747,
+ "[multi3dref] zt_w_d F1@0.50": 67.46031746031747,
+ "[multi3dref] zt_wo_d F1@0.25": 90.9090909090909,
+ "[multi3dref] zt_wo_d F1@0.50": 90.9090909090909,
+ "[multi3dref] mt F1@0.25": 46.917568397638185,
+ "[multi3dref] mt F1@0.50": 41.99585366046191,
+ "[multi3dref] st_wo_d F1@0.25": 82.27727489280609,
+ "[multi3dref] st_wo_d F1@0.50": 75.78211846911228
+}
