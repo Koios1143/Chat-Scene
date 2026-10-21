@@ -35,14 +35,14 @@ def main():
     args = ap.parse_args()
 
     for domain in [d for d in args.domains.split(",") if d]:
-        src_domain = domain.split("_")[0]  # scannet_myfeat / scannet_no2d are ScanNet controls
+        src_domain = domain.split("_")[0]  # scannet_myfeat / scannet_no2d / 3rscan_2d / ... are variants
         bdir = os.path.join(args.beacon_root, "data", src_domain)
         out_dir = os.path.abspath(os.path.join(args.result_dir, domain))
         os.makedirs(out_dir, exist_ok=True)
         if src_domain == "scannet":
             ids_of = None
         else:
-            smap = json.load(open(os.path.join(args.uni3d_dir, f"{domain}_scene_map.json")))
+            smap = json.load(open(os.path.join(args.uni3d_dir, f"{src_domain}_scene_map.json")))
             ids_of = {v["scene_id"]: v["object_ids"] for v in smap.values()}
         for task in [t for t in args.tasks.split(",") if t]:
             paths = [p for p in glob.glob(os.path.join(args.preds_dir, f"preds_*_beacon3d_{domain}_{task}.json"))

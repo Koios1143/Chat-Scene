@@ -12,6 +12,9 @@ Chat-Scene's val format (``scene_id`` / ``obj_id`` / ``prompt`` / ``ref_captions
 * 3rscan / multiscan -> ``extract_uni3d_gt.py`` output (Uni3D over GT masks, no 2D
                feature file so the image token is zeros); scenes are aliased
                (``<domain>_scene_map.json``) and object ids are columns.
+* 3rscan_2d / multiscan_2d -> the same + ``extract_videofeats_gt.py``'s DINOv2 multi-view
+               features (``<domain>_gt_videofeats.pt``) as the image token, i.e. the
+               ScanNet input condition (added when that file exists).
 
 ``qid`` is the item's index in Beacon3D's ``<domain>_{grounding,qa}.json`` so the
 predictions (which Chat-Scene sorts) can be put back in Beacon3D order.
@@ -58,6 +61,9 @@ def main():
     domains = [d for d in args.domains.split(",") if d]
     if "scannet" in domains:
         domains += [f"scannet_{v}" for v in args.scannet_variants.split(",") if v]
+    for d in ["3rscan", "multiscan"]:
+        if d in domains and os.path.exists(os.path.join(args.uni3d_dir, f"{d}_gt_videofeats.pt")):
+            domains.append(f"{d}_2d")
     for domain in domains:
         bdir = os.path.join(args.beacon_root, "data", domain.split("_")[0])
         if domain.startswith("scannet"):
@@ -70,11 +76,12 @@ def main():
                 alias_of[s] = s
                 col_of[s] = {i: i for i in range(attrs[s]["locs"].shape[0])}
         else:
-            smap = json.load(open(os.path.join(args.uni3d_dir, f"{domain}_scene_map.json")))
+            src = domain.split("_")[0]
+            smap = json.load(open(os.path.join(args.uni3d_dir, f"{src}_scene_map.json")))
             files = [
-                os.path.join(args.uni3d_dir, f"{domain}_gt_uni3d_feats.pt"),
-                None,
-                os.path.join(args.uni3d_dir, f"{domain}_gt_attributes.pt"),
+                os.path.join(args.uni3d_dir, f"{src}_gt_uni3d_feats.pt"),
+                os.path.join(args.uni3d_dir, f"{src}_gt_videofeats.pt") if domain.endswith("_2d") else None,
+                os.path.join(args.uni3d_dir, f"{src}_gt_attributes.pt"),
             ]
             alias_of = {v["scene_id"]: a for a, v in smap.items()}
             col_of = {v["scene_id"]: {oid: c for c, oid in enumerate(v["object_ids"])} for v in smap.values()}

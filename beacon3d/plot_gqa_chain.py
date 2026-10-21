@@ -25,6 +25,7 @@ import numpy as np  # noqa: E402
 DOMAINS = {"scannet": "ScanNet", "3rscan": "3RScan", "multiscan": "MultiScan"}
 CONTROLS = {"scannet": "ScanNet", "scannet_myfeat": "ScanNet (own Uni3D + 2D)",
             "scannet_no2d": "ScanNet (no 2D token)"}
+WITH_2D = {"scannet": "ScanNet", "3rscan_2d": "3RScan (+ 2D)", "multiscan_2d": "MultiScan (+ 2D)"}
 BLUE, BLUE_FLOW, BLUE_CROSS = "#2878d6", "#8ab4e8", "#bfd5f1"
 ORANGE, ORANGE_FLOW, ORANGE_CROSS = "#eb6a36", "#f2ad90", "#f7d2c2"
 INK = "#1a1a1a"
@@ -98,7 +99,7 @@ def sankey(ax, d, title):
 
 def save(fig, path):
     fig.savefig(path + ".png", dpi=150, bbox_inches="tight", facecolor="white")
-    fig.savefig(path + ".pdf", bbox_inches="tight", facecolor="white")
+    fig.savefig(path + ".pdf", bbox_inches="tight", facecolor="white", metadata={"CreationDate": None})
     plt.close(fig)
 
 
@@ -116,7 +117,11 @@ def main():
     args = ap.parse_args()
     fig_dir = os.path.join(args.result_dir, "figures")
     os.makedirs(fig_dir, exist_ok=True)
-    shares = {s: chain_shares(os.path.join(args.result_dir, s)) for s in {**DOMAINS, **CONTROLS}}
+    settings = {**DOMAINS, **CONTROLS}
+    has_2d = all(os.path.exists(os.path.join(args.result_dir, s, "infer_qa_processed.json")) for s in WITH_2D)
+    if has_2d:
+        settings.update(WITH_2D)
+    shares = {s: chain_shares(os.path.join(args.result_dir, s)) for s in settings}
 
     for name, keys, part in [("gqa_chain", DOMAINS, "overall"), ("gqa_chain_wo_extra", DOMAINS, "wo_extra"),
                              ("gqa_chain_controls", CONTROLS, "overall")]:
@@ -129,6 +134,13 @@ def main():
     panels({k: shares[k]["overall"] for k in DOMAINS}, DOMAINS, os.path.join(fig_dir, "gqa_chain_all"))
     panels({k: shares[k]["wo_extra"] for k in DOMAINS}, DOMAINS, os.path.join(fig_dir, "gqa_chain_all_wo_extra"))
     panels({k: shares[k]["overall"] for k in CONTROLS}, CONTROLS, os.path.join(fig_dir, "gqa_chain_all_controls"))
+    if has_2d:  # 3RScan / MultiScan with our DINOv2 2D token (extract_videofeats_gt.py)
+        json.dump({k: shares[k]["overall"] for k in WITH_2D}, open(os.path.join(fig_dir, "gqa_chain_2d.json"), "w"), indent=1)
+        json.dump({k: shares[k]["wo_extra"] for k in WITH_2D}, open(os.path.join(fig_dir, "gqa_chain_2d_wo_extra.json"), "w"), indent=1)
+        for key in ["3rscan_2d", "multiscan_2d"]:
+            panels({key: shares[key]["overall"]}, {key: WITH_2D[key]}, os.path.join(fig_dir, f"gqa_chain_{key}"))
+        panels({k: shares[k]["overall"] for k in WITH_2D}, WITH_2D, os.path.join(fig_dir, "gqa_chain_all_2d"))
+        panels({k: shares[k]["wo_extra"] for k in WITH_2D}, WITH_2D, os.path.join(fig_dir, "gqa_chain_all_2d_wo_extra"))
     print(json.dumps({k: v["overall"] for k, v in shares.items()}, indent=1))
 
 

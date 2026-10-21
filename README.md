@@ -53,6 +53,12 @@ used for every baseline in this project; the upstream evaluator defaults to
 | ScanNet, **no 2D token** | official Uni3D | zeros | 17.36 / 6.75 | 40.93 / 6.49 |
 | 3RScan | ours | zeros | 12.18 / 5.15 | 46.97 / 5.88 |
 | MultiScan | ours | zeros | 11.42 / 3.14 | 42.35 / 5.66 |
+| 3RScan, **with 2D token** | ours | ours (DINOv2, raw RGB-D) | 45.63 / 27.94 | 46.51 / 2.21 |
+| MultiScan, **with 2D token** | ours | ours (DINOv2, raw RGB-D) | 43.68 / 27.67 | 29.93 / 1.26 |
+
+The two *with 2D token* rows (run `outputs/beacon3d_2d_20261021/`) give 3RScan and
+MultiScan the ScanNet input condition: their 2D token is extracted from the raw RGB-D
+sequences with Chat-Scene's own recipe (`beacon3d/extract_videofeats_gt.py`, below).
 
 Judged by GPT-4o (`gpt-4o-2024-11-20`) the same predictions score QA 50.09 / 9.87,
 52.47 / 10.91, 40.93 / 6.75, 47.55 / 5.51 and 41.98 / 5.66 (reports kept as
@@ -65,14 +71,27 @@ type, grounding→QA chain analysis) and the chain figures are in
 ### Read this before quoting the 3RScan / MultiScan numbers
 
 Chat-Scene gives every object a 3D token (Uni3D) **and** a 2D token (DINOv2 features
-projected from multi-view RGB). The 2D token needs RGB frames + camera poses, which are
-not part of the SceneVerse point-cloud release used here, so on 3RScan and MultiScan the
-2D token is all zeros. The *ScanNet, no 2D token* control shows that this alone drops
-grounding from 62 to 17. The 3RScan / MultiScan grounding scores therefore measure the
-missing-2D condition, not domain transfer; compare them with other models only on
-ScanNet, or only under the same no-2D condition. QA is less affected because many
-questions are answerable from the object label and language prior alone, which is
-exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 44% on 3RScan).
+projected from multi-view RGB). The SceneVerse point clouds have no RGB frames, so the
+first 3RScan / MultiScan rows run with the 2D token zeroed; the *ScanNet, no 2D token*
+control shows that this alone drops grounding from 62 to 17. The *with 2D token* rows
+restore it from the raw RGB-D sequences, and grounding recovers to 45.6 / 43.7 — these are
+the rows to compare with other models. Two things to know about them:
+
+- **The 2D features are ours, not official.** They follow Chat-Scene's ScanNet script
+  exactly (DINOv2-large patch grid, OpenScene's depth-checked projection, convex-hull crop,
+  area-weighted fusion) with only the dataset-specific changes listed in the docstring
+  of `extract_videofeats_gt.py` (separate colour / depth intrinsics, 3RScan frames rotated
+  upright, MultiScan sampled at ScanNet's 1.5 Hz). They could not be validated against the
+  official ScanNet file (no ScanNet RGB-D frames were available), but they sit in the same
+  space: similar norms (24.5 / 23.8 vs 26.1) and, for ~40% of objects, the nearest
+  official ScanNet feature has the same class label (2–5% with shuffled labels).
+- **With the 2D token, Chat-Scene answers "yes" to almost every yes/no question** —
+  93% on ScanNet with the official features, 94% on 3RScan, 98% on MultiScan, against
+  23–26% with the token zeroed. MultiScan's yes/no questions are 70% "no", so its QA drops
+  (42.4 → 29.9, yes/no accuracy 0.64 → 0.32) while grounding and the *class* questions
+  improve; this is the model's behaviour, not a feature artefact. Without the 2D token the
+  QA scores lean on the opposite ("no") prior and the language prior generally (the G✗Q✓
+  share is 44% on 3RScan without the token, 33% with it).
 
 ## Repository layout
 
@@ -83,6 +102,7 @@ exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 44% on 3RS
 | `beacon3d/results/` | Beacon3D infer files, evaluator reports and chain figures for the run in the table. |
 | `outputs/beacon3d_20260929_230515/` | The raw Chat-Scene predictions and config of that run. |
 | `beacon3d/build_env.sh` | Builds the Chat-Scene runtime as a uv venv (py3.9, torch 2.2.1+cu121, transformers 4.39.3, peft 0.9.0, flash-attn 2.5.6 wheel) plus `open3d` and `openai`. |
+| `beacon3d/extract_videofeats_gt.py`, `extract_videofeats.sh` | Chat-Scene's 2D token (DINOv2 multi-view object features) for 3RScan / MultiScan from the raw RGB-D sequences → `beacon3d/features/<domain>_gt_videofeats.pt`. ~5 min per domain on one GPU. |
 | `beacon3d/extract_uni3d_gt.py`, `extract_uni3d.sh` | Rebuilds `beacon3d/features/`. Vendors the Uni3D point encoder with a pure-torch farthest-point sampling so `pointnet2_ops` is not needed. |
 | `beacon3d/compare_uni3d_official.py` | Cosine between our ScanNet extraction and Chat-Scene's official file (sanity check of the extractor). |
 | `beacon3d/build_annos.py` | Beacon3D JSON → Chat-Scene val annotations (`annotations/beacon3d_<setting>_<task>.json`) + `scripts/beacon3d_config.py`. Also builds the two ScanNet controls. Regenerated on every run. |
@@ -108,6 +128,7 @@ exactly what Beacon3D's chain analysis exposes (the G✗Q✓ share is 44% on 3RS
 | QA scoring | an OpenAI API key (judge `gpt-4o-mini-2024-07-18`; `QA_MODEL` to change) | | `OPENAI_API_KEY` |
 | rebuilding features | Uni3D-g weights `model.pt` | [HF `BAAI/Uni3D`](https://huggingface.co/BAAI/Uni3D/blob/main/modelzoo/uni3d-g/model.pt) | `UNI3D_CKPT` |
 | rebuilding features | 3RScan and MultiScan scene point clouds with GT instance ids, in the [SceneVerse](https://scene-verse.github.io/) `scan_data/` layout (`pcd_with_global_alignment/<scene>.pth`, `instance_id_to_label/<scene>.pth`) | SceneVerse release | `RSCAN_SCAN_DATA`, `MULTISCAN_SCAN_DATA` |
+| 2D token for 3RScan / MultiScan | raw RGB-D: 3RScan `<scan>/sequence.zip` + `labels.instances.annotated.v2.ply`; MultiScan `<scene>.zip` (video, depth, camera jsonl, mesh) | [3RScan](https://github.com/WaldJohannaU/3RScan), [MultiScan](https://3dlg-hcvc.github.io/multiscan/) (ToS) | `RSCAN_RAW`, `MULTISCAN_RAW` |
 | validating the extractor (optional) | raw ScanNet scans (`<scene>_vh_clean_2.ply`, `<scene>.aggregation.json`) with one `<objectId>.npy` GT mask per object | ScanNet | `SCANNET_SCANS` |
 
 Only the first three rows are needed to reproduce the table: the Beacon3D data and
@@ -146,6 +167,14 @@ PREDS_DIR=outputs/beacon3d_<ts> bash beacon3d/score.sh
 
 # 3. (only to rebuild beacon3d/features/) Uni3D over GT masks, ~1.5 h on one GPU
 bash beacon3d/extract_uni3d.sh                   # needs UNI3D_CKPT, RSCAN_SCAN_DATA, MULTISCAN_SCAN_DATA
+#    2D token for 3RScan / MultiScan, ~10 min on one GPU
+bash beacon3d/extract_videofeats.sh              # needs RSCAN_RAW, MULTISCAN_RAW, MULTISCAN_SCAN_DATA, ffmpeg
+
+# 4. the *with 2D token* settings (registered by build_annos.py once those files exist)
+VAL_TAG="beacon3d_3rscan_2d_grounding#beacon3d_3rscan_2d_qa#beacon3d_multiscan_2d_grounding#beacon3d_multiscan_2d_qa" \
+    OUT=outputs/beacon3d_2d bash beacon3d/run_beacon3d.sh
+DOMAINS=3rscan_2d,multiscan_2d PREDS_DIR=outputs/beacon3d_2d bash beacon3d/score.sh
+python beacon3d/plot_gqa_chain.py                # chain JSONs + figures, incl. *_2d
 ```
 
 Chat-Scene's benchmarks and Real-3DQA:
