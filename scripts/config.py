@@ -303,6 +303,12 @@ debug = False
 log_freq = 20
 # eval_freq = 500
 seed = 42
+# Evaluation only. eval_scene_perm: object order (and any other eval randomness) is drawn
+# from (seed, scene) / (seed, question) instead of per worker, and val sets are sharded by
+# scene. eval_prefix_cache (needs eval_scene_perm): encode the scene prefix
+# [system, object list] once per scene and reuse its KV cache for every question on it.
+eval_scene_perm = False
+eval_prefix_cache = False
 
 save_latest = False
 do_save = True

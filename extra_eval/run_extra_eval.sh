@@ -13,6 +13,8 @@
 #   OUT            output dir                                         (default outputs/extra_eval_<timestamp>)
 #   NGPU           GPUs for torchrun                                  (default: all visible)
 #   BATCH_SIZE     per-GPU batch size                                 (default 32)
+#   PREFIX_CACHE   1: one object order per scene, scene prefix KV cache reused across its
+#                  questions (config eval_scene_perm / eval_prefix_cache)   (default 0)
 set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 [ -f env.sh ] && source env.sh
@@ -28,11 +30,13 @@ LLAMA="${LLAMA:-lmsys/vicuna-7b-v1.5}"
 CKPT="${CKPT:-pretrained/ckpt_01_3446.pth}"
 REAL3DQA="real3dqa_debiased_test#real3dqa_rotation_0#real3dqa_rotation_90#real3dqa_rotation_180#real3dqa_rotation_270"
 VAL_TAG="${VAL_TAG:-scanrefer#multi3dref#scan2cap#scanqa#sqa3d_test#$REAL3DQA}"
+CACHE_ARGS=()
+[ "${PREFIX_CACHE:-0}" = 1 ] && CACHE_ARGS=(eval_scene_perm True eval_prefix_cache True)
 OUT="${OUT:-outputs/extra_eval_$(date +%Y%m%d_%H%M%S)}"
 mkdir -p "$OUT"
 $ENV/bin/python extra_eval/build_annos.py --official_dir "${OFFICIAL_DIR:-annotations}" \
     --real3dqa_dir "${REAL3DQA_DIR:?set REAL3DQA_DIR}" || exit 1
-echo "output_dir=$OUT val_tag=$VAL_TAG ckpt=$CKPT ngpu=$NGPU"
+echo "output_dir=$OUT val_tag=$VAL_TAG ckpt=$CKPT ngpu=$NGPU prefix_cache=${PREFIX_CACHE:-0}"
 # Model options = scripts/run.sh (the released checkpoint's training run).
 $ENV/bin/torchrun --nproc_per_node="$NGPU" tasks/train.py scripts/extra_eval_config.py \
     output_dir "$OUT" evaluate True pretrained_path "$CKPT" val_tag "$VAL_TAG" train_tag "" \
@@ -41,7 +45,7 @@ $ENV/bin/torchrun --nproc_per_node="$NGPU" tasks/train.py scripts/extra_eval_con
     model.train_emb True model.train_img_proj True model.no_obj False model.input_dim 1024 \
     model.bidirection False model.max_obj_num 100 lora.lora_r 16 lora.lora_alpha 16 \
     model.add_pos_emb False model.feat_fusion False model.fuse_with_id False \
-    model.use_location_token False seed 42 debug False
+    model.use_location_token False seed 42 debug False "${CACHE_ARGS[@]}"
 echo "CHATSCENE_EXIT=$?"
 ls "$OUT"
 echo CHATSCENE_DONE

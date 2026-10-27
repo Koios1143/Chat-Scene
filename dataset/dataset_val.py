@@ -5,7 +5,7 @@ import json
 import numpy as np
 import torch
 
-from dataset.base_dataset import BaseDataset, update_caption
+from dataset.base_dataset import BaseDataset, update_caption, stable_seed
 import glob
 import random
 from prompts.prompts import obj_caption_wid_prompt
@@ -24,6 +24,9 @@ class ValDataset(BaseDataset):
         self.feat_dim = config.model.input_dim
         self.img_feat_dim = config.model.img_input_dim
         self.max_obj_num = config.model.max_obj_num
+        self.seed = config.seed
+        if config.get('eval_scene_perm', False):
+            self.scene_perm_seed = config.seed
 
         feat_file, img_feat_file, attribute_file, anno_file = ann_list[:4]
         self.attributes = torch.load(attribute_file, map_location='cpu') if attribute_file is not None else None
@@ -64,7 +67,8 @@ class ValDataset(BaseDataset):
         elif 'type_info' in self.anno[index]:
             type_info = self.anno[index]['type_info']
         if 'prompt' not in self.anno[index]:
-            prompt = random.choice(obj_caption_wid_prompt).replace('<id>', f"<OBJ{obj_id:03}>")
+            rng = random if self.scene_perm_seed is None else random.Random(stable_seed(self.seed, self.dataset_name, index))
+            prompt = rng.choice(obj_caption_wid_prompt).replace('<id>', f"<OBJ{obj_id:03}>")
         else:
             prompt = self.anno[index]["prompt"]
         ref_captions = self.anno[index]["ref_captions"].copy() if "ref_captions" in self.anno[index] else []

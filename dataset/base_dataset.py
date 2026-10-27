@@ -6,6 +6,7 @@ import torch
 import glob
 from torch.nn.utils.rnn import pad_sequence
 import re
+import zlib
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +25,7 @@ class BaseDataset(Dataset):
         self.feat_dim = 1024
         self.img_feat_dim = 1024
         self.max_obj_num = 100
+        self.scene_perm_seed = None
 
     def __getitem__(self, index):
         raise NotImplementedError
@@ -90,9 +92,19 @@ class BaseDataset(Dataset):
         scene_mask = self.scene_masks[scene_id] if self.scene_masks is not None else torch.ones(scene_feat.shape[0], dtype=torch.int)
         # assigned_ids = torch.randperm(self.max_obj_num)[:len(scene_locs)]
         # assigned_ids = torch.randperm(len(scene_locs))
-        assigned_ids = torch.randperm(self.max_obj_num) # !!!
+        if self.scene_perm_seed is None:
+            assigned_ids = torch.randperm(self.max_obj_num) # !!!
+        else:
+            # one order per scene, independent of rank / worker / sample order
+            g = torch.Generator().manual_seed(stable_seed(self.scene_perm_seed, scene_id))
+            assigned_ids = torch.randperm(self.max_obj_num, generator=g)
         return scene_id, scene_feat, scene_img_feat, scene_mask, scene_locs, assigned_ids
     
+
+def stable_seed(*keys):
+    """Seed from keys, the same in every process (unlike hash(), which is salted)."""
+    return zlib.crc32("_".join(str(k) for k in keys).encode())
+
 
 def update_caption(caption, assigned_ids):
     new_ids = {int(assigned_id): i for i, assigned_id in enumerate(assigned_ids)}
@@ -105,7 +117,7 @@ def update_caption(caption, assigned_ids):
     return caption
 
 
-def recover_caption(caption, assigned_ids):
+def recover_caption(caption, assigned_ids, rng=random):
     id_format = "<OBJ\\d{3}>"
     for match in re.finditer(id_format, caption):
         idx = match.start()
@@ -113,7 +125,7 @@ def recover_caption(caption, assigned_ids):
         try:
             old_id = int(assigned_ids[new_id])
         except:
-            old_id = random.randint(0, len(assigned_ids)-1)
+            old_id = rng.randint(0, len(assigned_ids)-1)
         caption = caption[:idx+4] + f"{old_id:03}" + caption[idx+7:]
     return caption
 

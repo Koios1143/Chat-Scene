@@ -111,6 +111,7 @@ the rows to compare with other models. Two things to know about them:
 | `extra_eval/build_annos.py` | Links Chat-Scene's HF `annotations/` into `annotations/`, converts Real-3DQA to Chat-Scene's SQA3D format (`annotations/real3dqa_<split>.json`), writes `scripts/extra_eval_config.py`. Regenerated on every run. |
 | `extra_eval/run_extra_eval.sh` | Evaluate-only inference on ScanRefer, Multi3DRefer, Scan2Cap, ScanQA, SQA3D test and the five Real-3DQA splits (~1.7 h on 2 RTX PRO 6000). |
 | `extra_eval/score.py`, `score.sh` | Scores the predictions with Chat-Scene's own `utils/eval.py` scorers and the official Real-3DQA scripts (vendored, unmodified, in `extra_eval/real3dqa/`). CPU only. |
+| `extra_eval/check_prefix_cache.py` | Agreement and timing of `PREFIX_CACHE=1` against upstream on a few scenes of one val set (see *Faster evaluation*). |
 | `extra_eval/build_env_cu128.sh` | The runtime for Blackwell GPUs: py3.10, torch 2.7.1+cu128, flash-attn 2.8.3 wheel, upstream `requirements.txt` otherwise. |
 | `beacon3d/plot_gqa_chain.py` | Grounding→QA chain shares (as in Beacon3D's `eval_chain`) and the Sankey figures in `beacon3d/results/figures/`, from the evaluators' processed files. |
 
@@ -203,6 +204,54 @@ Step 1 of the Beacon3D run regenerates `annotations/beacon3d_*.json` and `script
 the committed Beacon3D data before launching, so neither is tracked. The run and the
 checkpoint are deterministic; re-scoring QA moves the numbers by well under a point
 because of the GPT judge.
+
+## Faster evaluation: `PREFIX_CACHE=1`
+
+Every question on a scene feeds the LLM the same prefix (system prompt + 100 objects ×
+3 tokens) and only the question differs. With `PREFIX_CACHE=1` the run scripts set two
+config switches (both off by default, which keeps the upstream behaviour above):
+
+- `eval_scene_perm`: the object order (`assigned_ids`) is drawn once per scene from
+  `(seed, scene_id)` instead of per question in the DataLoader workers. The other eval
+  randomness (prompt choice, `recover_caption`'s fallback id) is drawn from
+  `(seed, question)`. Results do not depend on the GPU count, worker count or item order.
+  `SceneShardSampler` gives each GPU whole scenes, items sorted by scene.
+- `eval_prefix_cache`: `Chat3D.generate_with_prefix_cache` runs the prefix through the LLM
+  once per scene and starts every question's beam search from that KV cache. The cache is
+  reused only while the prefix embedding is bit-identical. `prepare_inputs_for_generation`
+  in `models/modeling_llama.py` is patched so the first step can take a cache plus
+  `inputs_embeds`.
+
+```shell
+PREFIX_CACHE=1 bash extra_eval/run_extra_eval.sh
+PREFIX_CACHE=1 bash beacon3d/run_beacon3d.sh
+```
+
+Full run on 2 RTX PRO 6000 (`outputs/{extra_eval,beacon3d}_prefixcache_20261027_171135/`),
+against the runs in the tables above:
+
+| | upstream | `PREFIX_CACHE=1` |
+| --- | --- | --- |
+| extra_eval inference (6 benchmarks) | 1 h 37 min | 1 h 03 min (1.54×) |
+| Beacon3D inference (14 val sets) | 34.6 min | 20.9 min (1.65×) |
+| ScanRefer Acc@0.25 / @0.5 | 56.0 / 50.5 | 56.1 / 50.7 |
+| Multi3DRefer F1@0.25 / @0.5 | 57.9 / 53.2 | 58.2 / 53.4 |
+| Scan2Cap CIDEr@0.5 | 79.6 | 80.0 |
+| ScanQA CIDEr | 87.3 | 87.9 |
+| SQA3D test EM | 54.3 | 53.9 |
+| Real-3DQA EM / EM-R / VRS | 17.3 / 22.7 / 13.2 | 17.3 / 22.8 / 12.6 |
+| Beacon3D grounding, case overall (scannet / myfeat / no2d / 3rscan / multiscan / 3rscan_2d / multiscan_2d) | 62.0 / 62.2 / 17.4 / 12.2 / 11.4 / 45.6 / 43.7 | 62.6 / 62.9 / 18.3 / 11.3 / 10.5 / 44.2 / 44.3 |
+
+The gain per benchmark follows the answer length: ScanRefer 2.05×, ScanQA 1.54×,
+Multi3DRefer 1.45×, Scan2Cap 1.20×. Long generations are dominated by the beam steps.
+
+`extra_eval/check_prefix_cache.py` checks the cache on a few scenes per val set (one GPU,
+`CHECK_SET`, `CHECK_SCENES`). With the same per-scene order, cached and uncached outputs
+are identical for 94–100% of the questions (ScanRefer and SQA3D: 100%). The remaining
+differences are bf16 near-ties in the beam search, which compound over long captions
+(Scan2Cap: 76%). Changing from per-question to per-scene order changes many grounding
+outputs (only 32–38% are identical), but not the accuracy; the per-question order already
+varied this much.
 
 ## How the evaluation is wired, and what to be careful about
 

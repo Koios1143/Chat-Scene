@@ -9,7 +9,7 @@ import torch.distributed as dist
 import wandb
 from torch.utils.data import ConcatDataset
 
-from dataset import MetaLoader, create_dataset, create_loader, create_sampler
+from dataset import MetaLoader, SceneShardSampler, create_dataset, create_loader, create_sampler
 from dataset.dataset_train import train_collate_fn
 from dataset.dataset_val import val_collate_fn
 from models.chat3d import Chat3D
@@ -338,6 +338,8 @@ def setup_dataloaders(config):
     else:
         train_samplers = [None] * len(train_datasets)
         val_samplers = [None] * len(val_datasets)
+    if config.get("eval_scene_perm", False):
+        val_samplers = [SceneShardSampler(d, get_world_size(), get_rank()) for d in val_datasets]
 
     train_loaders = create_loader(
         train_datasets,

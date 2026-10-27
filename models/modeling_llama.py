@@ -1258,6 +1258,9 @@ class LlamaForCausalLM(LlamaPreTrainedModel):
             past_key_values = getattr(getattr(self.model.layers[0], "self_attn", {}), "past_key_value", None)
             has_static_cache = past_key_values is not None
 
+        # First step on top of a precomputed prefix cache (Chat3D.generate_with_prefix_cache):
+        # the cache holds the prefix, inputs_embeds the rest of the prompt, input_ids is empty.
+        prefix_step = inputs_embeds is not None and past_key_values is not None and input_ids.shape[1] == 0
         past_length = 0
         if past_key_values is not None:
             if isinstance(past_key_values, Cache):
@@ -1299,10 +1302,10 @@ class LlamaForCausalLM(LlamaPreTrainedModel):
             position_ids = attention_mask.long().cumsum(-1) - 1
             position_ids.masked_fill_(attention_mask == 0, 1)
             if past_key_values:
-                position_ids = position_ids[:, -input_ids.shape[1] :]
+                position_ids = position_ids[:, -(inputs_embeds.shape[1] if prefix_step else input_ids.shape[1]) :]
 
         # if `inputs_embeds` are passed, we only want to use them in the 1st generation step
-        if inputs_embeds is not None and past_key_values is None:
+        if inputs_embeds is not None and (past_key_values is None or prefix_step):
             model_inputs = {"inputs_embeds": inputs_embeds}
         else:
             # The `contiguous()` here is necessary to have a static stride during decoding. torchdynamo otherwise
@@ -1312,6 +1315,11 @@ class LlamaForCausalLM(LlamaPreTrainedModel):
 
         input_length = position_ids.shape[-1] if position_ids is not None else input_ids.shape[-1]
         if cache_position is None:
+            cache_position = torch.arange(past_length, past_length + input_length, device=input_ids.device)
+        elif past_key_values is not None and not isinstance(past_key_values, Cache):
+            # generate() counts cache_position from the start of inputs_embeds, which misses a
+            # precomputed prefix; the legacy cache's length is the true offset (without a prefix
+            # the two agree, so this changes nothing there)
             cache_position = torch.arange(past_length, past_length + input_length, device=input_ids.device)
         else:
             cache_position = cache_position[-input_length:]
