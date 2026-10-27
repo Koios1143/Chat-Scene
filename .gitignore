@@ -19,3 +19,5 @@ outputs/*/train.log
 *.sbatch
 env.sh
 *.log
+# local copies (hard links / symlinks) of every external dependency, see README
+deps/

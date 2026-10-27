@@ -15,6 +15,10 @@
 #   BATCH_SIZE     per-GPU batch size                                 (default 32)
 #   PREFIX_CACHE   1: one object order per scene, scene prefix KV cache reused across its
 #                  questions (config eval_scene_perm / eval_prefix_cache)   (default 0)
+#   GEN_BATCH      with PREFIX_CACHE=1: questions of a scene per batched beam search
+#                  (config eval_gen_batch)                              (default 16)
+#   SHARED_PREFIX  with PREFIX_CACHE=1: 1 = one prefix KV copy for all rows
+#                  (config eval_shared_prefix)                          (default 1)
 set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 [ -f env.sh ] && source env.sh
@@ -31,12 +35,13 @@ CKPT="${CKPT:-pretrained/ckpt_01_3446.pth}"
 REAL3DQA="real3dqa_debiased_test#real3dqa_rotation_0#real3dqa_rotation_90#real3dqa_rotation_180#real3dqa_rotation_270"
 VAL_TAG="${VAL_TAG:-scanrefer#multi3dref#scan2cap#scanqa#sqa3d_test#$REAL3DQA}"
 CACHE_ARGS=()
-[ "${PREFIX_CACHE:-0}" = 1 ] && CACHE_ARGS=(eval_scene_perm True eval_prefix_cache True)
+[ "${PREFIX_CACHE:-0}" = 1 ] && CACHE_ARGS=(eval_scene_perm True eval_prefix_cache True eval_gen_batch "${GEN_BATCH:-16}")
+[ "${PREFIX_CACHE:-0}" = 1 ] && [ "${SHARED_PREFIX:-1}" = 1 ] && CACHE_ARGS+=(eval_shared_prefix True)
 OUT="${OUT:-outputs/extra_eval_$(date +%Y%m%d_%H%M%S)}"
 mkdir -p "$OUT"
 $ENV/bin/python extra_eval/build_annos.py --official_dir "${OFFICIAL_DIR:-annotations}" \
     --real3dqa_dir "${REAL3DQA_DIR:?set REAL3DQA_DIR}" || exit 1
-echo "output_dir=$OUT val_tag=$VAL_TAG ckpt=$CKPT ngpu=$NGPU prefix_cache=${PREFIX_CACHE:-0}"
+echo "output_dir=$OUT val_tag=$VAL_TAG ckpt=$CKPT ngpu=$NGPU prefix_cache=${PREFIX_CACHE:-0} gen_batch=${GEN_BATCH:-16} shared_prefix=${SHARED_PREFIX:-1}"
 # Model options = scripts/run.sh (the released checkpoint's training run).
 $ENV/bin/torchrun --nproc_per_node="$NGPU" tasks/train.py scripts/extra_eval_config.py \
     output_dir "$OUT" evaluate True pretrained_path "$CKPT" val_tag "$VAL_TAG" train_tag "" \

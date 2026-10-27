@@ -309,6 +309,11 @@ seed = 42
 # [system, object list] once per scene and reuse its KV cache for every question on it.
 eval_scene_perm = False
 eval_prefix_cache = False
+# with eval_prefix_cache: up to this many questions of a scene share one batched beam search
+eval_gen_batch = 1
+# with eval_prefix_cache: keep one copy of the prefix KV for all rows instead of one per
+# beam (attention over it is merged with the rest by log-sum-exp; flash-attn only)
+eval_shared_prefix = False
 
 save_latest = False
 do_save = True

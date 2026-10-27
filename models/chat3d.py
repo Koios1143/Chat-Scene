@@ -7,7 +7,7 @@ from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .modeling_llama import LlamaForCausalLM
+from .modeling_llama import LlamaFlashAttention2, LlamaForCausalLM
 from transformers import LlamaTokenizer, LlamaConfig
 from models.position_embedding import PositionEmbeddingCoordsSine
 from peft import LoraConfig, get_peft_model
@@ -484,6 +484,7 @@ class Chat3D(nn.Module):
             proj_scene_embed = self.scene_proj(scene_embed)
 
         output_texts = []
+        pending = []  # (prefix_embed, prompt_embed, assigned_ids, rng) for the prefix cache
         p_0_embed = self.p_0_embed.to(device).unsqueeze(0)
         p_1_embed = self.p_1_embed.to(device).unsqueeze(0)
         for i in range(batch_size):
@@ -500,9 +501,8 @@ class Chat3D(nn.Module):
             )
             object_list_embed = object_list_embed.unsqueeze(0)
             if self.config.get("eval_prefix_cache", False):
-                output_texts.append(self.generate_with_prefix_cache(
-                    torch.cat([p_0_embed, object_list_embed, p_1_embed], dim=1), prompt_embed,
-                    assigned_ids[i], rng=random.Random(stable_seed(self.config.seed, kwargs["scene_id"][i], tmp_prompt))))
+                pending.append((torch.cat([p_0_embed, object_list_embed, p_1_embed], dim=1), prompt_embed,
+                    assigned_ids[i], random.Random(stable_seed(self.config.seed, kwargs["scene_id"][i], tmp_prompt))))
                 continue
             wrapped_embed = torch.cat([p_0_embed, object_list_embed, p_1_embed, prompt_embed], dim=1)
             attention_mask=None
@@ -535,12 +535,27 @@ class Chat3D(nn.Module):
             rng = random.Random(stable_seed(self.config.seed, kwargs["scene_id"][i], tmp_prompt)) if self.config.get("eval_scene_perm", False) else random
             output_text = recover_caption(output_text, assigned_ids[i].tolist(), rng=rng)
             output_texts.append(output_text)
+        # consecutive questions with the same prefix (scene) are generated together, at most
+        # eval_gen_batch at a time
+        max_group = max(1, int(self.config.get("eval_gen_batch", 1)))
+        start = 0
+        while start < len(pending):
+            end = start + 1
+            while (end < len(pending) and end - start < max_group and pending[end][0].shape == pending[start][0].shape
+                   and torch.equal(pending[end][0], pending[start][0])):
+                end += 1
+            group = pending[start:end]
+            output_texts += self.generate_with_prefix_cache(group[0][0], [g[1] for g in group],
+                                                            [g[2] for g in group], [g[3] for g in group])
+            start = end
         return output_texts
 
-    def generate_with_prefix_cache(self, prefix_embed, prompt_embed, assigned_ids, rng):
+    def generate_with_prefix_cache(self, prefix_embed, prompt_embeds, assigned_ids, rngs):
         """Same generation as `evaluate`, but the KV cache of `prefix_embed` (system prompt +
         object list, shared by every question on a scene) is computed once and reused while
-        the prefix stays the same; only the question is encoded per call."""
+        the prefix stays the same; only the questions are encoded per call. Several questions
+        run as one batched beam search, each laid out as [prefix][padding][question] with the
+        padding masked out (position ids skip it), which is left padding of the question."""
         assert not self.bidirection, "customized_mask is not supported with the prefix cache"
         num_beams = 5
         cached = getattr(self, "_prefix_cache", None)
@@ -549,27 +564,54 @@ class Chat3D(nn.Module):
             with self.maybe_autocast():
                 out = self.llama_model(inputs_embeds=prefix_embed, use_cache=True, return_dict=True)
             cached = self._prefix_cache = (prefix_embed, out.past_key_values)
-        past = tuple(tuple(t.expand(num_beams, -1, -1, -1) for t in layer) for layer in cached[1])
+        batch_size = len(prompt_embeds)
         prefix_len = prefix_embed.shape[1]
-        attention_mask = torch.ones((1, prefix_len + prompt_embed.shape[1]), dtype=torch.long, device=prompt_embed.device)
-        with self.maybe_autocast():
-            outputs = self.llama_model.generate(
-                inputs_embeds=prompt_embed,
-                past_key_values=past,
-                attention_mask=attention_mask,
-                max_new_tokens=self.max_txt_len,
-                num_beams=num_beams,
-                min_length=1,
-                repetition_penalty=3.0,
-                length_penalty=1,
-                temperature=1.0,
-                customized_mask=None
-            )
-        output_token = outputs[0]
-        output_text = self.llama_tokenizer.decode(output_token)
-        output_text = output_text.split(self.end_sym)[0]
-        output_text = output_text.replace('  ', ' ').replace(' .', '.').strip()
-        return recover_caption(output_text, assigned_ids.tolist(), rng=rng)
+        q_len = max(e.shape[1] for e in prompt_embeds)
+        device = prefix_embed.device
+        inputs_embeds = prompt_embeds[0].new_zeros((batch_size, q_len, prompt_embeds[0].shape[2]))
+        attention_mask = torch.ones((batch_size, prefix_len + q_len), dtype=torch.long, device=device)
+        for b, e in enumerate(prompt_embeds):
+            inputs_embeds[b, q_len - e.shape[1]:] = e[0]
+            attention_mask[b, prefix_len:prefix_len + q_len - e.shape[1]] = 0
+        shared = self.config.get("eval_shared_prefix", False)
+        if shared:
+            # one copy of the prefix KV for all rows; generate() caches only the rest
+            attn_layers = [m for m in self.llama_model.modules() if isinstance(m, LlamaFlashAttention2)]
+            causal_lm = next(m for m in self.llama_model.modules() if isinstance(m, LlamaForCausalLM))
+            assert len(attn_layers) == len(cached[1]), "eval_shared_prefix needs flash_attention_2"
+            for m in attn_layers:
+                k, v = cached[1][m.layer_idx]
+                m.shared_prefix_kv = (k.transpose(1, 2).contiguous(), v.transpose(1, 2).contiguous())
+            causal_lm.shared_prefix_len = prefix_len
+            past, attention_mask = None, attention_mask[:, prefix_len:]
+        else:
+            past = tuple(tuple(t.expand(batch_size * num_beams, -1, -1, -1) for t in layer) for layer in cached[1])
+        try:
+            with self.maybe_autocast():
+                outputs = self.llama_model.generate(
+                    inputs_embeds=inputs_embeds,
+                    past_key_values=past,
+                    attention_mask=attention_mask,
+                    max_new_tokens=self.max_txt_len,
+                    num_beams=num_beams,
+                    min_length=1,
+                    repetition_penalty=3.0,
+                    length_penalty=1,
+                    temperature=1.0,
+                    customized_mask=None
+                )
+        finally:
+            if shared:
+                for m in attn_layers:
+                    m.shared_prefix_kv = None
+                causal_lm.shared_prefix_len = 0
+        output_texts = []
+        for b in range(batch_size):
+            output_text = self.llama_tokenizer.decode(outputs[b])
+            output_text = output_text.split(self.end_sym)[0]
+            output_text = output_text.replace('  ', ' ').replace(' .', '.').strip()
+            output_texts.append(recover_caption(output_text, assigned_ids[b].tolist(), rng=rngs[b]))
+        return output_texts
 
     def forward(self, **kwargs):
         if "answers" in kwargs:

@@ -111,7 +111,7 @@ the rows to compare with other models. Two things to know about them:
 | `extra_eval/build_annos.py` | Links Chat-Scene's HF `annotations/` into `annotations/`, converts Real-3DQA to Chat-Scene's SQA3D format (`annotations/real3dqa_<split>.json`), writes `scripts/extra_eval_config.py`. Regenerated on every run. |
 | `extra_eval/run_extra_eval.sh` | Evaluate-only inference on ScanRefer, Multi3DRefer, Scan2Cap, ScanQA, SQA3D test and the five Real-3DQA splits (~1.7 h on 2 RTX PRO 6000). |
 | `extra_eval/score.py`, `score.sh` | Scores the predictions with Chat-Scene's own `utils/eval.py` scorers and the official Real-3DQA scripts (vendored, unmodified, in `extra_eval/real3dqa/`). CPU only. |
-| `extra_eval/check_prefix_cache.py` | Agreement and timing of `PREFIX_CACHE=1` against upstream on a few scenes of one val set (see *Faster evaluation*). |
+| `extra_eval/check_prefix_cache.py` | Agreement, time and memory of the `PREFIX_CACHE=1` modes against upstream on a few scenes of one val set (see *Faster evaluation*). |
 | `extra_eval/build_env_cu128.sh` | The runtime for Blackwell GPUs: py3.10, torch 2.7.1+cu128, flash-attn 2.8.3 wheel, upstream `requirements.txt` otherwise. |
 | `beacon3d/plot_gqa_chain.py` | Grounding→QA chain shares (as in Beacon3D's `eval_chain`) and the Sankey figures in `beacon3d/results/figures/`, from the evaluators' processed files. |
 
@@ -135,6 +135,14 @@ the rows to compare with other models. Two things to know about them:
 Only the first three rows are needed to reproduce the table: the Beacon3D data and
 evaluators, and our 3RScan / MultiScan features, are committed. Chat-Scene ships
 ScanNet features only, which is why the other two domains needed an extractor.
+
+`deps/` (gitignored) is the place for this project's own copy of every external dependency,
+with `env.sh` pointing only there. Use hard links (`cp -al`, `ln`) when a file is already
+somewhere else on the same filesystem: they cost no space, and the copy survives when the
+other path is deleted (e.g. a shared Hugging Face cache or another project's data dir).
+A symlink does not protect anything, so use one only for directories this project owns.
+The venv's interpreter is part of this: a uv venv links to uv's managed Python
+(`pyvenv.cfg` `home`), so keep a hard-linked copy of that too.
 
 ### Environment
 
@@ -208,8 +216,8 @@ because of the GPT judge.
 ## Faster evaluation: `PREFIX_CACHE=1`
 
 Every question on a scene feeds the LLM the same prefix (system prompt + 100 objects ×
-3 tokens) and only the question differs. With `PREFIX_CACHE=1` the run scripts set two
-config switches (both off by default, which keeps the upstream behaviour above):
+3 tokens) and only the question differs. With `PREFIX_CACHE=1` the run scripts set four
+config switches. All of them are off by default, which keeps the upstream behaviour above:
 
 - `eval_scene_perm`: the object order (`assigned_ids`) is drawn once per scene from
   `(seed, scene_id)` instead of per question in the DataLoader workers. The other eval
@@ -221,37 +229,52 @@ config switches (both off by default, which keeps the upstream behaviour above):
   reused only while the prefix embedding is bit-identical. `prepare_inputs_for_generation`
   in `models/modeling_llama.py` is patched so the first step can take a cache plus
   `inputs_embeds`.
+- `eval_gen_batch` (`GEN_BATCH`, default 16): up to this many consecutive questions of a
+  scene run as one batched beam search. Each row is `[prefix][padding][question]`; the
+  padding is masked and skipped by the position ids, which makes it left padding of the
+  question.
+- `eval_shared_prefix` (`SHARED_PREFIX`, default 1; flash-attn only): one copy of the prefix
+  KV for all rows. Without it, `generate()` copies the prefix into every beam, and every
+  step copies it twice more (cache `cat` + beam reorder), so batching stops paying off
+  beyond 4 questions. `LlamaFlashAttention2._shared_prefix_attention` attends to the prefix
+  through `flash_attn_with_kvcache(cache_batch_idx=0)` and to the row's own keys causally
+  (`cache_leftpad` for the padding), then merges the two by log-sum-exp.
 
 ```shell
 PREFIX_CACHE=1 bash extra_eval/run_extra_eval.sh
 PREFIX_CACHE=1 bash beacon3d/run_beacon3d.sh
+# PREFIX_CACHE=1 GEN_BATCH=1 SHARED_PREFIX=0: cache only, one question per generate()
 ```
 
-Full run on 2 RTX PRO 6000 (`outputs/{extra_eval,beacon3d}_prefixcache_20261027_171135/`),
-against the runs in the tables above:
+Full runs on 2 RTX PRO 6000, against the runs in the tables above. The cache-only column is
+`outputs/{extra_eval,beacon3d}_prefixcache_20261027_171135/`, the default column
+`outputs/{extra_eval,beacon3d}_prefixcache_b16s1_20261027_202255/`:
 
-| | upstream | `PREFIX_CACHE=1` |
-| --- | --- | --- |
-| extra_eval inference (6 benchmarks) | 1 h 37 min | 1 h 03 min (1.54×) |
-| Beacon3D inference (14 val sets) | 34.6 min | 20.9 min (1.65×) |
-| ScanRefer Acc@0.25 / @0.5 | 56.0 / 50.5 | 56.1 / 50.7 |
-| Multi3DRefer F1@0.25 / @0.5 | 57.9 / 53.2 | 58.2 / 53.4 |
-| Scan2Cap CIDEr@0.5 | 79.6 | 80.0 |
-| ScanQA CIDEr | 87.3 | 87.9 |
-| SQA3D test EM | 54.3 | 53.9 |
-| Real-3DQA EM / EM-R / VRS | 17.3 / 22.7 / 13.2 | 17.3 / 22.8 / 12.6 |
-| Beacon3D grounding, case overall (scannet / myfeat / no2d / 3rscan / multiscan / 3rscan_2d / multiscan_2d) | 62.0 / 62.2 / 17.4 / 12.2 / 11.4 / 45.6 / 43.7 | 62.6 / 62.9 / 18.3 / 11.3 / 10.5 / 44.2 / 44.3 |
+| | upstream | cache only | `PREFIX_CACHE=1` (batch 16, shared prefix) |
+| --- | --- | --- | --- |
+| extra_eval inference (6 benchmarks) | 1 h 37 min | 1 h 03 min | 19 min (5.1×) |
+| Beacon3D inference (14 val sets) | 34.6 min | 20.9 min | 5.2 min (6.7×) |
+| ScanRefer Acc@0.25 / @0.5 | 56.0 / 50.5 | 56.1 / 50.7 | 56.1 / 50.7 |
+| Multi3DRefer F1@0.25 / @0.5 | 57.9 / 53.2 | 58.2 / 53.4 | 58.2 / 53.4 |
+| Scan2Cap CIDEr@0.5 | 79.6 | 80.0 | 79.7 |
+| ScanQA CIDEr | 87.3 | 87.9 | 88.1 |
+| SQA3D test EM | 54.3 | 53.9 | 54.2 |
+| Real-3DQA EM / EM-R / VRS | 17.3 / 22.7 / 13.2 | 17.3 / 22.8 / 12.6 | 17.2 / 22.6 / 12.6 |
+| Beacon3D grounding, case overall (scannet / myfeat / no2d / 3rscan / multiscan / 3rscan_2d / multiscan_2d) | 62.0 / 62.2 / 17.4 / 12.2 / 11.4 / 45.6 / 43.7 | 62.6 / 62.9 / 18.3 / 11.3 / 10.5 / 44.2 / 44.3 | 62.5 / 62.7 / 18.1 / 11.2 / 10.4 / 44.2 / 44.3 |
+| Beacon3D QA, case (same order; gpt-4o-mini judge) | 49.9 / 52.3 / 40.9 / 47.0 / 42.4 / 46.5 / 29.9 | 50.2 / 52.5 / 40.5 / 46.2 / 42.3 / 46.8 / 29.6 | 50.2 / 52.5 / 40.3 / 46.1 / 42.6 / 47.2 / 29.7 |
 
-The gain per benchmark follows the answer length: ScanRefer 2.05×, ScanQA 1.54×,
-Multi3DRefer 1.45×, Scan2Cap 1.20×. Long generations are dominated by the beam steps.
+Per benchmark the default is 5.0–6.7× faster (ScanRefer 18.2 → 3.2 min, Multi3DRefer 35.5 →
+7.1, Scan2Cap 11.1 → 1.9, ScanQA 12.3 → 1.8). Peak GPU memory at batch 16 is about 25 GB
+(17 GB for the cache alone), measured by the check script below.
 
-`extra_eval/check_prefix_cache.py` checks the cache on a few scenes per val set (one GPU,
-`CHECK_SET`, `CHECK_SCENES`). With the same per-scene order, cached and uncached outputs
-are identical for 94–100% of the questions (ScanRefer and SQA3D: 100%). The remaining
-differences are bf16 near-ties in the beam search, which compound over long captions
-(Scan2Cap: 76%). Changing from per-question to per-scene order changes many grounding
-outputs (only 32–38% are identical), but not the accuracy; the per-question order already
-varied this much.
+`extra_eval/check_prefix_cache.py` compares the modes on a few scenes per val set (one GPU;
+`CHECK_SET`, `CHECK_SCENES`, `CHECK_MODES`, e.g. `"orig perm cache batch4 shared16"`), with
+time and peak memory. Same inputs, different computation: cache vs no cache, batched vs
+not, and shared vs copied prefix each give identical outputs for 94–100% of the questions
+(ScanRefer and SQA3D 99–100%). The rest are bf16 near-ties in the beam search, which
+compound over long outputs (Scan2Cap: 76–84%). Changing from per-question to per-scene
+order changes many grounding outputs (only 32–38% are identical), but not the accuracy;
+the per-question order already varied this much.
 
 ## How the evaluation is wired, and what to be careful about
 
