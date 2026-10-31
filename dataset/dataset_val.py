@@ -32,9 +32,10 @@ class ValDataset(BaseDataset):
         self.attributes = torch.load(attribute_file, map_location='cpu') if attribute_file is not None else None
         self.anno = json.load(open(anno_file, 'r'))
 
-        if feat_file in ValDataset.cached_feats and img_feat_file in ValDataset.cached_feats:
-            self.scene_feats, self.scene_masks = ValDataset.cached_feats[feat_file]
-            self.scene_img_feats = ValDataset.cached_feats[img_feat_file]
+        # keyed by the attribute file too: its obj_ids decide which objects prepare_scene_features keeps
+        cache_key = (feat_file, img_feat_file, attribute_file)
+        if cache_key in ValDataset.cached_feats:
+            self.scene_feats, self.scene_img_feats, self.scene_masks = ValDataset.cached_feats[cache_key]
         else:
             if feat_file is not None and os.path.exists(feat_file):
                 self.feats = torch.load(feat_file, map_location='cpu')
@@ -49,8 +50,7 @@ class ValDataset(BaseDataset):
                 self.scene_img_feats = self.scene_masks = None
             else:
                 self.scene_feats, self.scene_img_feats, self.scene_masks = self.prepare_scene_features()
-            ValDataset.cached_feats[feat_file] = (self.scene_feats, self.scene_masks)
-            ValDataset.cached_feats[img_feat_file] = self.scene_img_feats
+            ValDataset.cached_feats[cache_key] = (self.scene_feats, self.scene_img_feats, self.scene_masks)
 
     def __len__(self):
         return len(self.anno)

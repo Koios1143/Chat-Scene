@@ -9,10 +9,15 @@ models on equal footing:
   grounding + QA benchmark over ScanNet, 3RScan and MultiScan, in [`beacon3d/`](beacon3d/);
 - Chat-Scene's own five benchmarks (ScanRefer, Multi3DRefer, Scan2Cap, ScanQA, SQA3D),
   re-run as a check that the setup reproduces the paper, plus
-  [Real-3DQA](https://github.com/xianzhengma/Real-3DQA), in [`extra_eval/`](extra_eval/).
+  [Real-3DQA](https://github.com/xianzhengma/Real-3DQA), in [`extra_eval/`](extra_eval/);
+- [XR-QA and XR-SceneCaption](https://huggingface.co/datasets/Hoyard/XR-Scene), the
+  large-scene benchmarks of [LSceneLLM](https://github.com/Hoyyyaard/LSceneLLM) (CVPR 2025),
+  zero-shot and finetuned, in [`xr_eval/`](xr_eval/).
 
-The upstream model, training and data code are untouched; the runs that produced the
-numbers below are committed in full (`outputs/`, `beacon3d/results/`, `extra_eval/results/`).
+The upstream model, training and data code are untouched (except a cache-key fix in
+`dataset/dataset_val.py`, see *XR-QA / XR-SceneCaption*); the runs that produced the
+numbers below are committed in full (`outputs/`, `beacon3d/results/`, `extra_eval/results/`;
+finetuned checkpoints are not).
 
 Upstream Chat-Scene's own README is in the git history (`git show 475e106:README.md`).
 
@@ -93,6 +98,67 @@ the rows to compare with other models. Two things to know about them:
   QA scores lean on the opposite ("no") prior and the language prior generally (the G✗Q✓
   share is 44% on 3RScan without the token, 33% with it).
 
+## Results: XR-QA / XR-SceneCaption (LSceneLLM)
+
+LSceneLLM's Table 1 reports Chat-Scene# (point clouds + images) zero-shot and finetuned on
+its XR-Scene benchmarks without saying how Chat-Scene was run on them. XR scenes are unions of
+SceneVerse HM3D regions (3 per QA, 5 per caption), often with more than Chat-Scene's 100
+object identifiers, and SceneVerse ships no images. `xr_eval/` makes every unknown an explicit
+choice and runs the alternatives:
+
+- **3D token**: Uni3D-g per GT object (Beacon3D's extractor), regions concatenated in
+  LSceneLLM's order.
+- **2D token**: views rendered from the HM3D v0.2 glb (SceneVerse region → glb is a pure
+  translation, recovered by grid search + ICP: 2032 of 2035 regions at ~1 cm median), a
+  0.75 m camera grid at 1.5 m height, 8 yaws, fused with DINOv2-large exactly as for
+  3RScan / MultiScan. 77% of objects get a 2D feature.
+- **>100 objects** (35% of XR-QA val questions, 54% of captions): `trunc` (stock code, first
+  100), `big` (drop wall/floor/ceiling, keep the 100 with most points), `rand` (100 at random).
+- **QA prompt**: the question as is (`raw`) or with ScanQA's "Answer the question using a
+  single word or phrase." (`short`).
+- **Scoring**: LSceneLLM's capeval (vendored), keyed by its episode ids, on the raw text
+  (LSceneLLM's validation) and after Chat-Scene's own ScanQA normalisation (`clean_answer` +
+  PTB tokenizer). `xr_eval/score.py` writes both.
+
+Columns are CIDEr / ROUGE-L / METEOR: the paper labels them C / M / R, but its values only fit
+this order. Scores below use Chat-Scene's normalisation, the only one that fits the paper
+in every setting (raw-text scoring gives zero-shot XR-QA CIDEr 17–30).
+
+| Setting | XR-QA (val) | XR-SceneCaption (val) |
+| --- | --- | --- |
+| Paper, zero-shot | 69.55 / 26.63 / 10.06 | 0.01 / 5.94 / 1.52 |
+| Ours, zero-shot, `short` + 2D (`trunc` / `big` / `rand`) | 65.51 / 26.78 / 8.72 · 65.64 / 26.93 / 8.74 · 65.88 / 26.96 / 8.77 | 0.02 / 6.07 / 1.50 · 0.01 / 6.17 / 1.54 · 0.02 / 6.09 / 1.48 |
+| Ours, zero-shot, `short`, no 2D (`trunc`) | 59.07 / 24.38 / 8.09 | 0.02 / 6.13 / 1.57 |
+| Ours, zero-shot, `raw` + 2D (`trunc`) | 56.89 / 24.72 / 8.60 | – |
+| Paper, finetuned | 114.10 / 35.93 / 14.32 | 3.58 / 17.49 / 11.59 |
+| Ours, finetuned 3 ep, `trunc` | 97.19 / 36.30 / 13.73 | 6.99 / 17.51 / 12.21 |
+| Ours, finetuned 3 ep, `big` | 98.28 / 36.52 / 13.99 | 5.74 / 16.86 / 11.87 |
+| Ours, finetuned 3 ep, `rand` | 97.49 / 36.31 / 13.91 | 6.55 / 17.49 / 12.42 |
+
+Finetuning starts from the released checkpoint on XR-QA train (`short`) + XR-SceneCaption
+train only, with `scripts/run.sh`'s hyper-parameters (3 epochs, lr 5e-6 × batch × GPUs,
+cosine) and 256 new tokens at evaluation (captions are ~120 tokens); the paper also used LL3DA
+data, which is not included here. Zero-shot matches the paper (XR-QA CIDEr −4); finetuned
+ROUGE-L and METEOR match, CIDEr does not (XR-QA −16, captions +2–3). The object selection
+barely matters: < 0.5 CIDEr zero-shot; finetuned, `trunc` is 1–3 CIDEr lower than the other
+two on XR-QA scenes with >100 objects, against ≤ 1.1 run-to-run spread on the ≤100-object
+scenes where the three inputs are identical. Every epoch and the ≤100 / >100 split are in
+`outputs/xr_*/*.scores.json`: zero-shot `outputs/xr_eval_20261030_232754/` (all 18
+variants), finetuned `outputs/xr_ft_{trunc,big,rand}_*/`.
+
+Running (paths from `env.sh`, see `env.sh.example`):
+
+```bash
+bash xr_eval/register_regions.sh; bash xr_eval/extract_uni3d.sh; bash xr_eval/render_videofeats.sh
+PREFIX_CACHE=1 bash xr_eval/run_xr_eval.sh        # VAL_TAG=xrqa_val_<trunc|big|rand>_<raw|short>[_no2d]#xrcap_val_<sel>[_no2d]
+PREFIX_CACHE=1 SELECT=big bash xr_eval/run_xr_finetune.sh
+PREDS_DIR=outputs/xr_<...> bash xr_eval/score.sh
+```
+
+The only change to upstream code: `dataset/dataset_val.py` cached scene features by feature
+file, so two val sets sharing features but not attributes (the three object selections) got
+the first one's objects; the cache key now includes the attribute file.
+
 ## Repository layout
 
 | Path | What |
@@ -114,6 +180,12 @@ the rows to compare with other models. Two things to know about them:
 | `extra_eval/check_prefix_cache.py` | Agreement, time and memory of the `PREFIX_CACHE=1` modes against upstream on a few scenes of one val set (see *Faster evaluation*). |
 | `extra_eval/build_env_cu128.sh` | The runtime for Blackwell GPUs: py3.10, torch 2.7.1+cu128, flash-attn 2.8.3 wheel, upstream `requirements.txt` otherwise. |
 | `beacon3d/plot_gqa_chain.py` | Grounding→QA chain shares (as in Beacon3D's `eval_chain`) and the Sankey figures in `beacon3d/results/figures/`, from the evaluators' processed files. |
+| `xr_eval/register_regions.py`, `.sh` | SceneVerse HM3D region → HM3D v0.2 glb translation (`xr_eval/data/region_offsets.json`, committed). CPU only. |
+| `xr_eval/extract_uni3d_regions.py`, `extract_uni3d.sh` | Uni3D-g features of every GT object of every XR region → `xr_eval/features/regions_uni3d.*.pt`. |
+| `xr_eval/render_videofeats.py`, `.sh` | Renders the regions from the glb (pyrender, EGL) and fuses DINOv2 features per object → `xr_eval/features/regions_videofeats.*.pt`. ~2.6 h on 2 GPUs. |
+| `xr_eval/build_xr.py` | Region features → Chat-Scene scenes, attributes per object selection, annotations (`annotations/xr/`) and `scripts/xr_config.py`. Regenerated on every run. |
+| `xr_eval/run_xr_eval.sh`, `run_xr_finetune.sh` | Zero-shot inference / finetuning with per-epoch evaluation. |
+| `xr_eval/score.py`, `score.sh`, `capeval/` | LSceneLLM's scorers (vendored, see `VENDORED.md`), raw and Chat-Scene-normalised, with ≤100 / >100-object splits. CPU only. |
 
 ## Setup
 
