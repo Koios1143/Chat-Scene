@@ -4,15 +4,18 @@
 # (register_regions.sh).
 #   bash xr_eval/render_videofeats.sh                       # all XR regions, NGPU shards
 #   REGIONS="00009-vLpv2VX547B_sub002" DUMP_DIR=/tmp/views bash xr_eval/render_videofeats.sh   # debug
-# Paths come from env.sh (see env.sh.example): XR_DIR, XR_SCAN_DATA, HM3D_GLB, RENDER_ENV, DINOV2_HUB.
+#   PC_TYPE=gt bash xr_eval/render_videofeats.sh            # GT objects (default: Mask3D proposals)
+# Paths come from env.sh (see env.sh.example): XR_DIR, XR_SCAN_DATA, HM3D_GLB, RENDER_ENV, DINOV2_HUB,
+#   XR_PROPOSALS.
 set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 [ -f env.sh ] && source env.sh
 PY="${RENDER_ENV:?}/bin/python"
 [ -n "${DINOV2_HUB:-}" ] && export HF_HUB_CACHE="$DINOV2_HUB"
-OUT="${XR_FEATS_DIR:-xr_eval/features}"
+OUT="${XR_FEATS_DIR:-xr_eval/features$([ "${PC_TYPE:-pred}" = pred ] && echo _pred)}"
 N="${NGPU:-2}"
 EXTRA=()
+[ "${PC_TYPE:-pred}" = pred ] && EXTRA+=(--proposals "${XR_PROPOSALS:?}")
 [ -n "${REGIONS:-}" ] && EXTRA+=(--regions $REGIONS) && N=1 && OUT="${OUT}_debug"
 [ -n "${DUMP_DIR:-}" ] && EXTRA+=(--dump_dir "$DUMP_DIR")
 mkdir -p "$OUT"

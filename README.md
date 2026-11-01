@@ -106,19 +106,21 @@ SceneVerse HM3D regions (3 per QA, 5 per caption), often with more than Chat-Sce
 object identifiers, and SceneVerse ships no images. `xr_eval/` makes every unknown an explicit
 choice and runs the alternatives:
 
-- **3D token**: Uni3D-g per GT object (Beacon3D's extractor), regions concatenated in
-  LSceneLLM's order.
+- **Objects**: Mask3D proposals, as Chat-Scene uses on ScanNet (`PC_TYPE=pred`, default):
+  Mask3D's ScanNet200 checkpoint on every region, 100 proposals per region (shared with the
+  LEO fork, `extra_eval/xr/mask3d/` there); a scene pools its regions' proposals and keeps the
+  100 with the highest score. `PC_TYPE=gt` uses SceneVerse's GT objects instead (reference
+  runs below).
+- **3D token**: Uni3D-g per object (Beacon3D's extractor), regions in LSceneLLM's order.
 - **2D token**: views rendered from the HM3D v0.2 glb (SceneVerse region → glb is a pure
   translation, recovered by grid search + ICP: 2032 of 2035 regions at ~1 cm median), a
   0.75 m camera grid at 1.5 m height, 8 yaws, fused with DINOv2-large exactly as for
-  3RScan / MultiScan. 77% of objects get a 2D feature.
-- **>100 objects** (35% of XR-QA val questions, 54% of captions): `trunc` (stock code, first
-  100), `big` (drop wall/floor/ceiling, keep the 100 with most points), `rand` (100 at random).
+  3RScan / MultiScan. 73% of proposals (77% of GT objects) get a 2D feature.
 - **QA prompt**: the question as is (`raw`) or with ScanQA's "Answer the question using a
   single word or phrase." (`short`).
 - **Scoring**: LSceneLLM's capeval (vendored), keyed by its episode ids, on the raw text
   (LSceneLLM's validation) and after Chat-Scene's own ScanQA normalisation (`clean_answer` +
-  PTB tokenizer). `xr_eval/score.py` writes both.
+  PTB tokenizer). `xr_eval/score.py` writes both, split by the number of GT objects (≤100 / >100).
 
 Columns are CIDEr / ROUGE-L / METEOR: the paper labels them C / M / R, but its values only fit
 this order. Scores below use Chat-Scene's normalisation, the only one that fits the paper
@@ -127,31 +129,36 @@ in every setting (raw-text scoring gives zero-shot XR-QA CIDEr 17–30).
 | Setting | XR-QA (val) | XR-SceneCaption (val) |
 | --- | --- | --- |
 | Paper, zero-shot | 69.55 / 26.63 / 10.06 | 0.01 / 5.94 / 1.52 |
-| Ours, zero-shot, `short` + 2D (`trunc` / `big` / `rand`) | 65.51 / 26.78 / 8.72 · 65.64 / 26.93 / 8.74 · 65.88 / 26.96 / 8.77 | 0.02 / 6.07 / 1.50 · 0.01 / 6.17 / 1.54 · 0.02 / 6.09 / 1.48 |
-| Ours, zero-shot, `short`, no 2D (`trunc`) | 59.07 / 24.38 / 8.09 | 0.02 / 6.13 / 1.57 |
-| Ours, zero-shot, `raw` + 2D (`trunc`) | 56.89 / 24.72 / 8.60 | – |
+| **Ours, zero-shot, `short` + 2D** | **65.75 / 26.81 / 8.75** | **0.02 / 6.12 / 1.52** |
+| Ours, zero-shot, `short`, no 2D | 59.13 / 24.22 / 8.10 | 0.02 / 5.90 / 1.57 |
+| Ours, zero-shot, `raw` + 2D | 57.12 / 24.90 / 8.68 | – |
+| Ours, zero-shot, `raw`, no 2D | 48.19 / 21.32 / 7.61 | – |
 | Paper, finetuned | 114.10 / 35.93 / 14.32 | 3.58 / 17.49 / 11.59 |
-| Ours, finetuned 3 ep, `trunc` | 97.19 / 36.30 / 13.73 | 6.99 / 17.51 / 12.21 |
-| Ours, finetuned 3 ep, `big` | 98.28 / 36.52 / 13.99 | 5.74 / 16.86 / 11.87 |
-| Ours, finetuned 3 ep, `rand` | 97.49 / 36.31 / 13.91 | 6.55 / 17.49 / 12.42 |
+| Ours, finetuned, epoch 1 / 2 / **3** | 93.23 / 35.05 / 13.28 · 98.49 / 36.46 / 13.57 · **97.84 / 36.27 / 13.72** | 5.50 / 17.74 / 13.49 · 6.48 / 17.83 / 12.58 · **5.05 / 17.15 / 12.12** |
+| *GT objects (reference)*, zero-shot, `short` + 2D, `trunc` / `big` / `rand` | 65.51 / 26.78 / 8.72 · 65.64 / 26.93 / 8.74 · 65.88 / 26.96 / 8.77 | 0.02 / 6.07 / 1.50 · 0.01 / 6.17 / 1.54 · 0.02 / 6.09 / 1.48 |
+| *GT objects (reference)*, finetuned 3 ep, `trunc` / `big` / `rand` | 97.19 / 36.30 / 13.73 · 98.28 / 36.52 / 13.99 · 97.49 / 36.31 / 13.91 | 6.99 / 17.51 / 12.21 · 5.74 / 16.86 / 11.87 · 6.55 / 17.49 / 12.42 |
 
 Finetuning starts from the released checkpoint on XR-QA train (`short`) + XR-SceneCaption
-train only, with `scripts/run.sh`'s hyper-parameters (3 epochs, lr 5e-6 × batch × GPUs,
-cosine) and 256 new tokens at evaluation (captions are ~120 tokens); the paper also used LL3DA
-data, which is not included here. Zero-shot matches the paper (XR-QA CIDEr −4); finetuned
-ROUGE-L and METEOR match, CIDEr does not (XR-QA −16, captions +2–3). The object selection
-barely matters: < 0.5 CIDEr zero-shot; finetuned, `trunc` is 1–3 CIDEr lower than the other
-two on XR-QA scenes with >100 objects, against ≤ 1.1 run-to-run spread on the ≤100-object
-scenes where the three inputs are identical. Every epoch and the ≤100 / >100 split are in
-`outputs/xr_*/*.scores.json`: zero-shot `outputs/xr_eval_20261030_232754/` (all 18
-variants), finetuned `outputs/xr_ft_{trunc,big,rand}_*/`.
+train only, on the same kind of objects as evaluation, with `scripts/run.sh`'s
+hyper-parameters (3 epochs, lr 5e-6 × batch × GPUs, cosine) and 256 new tokens at evaluation
+(captions are ~120 tokens); the paper also used LL3DA data, which is not included here.
+Zero-shot matches the paper (XR-QA CIDEr −4, captions equal); finetuned ROUGE-L and METEOR
+match, CIDEr does not (XR-QA −16, captions +1.5). Mask3D proposals and GT objects give the
+same scores within 0.5 CIDEr (zero-shot) and 1 CIDEr (finetuned XR-QA). For GT objects, the
+three ways to keep 100 of more (`trunc`: first 100 as the stock code; `big`: drop
+wall/floor/ceiling, keep the 100 largest; `rand`) differ by < 0.5 CIDEr zero-shot and 1–3
+finetuned. Every epoch and the ≤100 / >100 split are in `outputs/xr_*/*.scores.json`:
+Mask3D zero-shot `outputs/xr_eval_20261101_171552/`, finetuned `outputs/xr_ft_pred_*/`;
+GT zero-shot `outputs/xr_eval_20261030_232754/` (18 variants), finetuned
+`outputs/xr_ft_{trunc,big,rand}_*/`.
 
 Running (paths from `env.sh`, see `env.sh.example`):
 
 ```bash
 bash xr_eval/register_regions.sh; bash xr_eval/extract_uni3d.sh; bash xr_eval/render_videofeats.sh
-PREFIX_CACHE=1 bash xr_eval/run_xr_eval.sh        # VAL_TAG=xrqa_val_<trunc|big|rand>_<raw|short>[_no2d]#xrcap_val_<sel>[_no2d]
-PREFIX_CACHE=1 SELECT=big bash xr_eval/run_xr_finetune.sh
+PREFIX_CACHE=1 bash xr_eval/run_xr_eval.sh        # VAL_TAG=xrqa_val_pred_<raw|short>[_no2d]#xrcap_val_pred[_no2d]
+PREFIX_CACHE=1 bash xr_eval/run_xr_finetune.sh
+# GT objects: PC_TYPE=gt for all three feature/run scripts; SELECT / VAL_TAG with trunc|big|rand
 PREDS_DIR=outputs/xr_<...> bash xr_eval/score.sh
 ```
 
@@ -181,9 +188,9 @@ the first one's objects; the cache key now includes the attribute file.
 | `extra_eval/build_env_cu128.sh` | The runtime for Blackwell GPUs: py3.10, torch 2.7.1+cu128, flash-attn 2.8.3 wheel, upstream `requirements.txt` otherwise. |
 | `beacon3d/plot_gqa_chain.py` | Grounding→QA chain shares (as in Beacon3D's `eval_chain`) and the Sankey figures in `beacon3d/results/figures/`, from the evaluators' processed files. |
 | `xr_eval/register_regions.py`, `.sh` | SceneVerse HM3D region → HM3D v0.2 glb translation (`xr_eval/data/region_offsets.json`, committed). CPU only. |
-| `xr_eval/extract_uni3d_regions.py`, `extract_uni3d.sh` | Uni3D-g features of every GT object of every XR region → `xr_eval/features/regions_uni3d.*.pt`. |
-| `xr_eval/render_videofeats.py`, `.sh` | Renders the regions from the glb (pyrender, EGL) and fuses DINOv2 features per object → `xr_eval/features/regions_videofeats.*.pt`. ~2.6 h on 2 GPUs. |
-| `xr_eval/build_xr.py` | Region features → Chat-Scene scenes, attributes per object selection, annotations (`annotations/xr/`) and `scripts/xr_config.py`. Regenerated on every run. |
+| `xr_eval/extract_uni3d_regions.py`, `extract_uni3d.sh` | Uni3D-g features of every Mask3D proposal (`XR_PROPOSALS`) of every XR region → `xr_eval/features_pred/regions_uni3d.*.pt`; GT objects → `xr_eval/features/` with `PC_TYPE=gt`. |
+| `xr_eval/render_videofeats.py`, `.sh` | Renders the regions from the glb (pyrender, EGL) and fuses DINOv2 features per object (proposal masks may overlap) → `xr_eval/features{_pred,}/regions_videofeats.*.pt`. ~2.6 h on 2 GPUs. |
+| `xr_eval/build_xr.py` | Region features → Chat-Scene scenes (top-100 proposals by score; for GT, one attribute file per object selection), annotations (`annotations/xr/`) and `scripts/xr_config.py`. Regenerated on every run. |
 | `xr_eval/run_xr_eval.sh`, `run_xr_finetune.sh` | Zero-shot inference / finetuning with per-epoch evaluation. |
 | `xr_eval/score.py`, `score.sh`, `capeval/` | LSceneLLM's scorers (vendored, see `VENDORED.md`), raw and Chat-Scene-normalised, with ≤100 / >100-object splits. CPU only. |
 

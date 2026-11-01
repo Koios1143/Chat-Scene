@@ -29,3 +29,5 @@ xr_eval/features/
 outputs/*/ckpt_*.pth
 # per-shard intermediates of xr_eval/register_regions.sh (merged into region_offsets.json)
 xr_eval/data/*.shard*
+# XR per-region features on Mask3D proposals (PC_TYPE=pred)
+xr_eval/features_pred/

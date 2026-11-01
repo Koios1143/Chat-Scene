@@ -3,9 +3,11 @@
 # checkpoint, evaluate only. Then score with xr_eval/score.sh (CPU only).
 #   bash xr_eval/run_xr_eval.sh
 #   VAL_TAG="xrqa_val_trunc_raw#xrcap_val_trunc" bash xr_eval/run_xr_eval.sh   # a subset
-# Needs xr_eval/features/regions_{uni3d,videofeats}.*.pt (extract_uni3d.sh, render_videofeats.sh).
+# Needs xr_eval/features_pred/regions_{uni3d,videofeats}.*.pt (extract_uni3d.sh, render_videofeats.sh);
+# PC_TYPE=gt: GT objects from xr_eval/features/ (see build_xr.py).
 # val tags: xrqa_val_<select>_<prompt>[_no2d], xrcap_val_<select>[_no2d] with
-#   select = trunc | rand | big (objects that get Chat-Scene's 100 identifiers, see build_xr.py)
+#   select = pred (top-100 Mask3D proposals, PC_TYPE=pred) or, for PC_TYPE=gt,
+#   trunc | rand | big (objects that get Chat-Scene's 100 identifiers, see build_xr.py)
 #   prompt = raw | short (question as is / + ScanQA's "Answer the question using a single word or phrase.")
 # Paths come from env.sh (see env.sh.example); the other knobs are as in extra_eval/run_extra_eval.sh:
 #   OUT, NGPU, BATCH_SIZE, PREFIX_CACHE, GEN_BATCH, SHARED_PREFIX
@@ -21,14 +23,15 @@ export MASTER_PORT=$((54000 + RANDOM % 10000)) MASTER_ADDR=localhost
 NGPU="${NGPU:-$(nvidia-smi -L | wc -l)}"
 LLAMA="${LLAMA:-lmsys/vicuna-7b-v1.5}"
 CKPT="${CKPT:-pretrained/ckpt_01_3446.pth}"
-VAL_TAG="${VAL_TAG:-xrqa_val_trunc_raw#xrqa_val_trunc_short#xrcap_val_trunc}"
+SEL=$([ "${PC_TYPE:-pred}" = pred ] && echo pred || echo trunc)
+VAL_TAG="${VAL_TAG:-xrqa_val_${SEL}_raw#xrqa_val_${SEL}_short#xrcap_val_${SEL}}"
 CACHE_ARGS=()
 [ "${PREFIX_CACHE:-0}" = 1 ] && CACHE_ARGS=(eval_scene_perm True eval_prefix_cache True eval_gen_batch "${GEN_BATCH:-16}")
 [ "${PREFIX_CACHE:-0}" = 1 ] && [ "${SHARED_PREFIX:-1}" = 1 ] && CACHE_ARGS+=(eval_shared_prefix True)
 OUT="${OUT:-outputs/xr_eval_$(date +%Y%m%d_%H%M%S)}"
 mkdir -p "$OUT"
 $ENV/bin/python xr_eval/build_xr.py --xr_dir "${XR_DIR:?}" --scan_data "${XR_SCAN_DATA:?}" \
-    --feats_dir "${XR_FEATS_DIR:-xr_eval/features}" || exit 1
+    --pc_type "${PC_TYPE:-pred}" ${XR_FEATS_DIR:+--feats_dir "$XR_FEATS_DIR"} || exit 1
 echo "output_dir=$OUT val_tag=$VAL_TAG ckpt=$CKPT ngpu=$NGPU max_txt_len=${MAX_TXT_LEN:-64} prefix_cache=${PREFIX_CACHE:-0}"
 # Model options = scripts/run.sh (the released checkpoint's training run).
 $ENV/bin/torchrun --nproc_per_node="$NGPU" tasks/train.py scripts/xr_config.py \

@@ -4,8 +4,9 @@
 # own hyper-parameters from scripts/run.sh, starting from the released checkpoint), evaluating
 # on val after every epoch. Then score with xr_eval/score.sh.
 #   bash xr_eval/run_xr_finetune.sh
-#   SELECT=big EPOCH=3 bash xr_eval/run_xr_finetune.sh
-# Knobs: SELECT (trunc | rand | big, see build_xr.py), PROMPT (short | raw; XR-QA prompt),
+#   PC_TYPE=gt SELECT=big EPOCH=3 bash xr_eval/run_xr_finetune.sh
+# Knobs: PC_TYPE (pred: Mask3D proposals, default | gt), SELECT (pred; gt: trunc | rand | big,
+#   see build_xr.py), PROMPT (short | raw; XR-QA prompt),
 #   EXTRA_TRAIN ("#"-joined extra train tags, e.g. ScanNet ones from scripts/config.py),
 #   EPOCH (3), LR (5e-6), BATCH_SIZE (32 per GPU), MAX_TXT_LEN (256: captions are ~120 tokens),
 #   OUT, NGPU, PREFIX_CACHE / GEN_BATCH / SHARED_PREFIX (eval speed-ups, as run_xr_eval.sh)
@@ -20,7 +21,7 @@ export MASTER_PORT=$((54000 + RANDOM % 10000)) MASTER_ADDR=localhost
 NGPU="${NGPU:-$(nvidia-smi -L | wc -l)}"
 LLAMA="${LLAMA:-lmsys/vicuna-7b-v1.5}"
 CKPT="${CKPT:-pretrained/ckpt_01_3446.pth}"
-SELECT="${SELECT:-trunc}"
+SELECT="${SELECT:-$([ "${PC_TYPE:-pred}" = pred ] && echo pred || echo trunc)}"
 PROMPT="${PROMPT:-short}"
 TRAIN_TAG="xrqa_train_${SELECT}_${PROMPT}#xrcap_train_${SELECT}${EXTRA_TRAIN:+#$EXTRA_TRAIN}"
 VAL_TAG="${VAL_TAG:-xrqa_val_${SELECT}_${PROMPT}#xrcap_val_${SELECT}}"
@@ -30,7 +31,7 @@ CACHE_ARGS=()
 OUT="${OUT:-outputs/xr_ft_${SELECT}_$(date +%Y%m%d_%H%M%S)}"
 mkdir -p "$OUT"
 $ENV/bin/python xr_eval/build_xr.py --xr_dir "${XR_DIR:?}" --scan_data "${XR_SCAN_DATA:?}" \
-    --feats_dir "${XR_FEATS_DIR:-xr_eval/features}" --splits train val || exit 1
+    --pc_type "${PC_TYPE:-pred}" ${XR_FEATS_DIR:+--feats_dir "$XR_FEATS_DIR"} --splits train val || exit 1
 echo "output_dir=$OUT train_tag=$TRAIN_TAG val_tag=$VAL_TAG ckpt=$CKPT ngpu=$NGPU epoch=${EPOCH:-3} lr=${LR:-5e-6}"
 # Model and optimisation options = scripts/run.sh (the released checkpoint's training run).
 $ENV/bin/torchrun --nproc_per_node="$NGPU" tasks/train.py scripts/xr_config.py \

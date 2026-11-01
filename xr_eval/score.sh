@@ -12,8 +12,11 @@ for f in "$D"/preds_epoch*_xr*.json; do
   task=${tag%%_*}; split=$(echo "$tag" | cut -d_ -f2)
   case "$tag" in *_raw*) p=_raw ;; *_short*) p=_short ;; *) p= ;; esac
   echo "== $tag"
+  # <=100 / >100 split by GT object count: the GT build's scene map (build_xr.py --pc_type gt;
+  # scene aliases are the same under both pc_types)
+  sm="annotations/xr/${task}_${split}_scene_map.json"
   $PY xr_eval/score.py --preds "$f" --anno "annotations/xr/${task}_${split}${p}.json" \
-      --scene_map "annotations/xr/${task}_${split}_scene_map.json" | python3 -c "
+      $([ -f "$sm" ] && echo --scene_map "$sm") | python3 -c "
 import json,sys;d=json.load(sys.stdin)
 for n in ('raw','chatscene'):
   for sp,v in d.get(n,{}).items(): print(f'  {n:9} {sp:5}', {m:round(x,2) for m,x in v.items()})

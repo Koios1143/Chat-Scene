@@ -8,6 +8,13 @@ order LSceneLLM concatenates the regions in. Each scene gets an alias ``xq<NNNN>
 ``xc<NNNN>_00`` because Chat-Scene recovers the scene of a feature key as
 ``'_'.join(key.split('_')[:2])``.
 
+``--pc_type pred`` (default; the setting Chat-Scene is evaluated and trained with on ScanNet,
+``mask3d_inst_seg``): the objects are Mask3D proposals (features from
+``extract_uni3d_regions.py`` / ``render_videofeats.py --proposals``), the scene's regions'
+proposals pooled and sorted by score, the first 100 kept (Chat-Scene's ScanNet scenes have the
+top 100 Mask3D proposals); one attributes file, select ``pred``. No ground truth is read.
+
+``--pc_type gt``: SceneVerse GT objects, as follows.
 Chat-Scene has 100 object identifiers (``<OBJ000>``..``<OBJ099>``); LSceneLLM does not say
 how its Chat-Scene baseline handled larger scenes. One attributes file per hypothesis
 (``--select``) picks the objects that get identifiers:
@@ -27,7 +34,7 @@ Train splits (``--splits train val``) get Chat-Scene train items (``caption`` = 
 answer; a caption with several references becomes several items) and are registered in
 ``train_file_dict`` under the same names (with 2D features).
 
-Writes ``<anno_dir>/xr/``: ``xr{qa,cap}_<split>_{uni3d,video}feats.pt``,
+Writes ``<anno_dir>/xr/`` (``pred``: names carry ``_pred``): ``xr{qa,cap}_<split>_{uni3d,video}feats.pt``,
 ``xr{qa,cap}_<split>_attributes_<select>.pt``, ``xr{qa,cap}_<split>[_<prompt>].json`` and
 ``xr{qa,cap}_<split>_scene_map.json``; ``scripts/xr_config.py`` registers
 ``xrqa_<split>_<select>_<prompt>`` and ``xrcap_<split>_<select>``.
@@ -103,12 +110,13 @@ def select(objs, how, seed_key):
     return cols + list(range(n, n + MAX_OBJ - len(cols)))
 
 
-def build(task, split, items, uni3d, video, room_center, anno_dir, prefix):
+def build(task, split, items, uni3d, video, room_center, anno_dir, prefix, pc_type="gt"):
+    selects = ["pred"] if pc_type == "pred" else SELECTS
     scenes = {}
     for it in items:
         scenes.setdefault((it["scan"], tuple(it["regions"])), len(scenes))
     feats, vfeats, scene_map = {}, {}, {}
-    attrs = {s: {} for s in SELECTS}
+    attrs = {s: {} for s in selects}
     for (scan, regs), k in scenes.items():
         alias = f"{prefix}{k:04d}_00"
         objs = []
@@ -117,28 +125,34 @@ def build(task, split, items, uni3d, video, room_center, anno_dir, prefix):
             rv = video.get(f"{scan}_{sub}", {})
             c = torch.as_tensor(room_center[scan][sub]["center"], dtype=torch.float32)
             for j, oid in enumerate(r["ids"]):
-                col = len(objs)
-                feats[f"{alias}_{col:02}"] = r["feats"][j]
-                if oid in rv:
-                    vfeats[f"{alias}_{col:02}"] = rv[oid]
                 loc = r["locs"][j].clone()
                 loc[:3] += c
-                objs.append({"sub": sub, "id": oid, "label": r["labels"][j], "npts": r["npts"][j], "loc": loc})
+                objs.append({"sub": sub, "id": oid, "label": r["labels"][j], "npts": r["npts"][j], "loc": loc,
+                             "feat": r["feats"][j], "vfeat": rv.get(oid),
+                             "score": r["scores"][j] if "scores" in r else 0.0})
+        if pc_type == "pred":  # stable: equal scores keep region order
+            objs = sorted(objs, key=lambda o: -o["score"])[:MAX_OBJ]
+        for col, o in enumerate(objs):
+            feats[f"{alias}_{col:02}"] = o["feat"]
+            if o["vfeat"] is not None:
+                vfeats[f"{alias}_{col:02}"] = o["vfeat"]
         if not objs:  # all regions empty in SceneVerse: one zero feature so the scene exists
             feats[f"{alias}_00"] = torch.zeros(next(iter(uni3d.values()))["feats"].shape[1])
         locs = torch.stack([o["loc"] for o in objs]) if objs else torch.zeros(0, 6)
-        for how in SELECTS:
+        for how in selects:
             a = {"objects": [o["label"] for o in objs], "locs": locs}
-            cols = select(objs, how, alias)
+            cols = None if how == "pred" else select(objs, how, alias)
             if cols is not None:
                 a["obj_ids"] = cols
             attrs[how][alias] = a
         scene_map[alias] = {"scan": scan, "regions": list(regs), "n_obj": len(objs),
                             "objects": [[o["sub"], o["id"]] for o in objs]}
-    base = os.path.join(anno_dir, f"{task}_{split}")
+        if pc_type == "pred":
+            scene_map[alias]["scores"] = [round(float(o["score"]), 4) for o in objs]
+    base = os.path.join(anno_dir, f"{task}_{split}" + ("_pred" if pc_type == "pred" else ""))
     torch.save(feats, f"{base}_uni3dfeats.pt")
     torch.save(vfeats, f"{base}_videofeats.pt")
-    for how in SELECTS:
+    for how in selects:
         torch.save(attrs[how], f"{base}_attributes_{how}.pt")
     json.dump(scene_map, open(f"{base}_scene_map.json", "w"))
     n = [m["n_obj"] for m in scene_map.values()]
@@ -152,12 +166,16 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--xr_dir", required=True)
     ap.add_argument("--scan_data", required=True, help="SceneVerse HM3D scan_data (room_center/)")
-    ap.add_argument("--feats_dir", default="xr_eval/features")
+    ap.add_argument("--pc_type", default="pred", choices=["pred", "gt"])
+    ap.add_argument("--feats_dir", default="", help="default xr_eval/features[_pred]")
     ap.add_argument("--anno_dir", default="annotations/xr")
     ap.add_argument("--splits", nargs="+", default=["val"])
     ap.add_argument("--config_out", default="scripts/xr_config.py")
     args = ap.parse_args()
     os.makedirs(args.anno_dir, exist_ok=True)
+    args.feats_dir = args.feats_dir or ("xr_eval/features_pred" if args.pc_type == "pred" else "xr_eval/features")
+    selects = ["pred"] if args.pc_type == "pred" else SELECTS
+    pfx = "_pred" if args.pc_type == "pred" else ""
     uni3d = load_shards(os.path.join(args.feats_dir, "regions_uni3d.*.pt"))
     video = load_shards(os.path.join(args.feats_dir, "regions_videofeats.*.pt"))
     print(f"uni3d regions {len(uni3d)}, 2D regions {len(video)}")
@@ -168,7 +186,7 @@ def main():
     for split in args.splits:
         for task, items, prefix in (("xrqa", qa_items(args.xr_dir, split), "xq"),
                                     ("xrcap", cap_items(args.xr_dir, split), "xc")):
-            alias = build(task, split, items, uni3d, video, room_center, args.anno_dir, prefix)
+            alias = build(task, split, items, uni3d, video, room_center, args.anno_dir, prefix, args.pc_type)
             prompts = {"raw": "", "short": QA_SUFFIX} if task == "xrqa" else {"": ""}
             for pname, suffix in prompts.items():
                 out = []
@@ -188,16 +206,17 @@ def main():
                     })
                 tag = f"_{pname}" if pname else ""
                 json.dump(out, open(os.path.join(args.anno_dir, f"{task}_{split}{tag}.json"), "w"), indent=1)
-                base = f"{{anno_root}}/xr/{task}_{split}"
-                for how in SELECTS:
+                base = f"{{anno_root}}/xr/{task}_{split}{pfx}"
+                js = f"{{anno_root}}/xr/{task}_{split}{tag}.json"
+                for how in selects:
                     if split == "train":
                         cfg.append(f"train_file_dict['{task}_{split}_{how}{tag}'] = [f'{base}_uni3dfeats.pt', "
-                                   f"f'{base}_videofeats.pt', f'{base}_attributes_{how}.pt', f'{base}{tag}.json']")
+                                   f"f'{base}_videofeats.pt', f'{base}_attributes_{how}.pt', f'{js}']")
                         continue
                     cfg.append(f"val_file_dict['{task}_{split}_{how}{tag}'] = [f'{base}_uni3dfeats.pt', "
-                               f"f'{base}_videofeats.pt', f'{base}_attributes_{how}.pt', f'{base}{tag}.json']")
+                               f"f'{base}_videofeats.pt', f'{base}_attributes_{how}.pt', f'{js}']")
                     cfg.append(f"val_file_dict['{task}_{split}_{how}{tag}_no2d'] = [f'{base}_uni3dfeats.pt', "
-                               f"None, f'{base}_attributes_{how}.pt', f'{base}{tag}.json']")
+                               f"None, f'{base}_attributes_{how}.pt', f'{js}']")
     open(args.config_out, "w").write(open("scripts/config.py").read() + "\n".join(cfg) + "\n")
     print(f"config -> {args.config_out}")
 

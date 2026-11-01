@@ -17,7 +17,11 @@ Views (per region, in the glb frame; region points = SceneVerse points + the off
   reaches 5, the positions with the most such views); at most MAX_POS positions
   (farthest-point subset, starting nearest the region centre).
 
-Output ``<out_dir>/regions_videofeats.<shard>.pt`` = {"<scan>_<sub>": {inst id: float32[1024]}}
+Objects are the GT instances, or with ``--proposals`` the region's Mask3D proposals (keyed by
+rank, as ``extract_uni3d_regions.py --proposals``; they may overlap, so each is fused from
+its own points).
+
+Output ``<out_dir>/regions_videofeats.<shard>.pt`` = {"<scan>_<sub>": {object id: float32[1024]}}
 (objects never seen get no entry; Chat-Scene then feeds zeros, as upstream).
 """
 
@@ -112,6 +116,7 @@ def main():
     ap.add_argument("--glb_root", required=True)
     ap.add_argument("--offsets", required=True, help="xr_eval/register_regions.py output")
     ap.add_argument("--out_dir", required=True)
+    ap.add_argument("--proposals", default="", help="Mask3D proposals dir (objects = proposals)")
     ap.add_argument("--shard", default="0/1")
     ap.add_argument("--regions", nargs="*", help="only these <scan>_<sub> (debug)")
     ap.add_argument("--dump_dir", default="", help="save the rendered views (debug)")
@@ -153,9 +158,13 @@ def main():
                 for f, fr in enumerate(frames):
                     fr[0].save(os.path.join(args.dump_dir, reg, f"{f:03d}.jpg"))
                     np.save(os.path.join(args.dump_dir, reg, f"{f:03d}_c2w.npy"), fr[1])
-            feats = fuse(frames, pts, inst, dino)
+            members = None
+            if args.proposals:
+                p = torch.load(os.path.join(args.proposals, f"{reg}.pt"), weights_only=False)
+                members = {k: np.asarray(m, np.int64) for k, m in enumerate(p["masks"])}
+            feats = fuse(frames, pts, inst, dino, members)
             res[reg] = {int(o): v for o, v in feats.items()}
-            n_obj = len(set(inst.tolist()) - {-1})
+            n_obj = len(members) if members is not None else len(set(inst.tolist()) - {-1})
             print(f"[{k + 1}/{len(scans)}] {reg}: {len(frames)} views, {len(feats)}/{n_obj} objects seen", flush=True)
         scene.clear()
         torch.save(res, out + ".tmp")

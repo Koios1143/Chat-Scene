@@ -98,14 +98,16 @@ def visible_pixels(pts, c2w, K_col, color_hw, depth, K_depth):
     return v, u, vis
 
 
-def fuse(frames, pts, inst, dino):
-    """frames: list of (PIL image, c2w, K_col, depth, K_depth, rotate_cw). -> {inst_id: feat}."""
+def fuse(frames, pts, inst, dino, members=None):
+    """frames: list of (PIL image, c2w, K_col, depth, K_depth, rotate_cw). -> {inst_id: feat}.
+    ``members`` ({id: point indices}) replaces ``inst`` for objects that may overlap (proposals)."""
     images = []
     for img, *_, rot in frames:
         images.append(img.rotate(-90, expand=True) if rot else img)
     feats = dino(images)
-    ids = [i for i in np.unique(inst) if i >= 0]
-    members = {i: np.nonzero(inst == i)[0] for i in ids}
+    if members is None:
+        members = {i: np.nonzero(inst == i)[0] for i in np.unique(inst) if i >= 0}
+    ids = list(members)
     acc = defaultdict(list)
     for f, (img, c2w, K_col, depth, K_depth, rot) in enumerate(frames):
         W, H = img.size
