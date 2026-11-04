@@ -185,6 +185,13 @@ inference). The original scores stay where they are; the aligned ones are additi
   (2,994 XR-QA / 283 XR-SceneCaption), without episode de-duplication. Mask3D runs only.
 - Real-3DQA and Beacon3D QA are unchanged.
 
+**SPICE (XR-SceneCaption)**, computed as in just3d: SPICE 1.0 (CoreNLP 3.6.0 + nashorn) on JDK 17;
+captions are split into sentences of at most 40 words (whitespace-free or initial-like run-ons over
+120 tokens are re-chunked so CoreNLP's parser does not run out of memory); score = mean per-item
+All-F x100, an empty prediction scores 0. Needs `deps/spice/` (`spice-1.0.jar` + `lib/`) and
+`deps/jdk17/` (gitignored); without them the script warns and skips SPICE. Headline: zero-shot 2.75,
+finetune 15.12 (the `"spice"` block in each XR-SceneCaption JSON; parse cache in `deps/spice_cache/`).
+
 ```bash
 bash extra_eval/aligned/run_score_aligned.sh   # CPU only; --only scan2cap,scanqa,sqa3d,xr_qa,xr_scenecaption
 ```

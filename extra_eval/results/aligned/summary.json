@@ -323,6 +323,17 @@
     "BLEU-4": 4.137720828771174,
     "METEOR": 17.37961039318822,
     "ROUGE-L": 19.799132007196306
+   },
+   "spice": {
+    "SPICE": 15.163920600031606,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 32.17041226149503,
+    "SPICE_Attribute": 6.091574991416584,
+    "SPICE_Relation": 2.245040669744662,
+    "SPICE_Color": 5.882352941176471,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 1.6968712504426788
    }
   }
  },
@@ -349,6 +360,17 @@
     "BLEU-4": 4.266473346727536,
     "METEOR": 16.318169684860937,
     "ROUGE-L": 19.68915138472187
+   },
+   "spice": {
+    "SPICE": 15.0786388748101,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 31.36323511380835,
+    "SPICE_Attribute": 5.818784775584755,
+    "SPICE_Relation": 2.55061623442516,
+    "SPICE_Color": 6.862745098039216,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 2.514644746787604
    }
   }
  },
@@ -375,6 +397,17 @@
     "BLEU-4": 4.508383283086688,
     "METEOR": 15.74193967487815,
     "ROUGE-L": 19.358254399266464
+   },
+   "spice": {
+    "SPICE": 15.120392971285114,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 30.862502474559115,
+    "SPICE_Attribute": 6.4197050149843395,
+    "SPICE_Relation": 2.478638894691184,
+    "SPICE_Color": 5.882352941176471,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 2.5836167800453516
    }
   }
  },
@@ -401,6 +434,17 @@
     "BLEU-4": 0.009950912072809978,
     "METEOR": 2.6619616821295997,
     "ROUGE-L": 8.14086713914821
+   },
+   "spice": {
+    "SPICE": 2.753167247987593,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 6.555762763159298,
+    "SPICE_Attribute": 0.20804189161649547,
+    "SPICE_Relation": 0.0,
+    "SPICE_Color": 0.0,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 0.0
    }
   }
  },
@@ -427,6 +471,17 @@
     "BLEU-4": 2.228288494079584e-06,
     "METEOR": 2.774667050494364,
     "ROUGE-L": 8.232458043288247
+   },
+   "spice": {
+    "SPICE": 2.5690281529949344,
+    "n": 283,
+    "n_empty_pred": 0,
+    "SPICE_Object": 6.144871735577448,
+    "SPICE_Attribute": 0.30259076255070366,
+    "SPICE_Relation": 0.0,
+    "SPICE_Color": 0.0,
+    "SPICE_Size": 0.0,
+    "SPICE_Cardinality": 0.0
    }
   }
  }
