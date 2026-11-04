@@ -1,0 +1,22 @@
+{
+ "bench": "sqa3d",
+ "variant": "test",
+ "n": 3519,
+ "n_special_stripped": 0,
+ "existing_em": {
+  "EM": 54.276783177038936,
+  "EM-R": 56.976413753907366
+ },
+ "existing_em_source": "extra_eval/results/sqa3d_test/scores.json",
+ "diff_vs_existing": {
+  "EM": -7.105427357601002e-15,
+  "EM-R": -7.105427357601002e-15
+ },
+ "source": "outputs/extra_eval_20261021_025847/preds_epoch-1_step0_sqa3d_test.json",
+ "metrics": {
+  "em": {
+   "EM": 54.27678317703893,
+   "EM-R": 56.97641375390736
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "bench": "scan2cap",
+ "variant": "iou0.50",
+ "n": 2068,
+ "n_protocol_items": 2007,
+ "n_matched": 1770,
+ "n_corpus_without_item": 61,
+ "n_iou_differs_from_annotation": 0,
+ "n_special_stripped": 0,
+ "refs": "deps/aligned/scan2cap_val_corpus.json",
+ "source": "outputs/extra_eval_20261021_025847/preds_epoch-1_step0_scan2cap.json",
+ "metrics": {
+  "s2c": {
+   "CIDEr": 79.59420141500118,
+   "BLEU-1": 70.61506110179614,
+   "BLEU-4": 36.04035205124763,
+   "METEOR": 27.491591872791442,
+   "ROUGE-L": 57.07527754653612
+  }
+ }
+}

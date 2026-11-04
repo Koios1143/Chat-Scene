@@ -1,0 +1,26 @@
+{
+ "bench": "xr_scenecaption",
+ "variant": "zs_pred_no2d",
+ "n": 283,
+ "n_unique_episodes": 283,
+ "n_special_stripped": 0,
+ "headline": false,
+ "refs": "annotations/xr/xrcap_val.json",
+ "source": "outputs/xr_eval_20261101_171552/preds_epoch-1_step0_xrcap_val_pred_no2d.json",
+ "metrics": {
+  "ptb": {
+   "CIDEr": 0.04069097571524634,
+   "BLEU-1": 0.5858199996932789,
+   "BLEU-4": 3.3106290454988985e-06,
+   "METEOR": 2.469980925813214,
+   "ROUGE-L": 9.6466213910145
+  },
+  "raw": {
+   "CIDEr": 0.06007676131606437,
+   "BLEU-1": 0.47657105500163965,
+   "BLEU-4": 2.228288494079584e-06,
+   "METEOR": 2.774667050494364,
+   "ROUGE-L": 8.232458043288247
+  }
+ }
+}

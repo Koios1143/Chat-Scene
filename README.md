@@ -166,6 +166,43 @@ The only change to upstream code: `dataset/dataset_val.py` cached scene features
 file, so two val sets sharing features but not attributes (the three object selections) got
 the first one's objects; the cache key now includes the attribute file.
 
+## Aligned scoring (comparable across baselines)
+
+The tables above use each benchmark's own (paper) protocol, which normalises text differently
+in every baseline repo. `extra_eval/aligned/` re-scores the saved predictions with one
+normalisation shared by all baselines (`aligned_eval.py` is identical in every repo; no
+inference). The original scores stay where they are; the aligned ones are additional.
+
+- **Scan2Cap**: PTB tokenizer + `sos … eos` on both sides, untruncated references
+  (`deps/aligned/scan2cap_val_corpus.json`: every ScanRefer val description of the 2068
+  annotated objects, keyed `<scene>|<object_id>`), Chat-Scene's own proposal matching / IoU.
+- **ScanQA, XR-QA**: only Chat-Scene's special tokens are stripped (no truncation), then
+  `clean_answer` on both sides + PTB for CIDEr / BLEU / METEOR / ROUGE-L. EM / EM-R:
+  `clean_answer` on both sides, exact match over all references before the substring
+  (refined) match. **SQA3D**: EM / EM-R the same way (equal to the existing numbers).
+- **XR-SceneCaption**: special tokens stripped, no truncation, PTB on both sides.
+- XR results also keep a `raw` block (LSceneLLM's protocol, no PTB) and are scored per item
+  (2,994 XR-QA / 283 XR-SceneCaption), without episode de-duplication. Mask3D runs only.
+- Real-3DQA and Beacon3D QA are unchanged.
+
+```bash
+bash extra_eval/aligned/run_score_aligned.sh   # CPU only; --only scan2cap,scanqa,sqa3d,xr_qa,xr_scenecaption
+```
+
+Needs java (`JAVA_HOME`, default `deps/jre11`) and the env's python (`CHATSCENE_ENV`); writes
+`extra_eval/results/aligned/<bench>__<variant>.json` and `summary.json` (variants marked
+`headline` are the ones below).
+
+| Benchmark | Metric | Paper protocol (tables above) | Aligned |
+| --- | --- | --- | --- |
+| Scan2Cap (val) | CIDEr@0.5 | 79.59 | 79.59 |
+| ScanQA (val) | CIDEr / EM / EM-R | 87.26 / 21.35 / 37.13 | 92.11 / 23.44 / 40.34 |
+| SQA3D (test) | EM | 54.28 | 54.28 |
+| XR-QA (val), zero-shot `short` + 2D | CIDEr (`clean_ptb`) / EM | 65.75 / – | 81.80 / 14.80 |
+| XR-QA (val), finetuned epoch 3 | CIDEr (`clean_ptb`) / EM | 97.84 / – | 129.25 / 22.88 |
+| XR-SceneCaption (val), zero-shot | CIDEr (`ptb`) | 0.02 | 0.06 |
+| XR-SceneCaption (val), finetuned epoch 3 | CIDEr (`ptb`) | 5.05 | 5.64 |
+
 ## Repository layout
 
 | Path | What |
@@ -193,6 +230,7 @@ the first one's objects; the cache key now includes the attribute file.
 | `xr_eval/build_xr.py` | Region features → Chat-Scene scenes (top-100 proposals by score; for GT, one attribute file per object selection), annotations (`annotations/xr/`) and `scripts/xr_config.py`. Regenerated on every run. |
 | `xr_eval/run_xr_eval.sh`, `run_xr_finetune.sh` | Zero-shot inference / finetuning with per-epoch evaluation. |
 | `xr_eval/score.py`, `score.sh`, `capeval/` | LSceneLLM's scorers (vendored, see `VENDORED.md`), raw and Chat-Scene-normalised, with ≤100 / >100-object splits. CPU only. |
+| `extra_eval/aligned/` | Aligned re-scoring of the saved predictions (`aligned_eval.py` shared by all baselines, `score_aligned.py`, `run_score_aligned.sh`) → `extra_eval/results/aligned/`. CPU only. |
 
 ## Setup
 
@@ -269,8 +307,11 @@ Chat-Scene's benchmarks and Real-3DQA:
 
 ```shell
 bash extra_eval/run_extra_eval.sh                          # VAL_TAG="scanqa#sqa3d_test" for a subset
-PREDS_DIR=outputs/extra_eval_<ts> bash extra_eval/score.sh  # -> extra_eval/results/
+PREDS_DIR=outputs/extra_eval_<ts> bash extra_eval/score.sh  # -> extra_eval/results/ (BENCHES for a subset)
+bash extra_eval/aligned/run_score_aligned.sh                # aligned re-scoring, see above
 ```
+
+XR-QA / XR-SceneCaption: see the *Running* block of that section above.
 
 Notes on `extra_eval/`:
 
