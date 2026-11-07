@@ -42,6 +42,7 @@ column is the upstream README (Chat-Scene) and, for Real-3DQA, Table 2/3 of
 Every number is within about one point of the published one (Scan2Cap CIDEr@0.5 +2.5).
 Per-type breakdowns (ScanRefer unique/multiple, Multi3DRefer per eval type, SQA3D per
 question type, Real-3DQA per rotation) are in `extra_eval/results/<bench>/scores.json`.
+ScanRefer Unique / Multiple in `results/scanrefer/scores.json` use ScanRefer's own split (`extra_eval/build_scanrefer_lookup.py` → `deps/scanrefer_official/`: ScanRefer's label table, as its `lib/dataset.py`; 1,845 / 7,663 val sentences): Unique 89.21 / 81.90, Multiple 48.02 / 42.88 (@0.25 / @0.5). The upstream lookup (`annotations/scanrefer_unique_multiple_lookup.json`) was built from ScanNet's own label table, which spells the NYU40 class "refridgerator", and labels 86 val sentences (refrigerators, mini fridges) multiple: Unique 89.37 / 82.49, Multiple 48.44 / 43.18 (`scores.upstream_lookup.json`). Overall is unchanged.
 
 ## Results: Beacon3D
 

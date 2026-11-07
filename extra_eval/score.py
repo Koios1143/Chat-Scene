@@ -9,6 +9,13 @@
   (One..Four, VRS) on the four rotation splits. An empty generation is replaced by
   ``<empty>`` first; otherwise the refined match counts it as correct, because the empty
   string is a substring of every answer.
+  ScanRefer's unique / multiple split comes from ``--scanrefer_lookup`` (default
+  ``deps/scanrefer_official/scanrefer_unique_multiple_lookup.json``, built by
+  ``extra_eval/build_scanrefer_lookup.py`` from ScanRefer's own label table, as ScanRefer's
+  ``lib/dataset.py`` does). The lookup shipped in ``annotations/`` was built from ScanNet's
+  table, which spells "refridgerator", and labels 86 val sentences multiple that ScanRefer
+  labels unique; ``--scanrefer_lookup annotations/scanrefer_unique_multiple_lookup.json``
+  reproduces the upstream split.
 
 Writes ``<result_dir>/<bench>/scores.json`` (+ Real-3DQA prediction files) and
 ``<result_dir>/summary.json``.
@@ -76,8 +83,12 @@ def coco_scorers():
                             (Rouge(), "ROUGE_L"), (Cider(), "CIDEr")]
 
 
+SCANREFER_LOOKUP = "deps/scanrefer_official/scanrefer_unique_multiple_lookup.json"
+
+
 def score_chatscene(name, preds, config):
     from utils import eval as ev
+    ev.scanrefer_get_unique_multiple_lookup = lambda: json.load(open(SCANREFER_LOOKUP))
     if name in ("scanqa", "scan2cap", "sqa3d_test"):
         tokenizer, scorers = coco_scorers()
     if name == "scanrefer":
@@ -135,8 +146,12 @@ def main():
     ap.add_argument("--config", default="scripts/extra_eval_config.py")
     ap.add_argument("--benches", default="scanrefer,multi3dref,scan2cap,scanqa,sqa3d_test,real3dqa")
     ap.add_argument("--name", default="Chat-Scene")
+    ap.add_argument("--scanrefer_lookup", default="deps/scanrefer_official/scanrefer_unique_multiple_lookup.json",
+                    help="unique / multiple lookup (relative to the repo root)")
     args = ap.parse_args()
     os.chdir(REPO)  # utils/eval.py reads annotations/ relative to the repo root
+    global SCANREFER_LOOKUP
+    SCANREFER_LOOKUP = os.path.abspath(args.scanrefer_lookup)
     cfg = {}
     exec(open(args.config).read(), cfg)
     config = SimpleNamespace(val_file_dict=cfg["val_file_dict"])
@@ -159,6 +174,8 @@ def main():
             print(f"[{bench}] no predictions in {args.pred_dir}, skipped")
             continue
         res = {"pred_dir": os.path.relpath(args.pred_dir, REPO), **res}
+        if bench == "scanrefer":
+            res["unique_multiple_lookup"] = os.path.relpath(SCANREFER_LOOKUP, REPO)
         json.dump(res, open(out / "scores.json", "w"), indent=1)
         summary[bench] = res
         print(f"[{bench}]", json.dumps(res, indent=1))
